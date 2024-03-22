@@ -1,60 +1,52 @@
-import {useState, useCallback} from 'react';
-import {createRoot} from 'react-dom/client';
-import Map, {Source, Layer} from 'react-map-gl';
+import { useState } from 'react';
+import { ArrowRightCircleIcon } from '@heroicons/react/24/outline';
 
-import {dataLayer} from './map-style';
-
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiZ3VyZGVuIiwiYSI6ImNrdXNjdTA3eDA5MWYybm8wZWhiMXVqdzkifQ.NVMz5cLI846KYy281riBhw'; // Set your mapbox token here
+import './App.css';
+import NavBar from './components/NavBar';
+import LBSMap from './components/Map';
+import InfoPanel from './components/InfoPanel';
 
 export default function App() {
-  const [hoverInfo, setHoverInfo] = useState(null);
-
-  // useEffect(() => {
-  //   fetch(
-  //     'https://raw.githubusercontent.com/uber/react-map-gl/master/examples/.data/us-income.geojson'
-  //   )
-  //     .then(resp => resp.json())
-  //     .then(json => setAllData(json))
-  //     .catch(err => console.error('Could not load data', err)); // eslint-disable-line
-  // }, []);
-
-  const onHover = useCallback(event => {
-    const {
-      features,
-      point: {x, y}
-    } = event;
-    const hoveredFeature = features && features[0];
-
-    setHoverInfo(hoveredFeature && {feature: hoveredFeature, x, y});
-  }, []);
+  const [showInfoPanel, setShowInfoPanel] = useState(true);
+  const [mapDataLayer, setMapDataLayer] = useState('Basic');
+  const [activeHazard, setActiveHazard] = useState('Gesamt');
 
   return (
-    <div id='map'>
-      <Map
-        initialViewState={{
-          latitude: 48.77,
-          longitude: 9.18,
-          zoom: 11
-        }}
-        mapStyle="mapbox://styles/mapbox/light-v9"
-        mapboxAccessToken={MAPBOX_TOKEN}
-        interactiveLayerIds={['data']}
-        onMouseMove={onHover}
-      >
-        <Source type="geojson" data='https://raw.githubusercontent.com/Dark-Matter-Labs/treesai_registry/main/src/data/500_LBS_Stuttgart.geojson'>
-          <Layer {...dataLayer} />
-        </Source>
-        {hoverInfo && (
-          <div className="tooltip" style={{left: hoverInfo.x, top: hoverInfo.y}}>
-            <div>DEM_mean: {hoverInfo.feature.properties.DEM_mean}</div>
-            <div>AVERAGE_RI: {hoverInfo.feature.properties.AVERAGE_RI}</div>
-          </div>
-        )}
-      </Map>
+    <>
+    <NavBar />
+    {showInfoPanel ? (
+      <div className='relative'>
+      <div className='absolute z-20'>
+        <InfoPanel activeHazard={activeHazard} setActiveHazard={setActiveHazard} show={showInfoPanel} setShowPanel={setShowInfoPanel} />
+      </div>
+      <LBSMap
+        mapLayer={mapDataLayer}
+        setMapLayer={setMapDataLayer}
+        setShowPanel={setShowInfoPanel}
+        layer={activeHazard}
+      />
     </div>
-  );
-}
+    )
+    :
+    (
+      <div className='relative'>
+          <div className='absolute z-20 top-1/4'>
+            <div className='px-4 py-10 bg-green-600 rounded-r-full'>
+              <button onClick={() => setShowInfoPanel(true)}>
+                <ArrowRightCircleIcon className='text-white-200 w-7 h-7 ml-2' />
+              </button>
+            </div>
+          </div>
+          <LBSMap
+            mapLayer={mapDataLayer}
+            setMapLayer={setMapDataLayer}
+            setShowPanel={setShowInfoPanel}
+            layer={activeHazard}
+          />
+        </div>
 
-export function renderToDom(container) {
-  createRoot(container).render(<App />);
+    )
+    }
+    </>
+  );
 }

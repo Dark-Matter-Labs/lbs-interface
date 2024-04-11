@@ -1,42 +1,134 @@
 // For more information on data-driven styles, see https://www.mapbox.com/help/gl-dds-ref/
-export const dataLayer = {
-  id: 'data',
-  type: 'fill',
+export const genRiskLayer = {
+  id: "district-layer",
+  type: "fill",
+  source: "district-source",
+  layout: {},
   paint: {
-    'fill-color': {
-      property: 'AVERAGE_RISK',
+    "fill-color": {
+      property: "AVERAGE_RISK",
       stops: [
-        [13, '#1aaa0d'],
-        [26, '#2ea797'],
-        [38, '#42a4a9'],
-        [52, '#55a1ba'],
-        [65, '#699ecb'],
-        [76, '#7c9bdd'],
-        [89, '#9096ee'],
-        [100, '#a294ff'],
-      ]
+        [13.6, "#1aaa0d"],
+        [19.6, "#2ea797"],
+        [25.89, "#42a4a9"],
+        [32.6, "#55a1ba"],
+        [42.82, "#699ecb"],
+        [52.6, "#7c9bdd"],
+        [63, "#9096ee"],
+        [100, "#a294ff"],
+      ],
     },
-    'fill-opacity': 0.7
-  }
+    "fill-opacity": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      1,
+      0.5,
+    ],
+  },
 };
 
-export const dataLayer2 = {
-  id: 'data',
-  type: 'fill',
+export const droughtRiskLayer = {
+  id: "district-layer",
+  type: "fill",
+  source: "district-source",
   paint: {
-    'fill-color': {
-      property: 'A_risk_score',
+    "fill-color": {
+      property: "A_risk_score",
       stops: [
-        [14, '#0d0887'],
-        [27, '#5301a4'],
-        [40, '#8b09a5'],
-        [52, '#b93289'],
-        [64, '#db5c69'],
-        [76, '#f48849'],
-        [88, '#febb2b'],
-        [100, '#f2f921'],
-      ]
+        [22.39, "#0d0887"],
+        [30.19, "#5301a4"],
+        [36.6, "#8b09a5"],
+        [41.79, "#b93289"],
+        [46.89, "#db5c69"],
+        [52.29, "#f48849"],
+        [59, "#febb2b"],
+        [100, "#f2f921"],
+      ],
     },
-    'fill-opacity': 0.7
-  }
+    "fill-opacity": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      1,
+      0.5,
+    ],
+  },
+};
+
+export const heatRiskLayer = {
+  id: "district-layer",
+  type: "fill",
+  source: "district-source",
+  paint: {
+    "fill-color": {
+      property: "B_risk_score",
+      stops: [
+        [12.5, "#fff5f0"],
+        [25, "#feddcd"],
+        [37.5, "#fcb398"],
+        [50, "#fc8766"],
+        [62.5, "#f7573e"],
+        [75, "#de2a24"],
+        [87.5, "#b31217"],
+        [100, "#67000e"],
+      ],
+    },
+    "fill-opacity": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      1,
+      0.5,
+    ],
+  },
+};
+
+export const airPollutionRiskLayer = {
+  id: "district-layer",
+  type: "fill",
+  source: "district-source",
+  paint: {
+    "fill-color": {
+      property: "C_risk_score",
+      stops: [
+        [13.4, "#feebe2"],
+        [14.69, "#fdcccb"],
+        [16.39, "#fba9b7"],
+        [22.39, "#f97ea7"],
+        [36.29, "#e9529b"],
+        [50.95, "#cc268c"],
+        [63.29, "#a50f82"],
+        [100, "#7a0178"],
+      ],
+    },
+    "fill-opacity": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      1,
+      0.5,
+    ],
+  },
+};
+
+export const floodingRiskLayer = {
+  id: "district-layer",
+  type: "fill",
+  source: "district-source",
+  paint: {
+    "fill-color": {
+      property: "D_risk_score",
+      stops: [
+        [5.1, "#f7fbff"],
+        [19.89, "#dceaf7"],
+        [29.52, "#bed8ed"],
+        [39.45, "#8fc2de"],
+        [51.2, "#5ba3d0"],
+        [100, "#08306b"],
+      ],
+    },
+    "fill-opacity": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      1,
+      0.5,
+    ],
+  },
 };

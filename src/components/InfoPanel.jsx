@@ -1,92 +1,996 @@
-import { Fragment } from 'react';
-import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline';
-import { Transition } from '@headlessui/react';
-import PropTypes from 'prop-types';
+import { Fragment, useState } from "react";
+import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
+import { Transition } from "@headlessui/react";
+import PropTypes from "prop-types";
+
+import heatCard from "../assets/heat_card.png";
+import hitzeCard from "../assets/hitze_card.png";
+import luftCard from "../assets/luft_card.png";
+import uberCard from "../assets/uberCard.png";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 const hazards = [
-  { title: 'Gesamt', name: 'AVERAGE_RISK',  current: true },
-  { title: 'Trockenheit', name: 'A_risk_score',  current: false},
-  { title: 'Hitze', name: 'B_risk_score',  current: false },
-  { title: 'Luftverschmutzung', name: 'C_risk_score',  current: false },
-  { title: 'Überschwemmung', name: 'D_risk_score',  current: false },
+  { title: "Gesamt", name: "AVERAGE_RISK", current: true },
+  { title: "Trockenheit", name: "A_risk_score", current: false },
+  { title: "Hitze", name: "B_risk_score", current: false },
+  { title: "Luftverschmutzung", name: "C_risk_score", current: false },
+  { title: "Überschwemmung", name: "D_risk_score", current: false },
 ];
 
 export default function InfoPanel(props) {
-  
+  const [currentRisk, setCurrentRisk] = useState("Gesamt");
+
   return (
     <Transition.Root
       show={props.show}
       as={Fragment}
-      className='bg-white-200 mt-16 rounded-r-[30px]'
+      className="bg-white-200 mt-10 rounded-r-[30px]"
     >
       <Transition.Child
-        enter='transform transition ease-in-out duration-500 sm:duration-700'
-        enterFrom='translate-x-full'
-        enterTo='translate-x-0'
-        leave='transform transition ease-in-out duration-500 sm:duration-700'
-        leaveFrom='translate-x-0'
-        leaveTo='translate-x-full'
+        enter="transform transition ease-in-out duration-500 sm:duration-700"
+        enterFrom="translate-x-full"
+        enterTo="translate-x-0"
+        leave="transform transition ease-in-out duration-500 sm:duration-700"
+        leaveFrom="translate-x-0"
+        leaveTo="translate-x-full"
       >
-        <div className='pb-40'>
-          <div className='px-10 py-4 bg-green-600 flex flex-row items-center my-auto justify-between rounded-tr-[30px]'>
+        <div className="pb-10">
+          <div className="px-10 py-4 bg-green-600 flex flex-row items-center my-auto justify-between rounded-tr-[30px]">
             <div>
-              <span className='bold-intro-md text-white-200 pl-6'>Erkunde das Risiko eines Standorts</span>
+              <span className="bold-intro-md text-white-200 pl-6">
+                Erkunde das Risiko eines Standorts
+              </span>
             </div>
-            <div className=''>
+            <div className="">
               <button onClick={() => props.setShowPanel(false)}>
-                <ArrowLeftCircleIcon className='text-white-200 w-7 h-7' />
+                <ArrowLeftCircleIcon className="text-white-200 w-7 h-7" />
               </button>
             </div>
           </div>
-              <div>
-      <div className="sm:hidden">
-        <label htmlFor="tabs" className="sr-only">
-          Select a tab
-        </label>
-        {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
-        <select
-          id="tabs"
-          name="tabs"
-          className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-          defaultValue={hazards.find((tab) => tab.current).title}
-        >
-          {hazards.map((tab) => (
-            <option key={tab.name}>{tab.title}</option>
-          ))}
-        </select>
-      </div>
-      <div className="hidden sm:block px-4">
-        <div className="border-b border-gray-200">
-          <nav className="-mb-px flex space-x-8" aria-label="Tabs">
-            {hazards.map((tab) => (
-              <span
-                key={tab.name}
-                onClick={(e) => {
-                  const oldIndex = hazards.findIndex(obj => obj.current === true);
-                  const newIndex = hazards.findIndex(obj => obj.title === e.target.innerHTML);
-
-                  hazards[oldIndex].current = false;
-                  hazards[newIndex].current = true;
-                  props.setActiveHazard(e.target.innerHTML)}}
-                className={classNames(
-                  tab.current
-                    ? 'border-indigo-500 text-indigo-600'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                  'whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium cursor-pointer'
-                )}
+          <div>
+            <div className="sm:hidden">
+              <label htmlFor="tabs" className="sr-only">
+                Select a tab
+              </label>
+              {/* Use an "onChange" listener to redirect the user to the selected tab URL. */}
+              <select
+                id="tabs"
+                name="tabs"
+                className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                defaultValue={hazards.find((tab) => tab.current).title}
               >
-                {tab.title}
-              </span>
-            ))}
-          </nav>
-        </div>
-      </div>
-    </div>
+                {hazards.map((tab) => (
+                  <option key={tab.name}>{tab.title}</option>
+                ))}
+              </select>
+            </div>
+            <div className="hidden sm:block px-4">
+              <div className="border-b border-gray-200">
+                <nav className="-mb-px flex space-x-8" aria-label="Tabs">
+                  {hazards.map((tab) => (
+                    <span
+                      key={tab.name}
+                      onClick={(e) => {
+                        setCurrentRisk(e.target.innerHTML);
+                        const oldIndex = hazards.findIndex(
+                          (obj) => obj.current === true,
+                        );
+                        const newIndex = hazards.findIndex(
+                          (obj) => obj.title === e.target.innerHTML,
+                        );
+                        hazards[oldIndex].current = false;
+                        hazards[newIndex].current = true;
+                        props.setActiveHazard(e.target.innerHTML);
+                      }}
+                      className={classNames(
+                        tab.current
+                          ? "border-green-600 text-green-600"
+                          : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                        "whitespace-nowrap border-b-2 py-4 px-1 bold-intro-sm cursor-pointer",
+                      )}
+                    >
+                      {tab.title}
+                    </span>
+                  ))}
+                </nav>
+              </div>
+            </div>
+          </div>
+          <div className="px-4 pt-4">
+            {currentRisk === "Gesamt" ? (
+              <>
+                <h2>Gesamtrisikobewertung</h2>
+                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
+                  <div className="pt-2 border-r border-r-green-600">
+                    <h3>LEGENDE</h3>
+                    <p className="book-info-md pt-1">Gesamtrisikowertung</p>
+                    <div className="flex">
+                      <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-green-600 to-indigo-400"></div>
+                      <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
+                        <div className="book-info-sm">0 Geringes Risiko</div>
+                        <div className="book-info-sm ">
+                          1 Hohes Risiko =<br /> hohes Anpassungspotenzial durch
+                          NbS
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
+                      <h2 className="px-8">
+                        {props.currentGrid.tree_municipal}
+                      </h2>
+                      <h3>BÄUME AUF LANDESLIEGENSCHAFTEN</h3>
+                    </div>
 
+                    <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
+                      <h2 className="px-8">{props.currentGrid.tree_state}</h2>
+                      <h3>STÄDTISCHE BÄUME</h3>
+                    </div>
+
+                    <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
+                      <h2 className="px-8">
+                        {props.currentGrid.critical_infrastructure}
+                      </h2>
+                      <h3>KRITISCHE INFRASTRUKTUR</h3>
+                    </div>
+
+                    <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
+                      <h2 className="px-8">
+                        {props.currentGrid.poverty_index}
+                      </h2>
+                      <h3>ARMUTSINDEX</h3>
+                    </div>
+                  </div>
+                </div>
+                <hr className="mx-10 border-8 border-green-600" />
+                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
+                  <div className="mt-8 flow-root">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                        <table className="min-w-full divide-y divide-gray-300">
+                          <thead>
+                            <tr>
+                              <th
+                                scope="col"
+                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                              >
+                                GEFAHR
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                              >
+                                BELASTUNG
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                              >
+                                RISIKOWERT
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200 bg-white">
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Trockenheit
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                Bäume
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.A_risk_score}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Hitze
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                Bevölkerungsgesundheit
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.B_risk_score}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Luftverschmutzung
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                Bevölkerungsgesundheit
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.C_risk_score}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Überschwemmung
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                Verkehrsnetz
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.D_risk_score}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Überschwemmung
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                Bebaute Gebiete
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.E_risk_score}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : currentRisk === "Trockenheit" ? (
+              <>
+                <h2>Wirkungskette</h2>
+                <img src={heatCard} />
+                <div className="flex border-t border-t-green-600 mt-4">
+                  <div className="pt-2 border-r border-r-green-600">
+                    <h3>LEGENDE</h3>
+                    <p className="book-info-md pt-1">
+                      Spezifische Risikobewertung
+                    </p>
+                    <div className="flex">
+                      <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#F0F921] via-[#D8576C] to-[#0D0887]"></div>
+                      <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
+                        <div className="book-info-sm ">
+                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
+                          durch NbS NbS
+                        </div>
+                        <div className="book-info-sm">1 Geringes Risiko</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mt-8 flow-root px-2 ">
+                      <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                          <table className="min-w-full divide-y divide-gray-300">
+                            <thead>
+                              <tr>
+                                <th
+                                  scope="col"
+                                  className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                >
+                                  INDIKATOR
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  WERT
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  KLASSE
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  GEWICHTUNG
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200 bg-white">
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Anzahl städtischer Bäume
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_municipal}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Anzahl Bäume auf Landesliegenschaften
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_state}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Bodenqualität & Versiegelungsgrad
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.soil_quality}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  3
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr className="mx-10 border-8 border-green-600" />
+                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
+                  <div className="mt-8 flow-root">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                        <table className="min-w-full divide-y divide-gray-300">
+                          <thead>
+                            <tr>
+                              <th
+                                scope="col"
+                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                              >
+                                AUSGEWÄHLTE REGION
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                              >
+                                WERT
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200 bg-white">
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Gefahr
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.A_HAZARD}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                BELASTUNG
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.A_EXPOSURE}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Bewältigungsfähigkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.A_COPING}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Empfindlichkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.A_SENSITIVITY}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Risikolevel
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.A_risk_score}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : currentRisk === "Hitze" ? (
+              <>
+                <h2>Wirkungskette</h2>
+                <img src={hitzeCard} />
+                <div className="flex border-t border-t-green-600 mt-4">
+                  <div className="pt-2 border-r border-r-green-600">
+                    <h3>LEGENDE</h3>
+                    <p className="book-info-md pt-1">
+                      Spezifische Risikobewertung
+                    </p>
+                    <div className="flex">
+                      <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#67000D] via-[#F85D42] to-[#FFF5F0]"></div>
+                      <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
+                        <div className="book-info-sm ">
+                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
+                          durch NbS NbS
+                        </div>
+                        <div className="book-info-sm">1 Geringes Risiko</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mt-8 flow-root px-2 ">
+                      <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                          <table className="min-w-full divide-y divide-gray-300">
+                            <thead>
+                              <tr>
+                                <th
+                                  scope="col"
+                                  className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                >
+                                  INDIKATOR
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  WERT
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  KLASSE
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  GEWICHTUNG
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200 bg-white">
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Land Surface Temperature (oC)
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.ls_temperature}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Anzahl Bäume auf Landesliegenschaften
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_state}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Bäume auf Anhöhen
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_municipal}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Greenspace
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.greenspace}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  3
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Poverty Index
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.poverty_index}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Überflutung durch Oberflächenwasser
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr className="mx-10 border-8 border-green-600" />
+                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
+                  <div className="mt-8 flow-root">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                        <table className="min-w-full divide-y divide-gray-300">
+                          <thead>
+                            <tr>
+                              <th
+                                scope="col"
+                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                              >
+                                AUSGEWÄHLTE REGION
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                              >
+                                WERT
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200 bg-white">
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Gefahr
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.B_HAZARD}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                BELASTUNG
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.B_EXPOSURE}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Bewältigungsfähigkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.B_COPING}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Empfindlichkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.B_SENSITIVITY}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Risikolevel
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.B_risk_score}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : currentRisk === "Luftverschmutzung" ? (
+              <>
+                <h2>Wirkungskette</h2>
+                <img src={luftCard} />
+                <div className="flex border-t border-t-green-600 mt-4">
+                  <div className="pt-2 border-r border-r-green-600">
+                    <h3>LEGENDE</h3>
+                    <p className="book-info-md pt-1">
+                      Spezifische Risikobewertung
+                    </p>
+                    <div className="flex">
+                      <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#7A0177] via-[#F879A6] to-[#FFF5F0]"></div>
+                      <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
+                        <div className="book-info-sm ">
+                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
+                          durch NbS
+                        </div>
+                        <div className="book-info-sm">1 Geringes Risiko</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mt-8 flow-root px-2 ">
+                      <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                          <table className="min-w-full divide-y divide-gray-300">
+                            <thead>
+                              <tr>
+                                <th
+                                  scope="col"
+                                  className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                >
+                                  INDIKATOR
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  WERT
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  KLASSE
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  GEWICHTUNG
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200 bg-white">
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Anzahl städtischer Bäume
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_municipal}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Anzahl Bäume auf Landesliegenschaften
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_state}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Bodenqualität & Versiegelungsgrad
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.soil_quality}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  3
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr className="mx-10 border-8 border-green-600" />
+                <div className="flex border-t border-t-green-600 mt-4">
+                  <div className="mt-8 flow-root">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                        <table className="min-w-full divide-y divide-gray-300">
+                          <thead>
+                            <tr>
+                              <th
+                                scope="col"
+                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                              >
+                                AUSGEWÄHLTE REGION
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                              >
+                                WERT
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200 bg-white">
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Gefahr
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.C_HAZARD}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                BELASTUNG
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.C_EXPOSURE}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Bewältigungsfähigkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.C_COPING}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Empfindlichkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.C_SENSITIVITY}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Risikolevel
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.C_risk_score}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : currentRisk === "Überschwemmung" ? (
+              <>
+                <h2>Wirkungskette</h2>
+                <img src={uberCard} />
+                <div className="flex border-t border-t-green-600 mt-4">
+                  <div className="pt-2 border-r border-r-green-600">
+                    <h3>LEGENDE</h3>
+                    <p className="book-info-md pt-1">
+                      Spezifische Risikobewertung
+                    </p>
+                    <div className="flex">
+                      <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#045A8D] via-[#6DA3D3] to-[#F1EEF6]"></div>
+                      <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
+                        <div className="book-info-sm ">
+                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
+                          durch NbS NbS
+                        </div>
+                        <div className="book-info-sm">1 Geringes Risiko</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mt-8 flow-root px-2 ">
+                      <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                          <table className="min-w-full divide-y divide-gray-300">
+                            <thead>
+                              <tr>
+                                <th
+                                  scope="col"
+                                  className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                >
+                                  INDIKATOR
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  WERT
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  KLASSE
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                >
+                                  GEWICHTUNG
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200 bg-white">
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Anzahl städtischer Bäume
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_municipal}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Anzahl Bäume auf Landesliegenschaften
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_state}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                  Bodenqualität & Versiegelungsgrad
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.soil_quality}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  3
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr className="mx-10 border-8 border-green-600" />
+                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
+                  <div className="mt-8 flow-root">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                        <table className="min-w-full divide-y divide-gray-300">
+                          <thead>
+                            <tr>
+                              <th
+                                scope="col"
+                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                              >
+                                AUSGEWÄHLTE REGION
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                              >
+                                WERT
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200 bg-white">
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Gefahr
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.D_HAZARD}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                BELASTUNG
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.D_EXPOSURE}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Bewältigungsfähigkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.D_COPING}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Empfindlichkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.D_SENSITIVITY}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                Risikolevel
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.D_risk_score}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <p>-</p>
+            )}
+          </div>
         </div>
       </Transition.Child>
     </Transition.Root>
@@ -97,5 +1001,6 @@ InfoPanel.propTypes = {
   show: PropTypes.bool,
   setShowPanel: PropTypes.func,
   setActiveHazard: PropTypes.func,
-  activeHazard: PropTypes.string
+  activeHazard: PropTypes.string,
+  currentGrid: PropTypes.object,
 };

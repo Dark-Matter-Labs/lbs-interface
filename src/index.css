@@ -3,19 +3,22 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'ABCFavorit';
-  src: local('ABCFavorit'), local('ABCFavorit'),
-    url('./fonts/ABCFavoritVariable.woff2') format('woff2'),
-    url('./fonts/ABCFavoritVariable.woff') format('woff');
+  font-family: "ABCFavorit";
+  src:
+    local("ABCFavorit"),
+    local("ABCFavorit"),
+    url("./fonts/ABCFavoritVariable.woff2") format("woff2"),
+    url("./fonts/ABCFavoritVariable.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'ABCFavorit Book';
-  src: local('ABCFavorit Book'), local('ABCFavorit-Book'),
-    url('./fonts/ABCFavoritVariable.woff2') format('woff2'),
-    url('./fonts/ABCFavoritVariable.woff') format('woff');
+  font-family: "ABCFavorit Book";
+  src:
+    local("ABCFavorit Book"),
+    local("ABCFavorit-Book"),
+    url("./fonts/ABCFavoritVariable.woff2") format("woff2"),
+    url("./fonts/ABCFavoritVariable.woff") format("woff");
 }
-
 
 body {
   margin: 0;

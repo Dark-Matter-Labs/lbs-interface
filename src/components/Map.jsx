@@ -41,7 +41,7 @@ export default function LBSMap({ layer, setCurrentGrid }) {
     map.once("load", function () {
       map.addSource("district-source", {
         type: "geojson",
-        data: "https://raw.githubusercontent.com/Dark-Matter-Labs/treesai_registry/main/src/data/250LBS_Stuttgart.geojson",
+        data: "https://raw.githubusercontent.com/Dark-Matter-Labs/treesai_registry/main/src/data/250LBS_Stuttgart_updated.geojson",
       });
 
       map.addLayer(currentLayer);

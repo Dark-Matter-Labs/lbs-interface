@@ -103,6 +103,7 @@ export default function InfoPanel(props) {
             {currentRisk === "Gesamt" ? (
               <>
                 <h2>Gesamtrisikobewertung</h2>
+                <p className="book-info-sm">Klicken Sie bitte auf ein Rasterfeld auf der Karte, um Details anzuzeigen.</p>
                 <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
                     <h3>LEGENDE</h3>
@@ -156,19 +157,19 @@ export default function InfoPanel(props) {
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                               >
                                 GEFAHR
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                               >
                                 BELASTUNG
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                               >
                                 RISIKOWERT
                               </th>
@@ -176,18 +177,18 @@ export default function InfoPanel(props) {
                           </thead>
                           <tbody className="divide-y divide-gray-200 bg-white">
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Trockenheit
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 Bäume
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 {props.currentGrid.A_risk_score}
                               </td>
                             </tr>
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Hitze
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -198,7 +199,7 @@ export default function InfoPanel(props) {
                               </td>
                             </tr>
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Luftverschmutzung
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -209,7 +210,7 @@ export default function InfoPanel(props) {
                               </td>
                             </tr>
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Überschwemmung
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -220,7 +221,7 @@ export default function InfoPanel(props) {
                               </td>
                             </tr>
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Überschwemmung
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -267,25 +268,25 @@ export default function InfoPanel(props) {
                               <tr>
                                 <th
                                   scope="col"
-                                  className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                  className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                                 >
                                   INDIKATOR
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   WERT
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   KLASSE
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   GEWICHTUNG
                                 </th>
@@ -293,7 +294,7 @@ export default function InfoPanel(props) {
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Anzahl städtischer Bäume
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -308,7 +309,7 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Anzahl Bäume auf Landesliegenschaften
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -323,7 +324,7 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Bodenqualität & Versiegelungsgrad
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -353,30 +354,22 @@ export default function InfoPanel(props) {
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                               >
                                 AUSGEWÄHLTE REGION
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                               >
                                 WERT
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-gray-200 bg-white">
-                            <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                Gefahr
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.A_HAZARD}
-                              </td>
-                            </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 BELASTUNG
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -385,16 +378,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                Bewältigungsfähigkeit (Anfälligkeit)
-                              </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.A_COPING}
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0 uppercase">
                                 Empfindlichkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -403,7 +387,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0 uppercase">
                                 Risikolevel
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -447,25 +431,25 @@ export default function InfoPanel(props) {
                               <tr>
                                 <th
                                   scope="col"
-                                  className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                  className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                                 >
                                   INDIKATOR
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   WERT
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   KLASSE
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   GEWICHTUNG
                                 </th>
@@ -473,8 +457,8 @@ export default function InfoPanel(props) {
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                  Land Surface Temperature (oC)
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                Landoberflächentemperatur (°C)
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {props.currentGrid.ls_temperature}
@@ -488,7 +472,7 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Anzahl Bäume auf Landesliegenschaften
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -503,7 +487,7 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Bäume auf Anhöhen
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -518,8 +502,8 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                  Greenspace
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                Grünfläche
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {props.currentGrid.greenspace}
@@ -533,8 +517,8 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                  Poverty Index
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                Armutsindex
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {props.currentGrid.poverty_index}
@@ -563,13 +547,13 @@ export default function InfoPanel(props) {
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                               >
                                 AUSGEWÄHLTE REGION
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                               >
                                 WERT
                               </th>
@@ -577,7 +561,7 @@ export default function InfoPanel(props) {
                           </thead>
                           <tbody className="divide-y divide-gray-200 bg-white">
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Gefahr
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -586,7 +570,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 BELASTUNG
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -595,7 +579,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Bewältigungsfähigkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -604,7 +588,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Empfindlichkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -613,7 +597,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Risikolevel
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -657,25 +641,25 @@ export default function InfoPanel(props) {
                               <tr>
                                 <th
                                   scope="col"
-                                  className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                  className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                                 >
                                   INDIKATOR
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   WERT
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   KLASSE
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   GEWICHTUNG
                                 </th>
@@ -683,7 +667,7 @@ export default function InfoPanel(props) {
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Anzahl städtischer Bäume
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -698,7 +682,7 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Anzahl Bäume auf Landesliegenschaften
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -713,7 +697,7 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Bodenqualität & Versiegelungsgrad
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -743,13 +727,13 @@ export default function InfoPanel(props) {
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                               >
                                 AUSGEWÄHLTE REGION
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                               >
                                 WERT
                               </th>
@@ -757,7 +741,7 @@ export default function InfoPanel(props) {
                           </thead>
                           <tbody className="divide-y divide-gray-200 bg-white">
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Gefahr
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -766,7 +750,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 BELASTUNG
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -775,7 +759,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Bewältigungsfähigkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -784,7 +768,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Empfindlichkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -793,7 +777,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Risikolevel
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -837,25 +821,25 @@ export default function InfoPanel(props) {
                               <tr>
                                 <th
                                   scope="col"
-                                  className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                  className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                                 >
                                   INDIKATOR
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   WERT
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   KLASSE
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                                 >
                                   GEWICHTUNG
                                 </th>
@@ -863,7 +847,7 @@ export default function InfoPanel(props) {
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Anzahl städtischer Bäume
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -878,7 +862,7 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Anzahl Bäume auf Landesliegenschaften
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -893,7 +877,7 @@ export default function InfoPanel(props) {
                               </tr>
 
                               <tr>
-                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                   Bodenqualität & Versiegelungsgrad
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -923,13 +907,13 @@ export default function InfoPanel(props) {
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-0"
+                                className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                               >
                                 AUSGEWÄHLTE REGION
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                                className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                               >
                                 WERT
                               </th>
@@ -937,7 +921,7 @@ export default function InfoPanel(props) {
                           </thead>
                           <tbody className="divide-y divide-gray-200 bg-white">
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Gefahr
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -946,7 +930,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 BELASTUNG
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -955,7 +939,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Bewältigungsfähigkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -964,7 +948,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Empfindlichkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -973,7 +957,7 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Risikolevel
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

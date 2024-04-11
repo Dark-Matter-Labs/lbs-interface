@@ -116,11 +116,11 @@ export const floodingRiskLayer = {
     "fill-color": {
       property: "D_risk_score",
       stops: [
-        [5.1, "#f7fbff"],
-        [19.89, "#dceaf7"],
-        [29.52, "#bed8ed"],
-        [39.45, "#8fc2de"],
-        [51.2, "#5ba3d0"],
+        [5.1, "#bed8ec"],
+        [19.89, "#8fc2de"],
+        [29.52, "#5ba3d0"],
+        [39.45, "#3281be"],
+        [51.2, "#115ba5"],
         [100, "#08306b"],
       ],
     },

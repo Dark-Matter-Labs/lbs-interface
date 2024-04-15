@@ -12,6 +12,8 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
+    "@nivo/core": "^0.85.1",
+    "@nivo/radar": "^0.85.1",
     "mapbox-gl": "^3.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

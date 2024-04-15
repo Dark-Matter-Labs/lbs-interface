@@ -66,6 +66,29 @@ export default function LBSMap({ layer, setCurrentGrid }) {
         }
       });
 
+      map.on("click", "district-layer", function (e) {
+        var allFeatures = map.queryRenderedFeatures({
+          layers: ["district-layer"],
+        });
+        var features = map.queryRenderedFeatures(e.point, {
+          layers: ["district-layer"],
+        });
+
+        for (var j = 0; j < allFeatures.length; j++) {
+          map.setFeatureState(
+            { source: "district-source", id: allFeatures[j].id },
+            { click: false },
+          );
+        }
+
+        for (var i = 0; i < features.length; i++) {
+          map.setFeatureState(
+            { source: "district-source", id: features[i].id },
+            { click: true },
+          );
+        }
+      });
+
       map.on("mousedown", "district-layer", function (e) {
         if (e.features.length > 0) {
           setCurrentGrid(e.features[0].properties);

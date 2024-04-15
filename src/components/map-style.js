@@ -20,9 +20,15 @@ export const genRiskLayer = {
     },
     "fill-opacity": [
       "case",
-      ["boolean", ["feature-state", "hover"], false],
+      ["boolean", ["feature-state", "click"], false],
       1,
-      0.5,
+      0.6,
+    ],
+    "fill-outline-color": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      "#FFFFFF",
+      "transparent",
     ],
   },
 };
@@ -47,9 +53,15 @@ export const droughtRiskLayer = {
     },
     "fill-opacity": [
       "case",
-      ["boolean", ["feature-state", "hover"], false],
+      ["boolean", ["feature-state", "click"], false],
       1,
-      0.5,
+      0.4,
+    ],
+    "fill-outline-color": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      "#FFFFFF",
+      "transparent",
     ],
   },
 };
@@ -74,9 +86,15 @@ export const heatRiskLayer = {
     },
     "fill-opacity": [
       "case",
-      ["boolean", ["feature-state", "hover"], false],
+      ["boolean", ["feature-state", "click"], false],
       1,
       0.5,
+    ],
+    "fill-outline-color": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      "#FFFFFF",
+      "transparent",
     ],
   },
 };
@@ -101,9 +119,15 @@ export const airPollutionRiskLayer = {
     },
     "fill-opacity": [
       "case",
-      ["boolean", ["feature-state", "hover"], false],
+      ["boolean", ["feature-state", "click"], false],
       1,
       0.5,
+    ],
+    "fill-outline-color": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      "#FFFFFF",
+      "transparent",
     ],
   },
 };
@@ -126,9 +150,15 @@ export const floodingRiskLayer = {
     },
     "fill-opacity": [
       "case",
-      ["boolean", ["feature-state", "hover"], false],
+      ["boolean", ["feature-state", "click"], false],
       1,
-      0.5,
+      0.6,
+    ],
+    "fill-outline-color": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      "#FFFFFF",
+      "transparent",
     ],
   },
 };

@@ -3,6 +3,7 @@ import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 import { Transition } from "@headlessui/react";
 import PropTypes from "prop-types";
 
+import RiskRadar from "./RadarChart";
 import heatCard from "../assets/heat_card.png";
 import hitzeCard from "../assets/hitze_card.png";
 import luftCard from "../assets/luft_card.png";
@@ -103,19 +104,22 @@ export default function InfoPanel(props) {
             {currentRisk === "Gesamt" ? (
               <>
                 <h2>Gesamtrisikobewertung</h2>
-                <p className="book-info-sm">Klicken Sie bitte auf ein Rasterfeld auf der Karte, um Details anzuzeigen.</p>
-                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
+                <p className="book-info-sm">
+                  Klicken Sie bitte auf ein Rasterfeld auf der Karte, um Details
+                  anzuzeigen.
+                </p>
+                <div className="grid grid-cols-2 border-t border-t-green-600 my-4">
                   <div className="pt-2 border-r border-r-green-600">
                     <h3>LEGENDE</h3>
                     <p className="book-info-md pt-1">Gesamtrisikowertung</p>
                     <div className="flex">
-                      <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-green-600 to-indigo-400"></div>
+                      <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-indigo-400 to-green-600"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
-                        <div className="book-info-sm">0 Geringes Risiko</div>
                         <div className="book-info-sm ">
                           1 Hohes Risiko =<br /> hohes Anpassungspotenzial durch
                           NbS
                         </div>
+                        <div className="book-info-sm">0 Geringes Risiko</div>
                       </div>
                     </div>
                   </div>
@@ -191,10 +195,10 @@ export default function InfoPanel(props) {
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Hitze
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 Bevölkerungsgesundheit
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 {props.currentGrid.B_risk_score}
                               </td>
                             </tr>
@@ -202,10 +206,10 @@ export default function InfoPanel(props) {
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Luftverschmutzung
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 Bevölkerungsgesundheit
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 {props.currentGrid.C_risk_score}
                               </td>
                             </tr>
@@ -213,10 +217,10 @@ export default function InfoPanel(props) {
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Überschwemmung
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 Verkehrsnetz
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 {props.currentGrid.D_risk_score}
                               </td>
                             </tr>
@@ -224,10 +228,10 @@ export default function InfoPanel(props) {
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 Überschwemmung
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 Bebaute Gebiete
                               </td>
-                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
                                 {props.currentGrid.E_risk_score}
                               </td>
                             </tr>
@@ -236,6 +240,32 @@ export default function InfoPanel(props) {
                       </div>
                     </div>
                   </div>
+                  <RiskRadar
+                    data={[
+                      {
+                        attribute: "Hitze-Risiko für Bevölkerungsgesundheit",
+                        val: props.currentGrid.B_risk_score,
+                      },
+                      {
+                        attribute: "Trocken–heitsrisiko für Grünzonen",
+                        val: props.currentGrid.A_risk_score,
+                      },
+                      {
+                        attribute:
+                          "Überschwemmungs-gefahr für das Verkehrsnetz",
+                        val: props.currentGrid.E_risk_score,
+                      },
+                      {
+                        attribute: "Überschwemmungsgefahr für bebaute Gebiete",
+                        val: props.currentGrid.D_risk_score,
+                      },
+                      {
+                        attribute:
+                          "Risiko der Luftverschmutzung für Bevölkerungs–gesundheit",
+                        val: props.currentGrid.C_risk_score,
+                      },
+                    ]}
+                  />
                 </div>
               </>
             ) : currentRisk === "Trockenheit" ? (
@@ -367,7 +397,6 @@ export default function InfoPanel(props) {
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-gray-200 bg-white">
-
                             <tr>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
                                 BELASTUNG
@@ -399,6 +428,26 @@ export default function InfoPanel(props) {
                       </div>
                     </div>
                   </div>
+                  <RiskRadar
+                    data={[
+                      {
+                        attribute: "GEFAHR",
+                        val: props.currentGrid.A_HAZARD,
+                      },
+                      {
+                        attribute: "Bewältigungs–fähigkeit",
+                        val: props.currentGrid.A_COPING,
+                      },
+                      {
+                        attribute: "BELASTUNG",
+                        val: props.currentGrid.A_EXPOSURE,
+                      },
+                      {
+                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        val: props.currentGrid.A_SENSITIVITY,
+                      },
+                    ]}
+                  />
                 </div>
               </>
             ) : currentRisk === "Hitze" ? (
@@ -458,7 +507,7 @@ export default function InfoPanel(props) {
                             <tbody className="divide-y divide-gray-200 bg-white">
                               <tr>
                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
-                                Landoberflächentemperatur (°C)
+                                  Landoberflächentemperatur (°C)
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {props.currentGrid.ls_temperature}
@@ -503,7 +552,7 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
-                                Grünfläche
+                                  Grünfläche
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {props.currentGrid.greenspace}
@@ -518,7 +567,7 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
-                                Armutsindex
+                                  Armutsindex
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   {props.currentGrid.poverty_index}
@@ -609,6 +658,26 @@ export default function InfoPanel(props) {
                       </div>
                     </div>
                   </div>
+                  <RiskRadar
+                    data={[
+                      {
+                        attribute: "GEFAHR",
+                        val: props.currentGrid.B_HAZARD,
+                      },
+                      {
+                        attribute: "Bewältigungs–fähigkeit",
+                        val: props.currentGrid.B_COPING,
+                      },
+                      {
+                        attribute: "BELASTUNG",
+                        val: props.currentGrid.B_EXPOSURE,
+                      },
+                      {
+                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        val: props.currentGrid.B_SENSITIVITY,
+                      },
+                    ]}
+                  />
                 </div>
               </>
             ) : currentRisk === "Luftverschmutzung" ? (
@@ -789,6 +858,26 @@ export default function InfoPanel(props) {
                       </div>
                     </div>
                   </div>
+                  <RiskRadar
+                    data={[
+                      {
+                        attribute: "GEFAHR",
+                        val: props.currentGrid.C_HAZARD,
+                      },
+                      {
+                        attribute: "Bewältigungs–fähigkeit",
+                        val: props.currentGrid.C_COPING,
+                      },
+                      {
+                        attribute: "BELASTUNG",
+                        val: props.currentGrid.C_EXPOSURE,
+                      },
+                      {
+                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        val: props.currentGrid.C_SENSITIVITY,
+                      },
+                    ]}
+                  />
                 </div>
               </>
             ) : currentRisk === "Überschwemmung" ? (
@@ -969,6 +1058,26 @@ export default function InfoPanel(props) {
                       </div>
                     </div>
                   </div>
+                  <RiskRadar
+                    data={[
+                      {
+                        attribute: "GEFAHR",
+                        val: props.currentGrid.D_HAZARD,
+                      },
+                      {
+                        attribute: "Bewältigungs–fähigkeit",
+                        val: props.currentGrid.D_COPING,
+                      },
+                      {
+                        attribute: "BELASTUNG",
+                        val: props.currentGrid.D_EXPOSURE,
+                      },
+                      {
+                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        val: props.currentGrid.D_SENSITIVITY,
+                      },
+                    ]}
+                  />
                 </div>
               </>
             ) : (

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
 import {
   genRiskLayer,
@@ -10,6 +11,7 @@ import {
   airPollutionRiskLayer,
   floodingRiskLayer,
   floodingBuiltRiskLayer,
+  baseLayer,
 } from "./map-style";
 
 const MAPBOX_TOKEN =
@@ -39,6 +41,17 @@ export default function LBSMap({ layer, setCurrentGrid }) {
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
 
+    map.addControl(
+      new MapboxGeocoder({
+        accessToken: MAPBOX_TOKEN,
+        mapboxgl: mapboxgl,
+        language: "de-DE",
+        countries: "DE",
+        collapsed: true,
+      }),
+      "top-right",
+    );
+
     map.once("load", function () {
       map.addSource("district-source", {
         type: "geojson",
@@ -47,25 +60,7 @@ export default function LBSMap({ layer, setCurrentGrid }) {
 
       map.addLayer(currentLayer);
 
-      map.on("mousemove", "district-layer", function (e) {
-        if (e.features.length > 0) {
-          if (hoveredDistrictRef.current && hoveredDistrictRef.current > -1) {
-            map.setFeatureState(
-              { source: "district-source", id: hoveredDistrictRef.current },
-              { hover: false },
-            );
-          }
-
-          let _hoveredDistrict = e.features[0].id;
-
-          map.setFeatureState(
-            { source: "district-source", id: _hoveredDistrict },
-            { hover: true },
-          );
-
-          setHoveredDistrict(_hoveredDistrict);
-        }
-      });
+      map.addLayer(baseLayer);
 
       map.on("click", "district-layer", function (e) {
         var allFeatures = map.queryRenderedFeatures({
@@ -93,6 +88,26 @@ export default function LBSMap({ layer, setCurrentGrid }) {
       map.on("mousedown", "district-layer", function (e) {
         if (e.features.length > 0) {
           setCurrentGrid(e.features[0].properties);
+        }
+      });
+
+      map.on("mousemove", "district-layer", function (e) {
+        if (e.features.length > 0) {
+          if (hoveredDistrictRef.current && hoveredDistrictRef.current > -1) {
+            map.setFeatureState(
+              { source: "district-source", id: hoveredDistrictRef.current },
+              { hover: false },
+            );
+          }
+
+          let _hoveredDistrict = e.features[0].id;
+
+          map.setFeatureState(
+            { source: "district-source", id: _hoveredDistrict },
+            { hover: true },
+          );
+
+          setHoveredDistrict(_hoveredDistrict);
         }
       });
 

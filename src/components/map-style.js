@@ -1,4 +1,26 @@
 // For more information on data-driven styles, see https://www.mapbox.com/help/gl-dds-ref/
+
+export const baseLayer = {
+  id: "states-layer-outline",
+  type: "line",
+  source: "district-source",
+  layout: {},
+  paint: {
+    "line-width": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      4,
+      0.4,
+    ],
+    "line-color": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      "#FFFFFF",
+      "#00f900",
+    ],
+  },
+};
+
 export const genRiskLayer = {
   id: "district-layer",
   type: "fill",

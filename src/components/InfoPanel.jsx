@@ -8,6 +8,7 @@ import heatCard from "../assets/heat_card.png";
 import hitzeCard from "../assets/hitze_card.png";
 import luftCard from "../assets/luft_card.png";
 import uberCard from "../assets/uberCard.png";
+import uberBuiltCard from "../assets/uber2.png";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -23,6 +24,7 @@ const hazards = [
 
 export default function InfoPanel(props) {
   const [currentRisk, setCurrentRisk] = useState("Gesamt");
+  const [transportBuiltSwitch, setTransportBuiltSwitch] = useState("Transport");
 
   return (
     <Transition.Root
@@ -882,7 +884,39 @@ export default function InfoPanel(props) {
               </>
             ) : currentRisk === "Überschwemmung" ? (
               <>
-                <h2>Wirkungskette</h2>
+                {/* text with onclick state update, if render rest of bottom component based on choice*/}
+                <div className="flex">
+                  <h2
+                    className={classNames(
+                      transportBuiltSwitch === "Transport"
+                        ? " text-green-600"
+                        : "text-dark-wood-500 hover:text-green-600",
+                      "pb-4 hover:cursor-pointer",
+                    )}
+                    onClick={() => {
+                      setTransportBuiltSwitch("Transport");
+                      props.setActiveHazard("Überschwemmung");
+                      setCurrentRisk("Überschwemmung");
+                    }}
+                  >
+                    Transport Netzwerk |
+                  </h2>
+                  <h2
+                    className={classNames(
+                      transportBuiltSwitch === "Built"
+                        ? " text-green-600"
+                        : "text-dark-wood-500 hover:text-green-600",
+                      "pl-2 hover:cursor-pointer",
+                    )}
+                    onClick={() => {
+                      setTransportBuiltSwitch("Built");
+                      props.setActiveHazard("Überschwemmung2");
+                      setCurrentRisk("Überschwemmung2");
+                    }}
+                  >
+                    Bebautes Gebiet
+                  </h2>
+                </div>
                 <img src={uberCard} />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
@@ -895,7 +929,7 @@ export default function InfoPanel(props) {
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm ">
                           100 Hohes Risiko =<br /> hohes Anpassungspotenzial
-                          durch NbS NbS
+                          durch NbS
                         </div>
                         <div className="book-info-sm">1 Geringes Risiko</div>
                       </div>
@@ -1075,6 +1109,238 @@ export default function InfoPanel(props) {
                       {
                         attribute: "Empfind–lichkeit (Anfälligkeit)",
                         val: props.currentGrid.D_SENSITIVITY,
+                      },
+                    ]}
+                  />
+                </div>
+              </>
+            ) : currentRisk === "Überschwemmung2" ? (
+              <>
+                {/* text with onclick state update, if render rest of bottom component based on choice*/}
+                <div className="flex">
+                  <h2
+                    className={classNames(
+                      transportBuiltSwitch === "Transport"
+                        ? " text-green-600"
+                        : "text-dark-wood-500 hover:text-green-600",
+                      "pb-4 hover:cursor-pointer",
+                    )}
+                    onClick={() => {
+                      setTransportBuiltSwitch("Transport");
+                      props.setActiveHazard("Überschwemmung");
+                      setCurrentRisk("Überschwemmung");
+                    }}
+                  >
+                    Transport Netzwerk |
+                  </h2>
+                  <h2
+                    className={classNames(
+                      transportBuiltSwitch === "Built"
+                        ? " text-green-600"
+                        : "text-dark-wood-500 hover:text-green-600",
+                      "pl-2 hover:cursor-pointer",
+                    )}
+                    onClick={() => {
+                      setTransportBuiltSwitch("Built");
+                      props.setActiveHazard("Überschwemmung2");
+                      setCurrentRisk("Überschwemmung2");
+                    }}
+                  >
+                    Bebautes Gebiet
+                  </h2>
+                </div>
+                <img src={uberBuiltCard} />
+                <div className="flex border-t border-t-green-600 mt-4">
+                  <div className="pt-2 border-r border-r-green-600">
+                    <h3>LEGENDE</h3>
+                    <p className="book-info-md pt-1">
+                      Spezifische Risikobewertung
+                    </p>
+                    <div className="flex">
+                      <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#006D2C] via-[#77C9B2] to-[#EDF8FB]"></div>
+                      <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
+                        <div className="book-info-sm ">
+                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
+                          durch NbS
+                        </div>
+                        <div className="book-info-sm">1 Geringes Risiko</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="mt-8 flow-root px-2 ">
+                      <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                          <table className="min-w-full divide-y divide-gray-300">
+                            <thead>
+                              <tr>
+                                <th
+                                  scope="col"
+                                  className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
+                                >
+                                  INDIKATOR
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
+                                >
+                                  WERT
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
+                                >
+                                  KLASSE
+                                </th>
+                                <th
+                                  scope="col"
+                                  className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
+                                >
+                                  GEWICHTUNG
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200 bg-white">
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                  Anzahl städtischer Bäume
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_municipal}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                  Anzahl Bäume auf Landesliegenschaften
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.tree_state}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  1
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                  Bodenqualität & Versiegelungsgrad
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  {props.currentGrid.soil_quality}
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  3
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr className="mx-10 border-8 border-green-600" />
+                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
+                  <div className="mt-8 flow-root">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                        <table className="min-w-full divide-y divide-gray-300">
+                          <thead>
+                            <tr>
+                              <th
+                                scope="col"
+                                className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
+                              >
+                                AUSGEWÄHLTE REGION
+                              </th>
+                              <th
+                                scope="col"
+                                className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
+                              >
+                                WERT
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200 bg-white">
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                Gefahr
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.E_HAZARD}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                BELASTUNG
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.E_EXPOSURE}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                Bewältigungsfähigkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.E_COPING}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                Empfindlichkeit (Anfälligkeit)
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.E_SENSITIVITY}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
+                                Risikolevel
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {props.currentGrid.E_risk_score}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <RiskRadar
+                    data={[
+                      {
+                        attribute: "GEFAHR",
+                        val: props.currentGrid.E_HAZARD,
+                      },
+                      {
+                        attribute: "Bewältigungs–fähigkeit",
+                        val: props.currentGrid.E_COPING,
+                      },
+                      {
+                        attribute: "BELASTUNG",
+                        val: props.currentGrid.E_EXPOSURE,
+                      },
+                      {
+                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        val: props.currentGrid.E_SENSITIVITY,
                       },
                     ]}
                   />

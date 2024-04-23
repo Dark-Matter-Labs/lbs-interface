@@ -9,6 +9,7 @@ import {
   heatRiskLayer,
   airPollutionRiskLayer,
   floodingRiskLayer,
+  floodingBuiltRiskLayer,
 } from "./map-style";
 
 const MAPBOX_TOKEN =
@@ -122,6 +123,8 @@ export default function LBSMap({ layer, setCurrentGrid }) {
       setCurrentLayer(airPollutionRiskLayer);
     } else if (layer === "Überschwemmung") {
       setCurrentLayer(floodingRiskLayer);
+    } else if (layer === "Überschwemmung2") {
+      setCurrentLayer(floodingBuiltRiskLayer);
     }
   }, [layer]);
 

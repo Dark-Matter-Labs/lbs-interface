@@ -162,3 +162,34 @@ export const floodingRiskLayer = {
     ],
   },
 };
+
+export const floodingBuiltRiskLayer = {
+  id: "district-layer",
+  type: "fill",
+  source: "district-source",
+  paint: {
+    "fill-color": {
+      property: "E_risk_score",
+      stops: [
+        [6.77, "#b1c4de"],
+        [16.5, "#80b2d4"],
+        [24.19, "#52a3c0"],
+        [33, "#2795a1"],
+        [46.27, "#10817d"],
+        [100, "#016c59"],
+      ],
+    },
+    "fill-opacity": [
+      "case",
+      ["boolean", ["feature-state", "click"], false],
+      1,
+      0.6,
+    ],
+    "fill-outline-color": [
+      "case",
+      ["boolean", ["feature-state", "hover"], false],
+      "#FFFFFF",
+      "transparent",
+    ],
+  },
+};

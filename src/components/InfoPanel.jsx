@@ -40,7 +40,7 @@ export default function InfoPanel(props) {
         leaveFrom="translate-x-0"
         leaveTo="translate-x-full"
       >
-        <div className="pb-10">
+        <div className="pb-10 max-w-4xl">
           <div className="px-10 py-4 bg-green-600 flex flex-row items-center my-auto justify-between rounded-tr-[30px]">
             <div>
               <span className="bold-intro-md text-white-200 pl-6">
@@ -118,8 +118,8 @@ export default function InfoPanel(props) {
                       <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-indigo-400 to-green-600"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm ">
-                          1 Hohes Risiko =<br /> hohes Anpassungspotenzial durch
-                          NbS
+                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
+                          durch NbS
                         </div>
                         <div className="book-info-sm">0 Geringes Risiko</div>
                       </div>
@@ -147,7 +147,7 @@ export default function InfoPanel(props) {
 
                     <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
                       <h2 className="px-8">
-                        {props.currentGrid.poverty_index}
+                        {parseFloat(props.currentGrid.poverty_index).toFixed(2)}
                       </h2>
                       <h3>ARMUTSINDEX</h3>
                     </div>
@@ -163,21 +163,21 @@ export default function InfoPanel(props) {
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
+                                className="py-3 pl-4 pr-3 text-left book-intro-sm  tracking-wide text-gray-500 sm:pl-0"
                               >
-                                GEFAHR
+                                Gefahr
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
+                                className="px-3 py-3 text-left book-intro-sm  tracking-wide text-gray-500"
                               >
-                                BELASTUNG
+                                Belastung
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
+                                className="px-3 py-3 text-left book-intro-sm  tracking-wide text-gray-500"
                               >
-                                RISIKOWERT
+                                Risikowert
                               </th>
                             </tr>
                           </thead>
@@ -190,7 +190,9 @@ export default function InfoPanel(props) {
                                 Bäume
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
-                                {props.currentGrid.A_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.A_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                             <tr>
@@ -201,7 +203,9 @@ export default function InfoPanel(props) {
                                 Bevölkerungsgesundheit
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
-                                {props.currentGrid.B_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.B_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                             <tr>
@@ -212,7 +216,9 @@ export default function InfoPanel(props) {
                                 Bevölkerungsgesundheit
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
-                                {props.currentGrid.C_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.C_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                             <tr>
@@ -223,7 +229,9 @@ export default function InfoPanel(props) {
                                 Verkehrsnetz
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
-                                {props.currentGrid.D_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.D_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                             <tr>
@@ -234,7 +242,9 @@ export default function InfoPanel(props) {
                                 Bebaute Gebiete
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 book-info-md text-gray-500">
-                                {props.currentGrid.E_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.E_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                           </tbody>
@@ -249,12 +259,12 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.B_risk_score,
                       },
                       {
-                        attribute: "Trocken–heitsrisiko für Grünzonen",
+                        attribute: "Trocken heitsrisiko für Grünzonen",
                         val: props.currentGrid.A_risk_score,
                       },
                       {
                         attribute:
-                          "Überschwemmungs-gefahr für das Verkehrsnetz",
+                          "Überschwemmungs gefahr für das Verkehrsnetz",
                         val: props.currentGrid.E_risk_score,
                       },
                       {
@@ -285,7 +295,7 @@ export default function InfoPanel(props) {
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm ">
                           100 Hohes Risiko =<br /> hohes Anpassungspotenzial
-                          durch NbS NbS
+                          durch NbS
                         </div>
                         <div className="book-info-sm">1 Geringes Risiko</div>
                       </div>
@@ -360,7 +370,9 @@ export default function InfoPanel(props) {
                                   Bodenqualität & Versiegelungsgrad
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                  {props.currentGrid.soil_quality}
+                                  {parseFloat(
+                                    props.currentGrid.soil_quality,
+                                  ).toFixed(2)}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   Anfälligkeit (Empfindlichkeit)
@@ -388,41 +400,47 @@ export default function InfoPanel(props) {
                                 scope="col"
                                 className="py-3 pl-4 pr-3 text-left book-intro-sm uppercase tracking-wide text-gray-500 sm:pl-0"
                               >
-                                AUSGEWÄHLTE REGION
+                                Ausgewählte Region
                               </th>
                               <th
                                 scope="col"
                                 className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                               >
-                                WERT
+                                Wert
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-gray-200 bg-white">
                             <tr>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
-                                BELASTUNG
+                                Belastung
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.A_EXPOSURE}
+                                {parseFloat(
+                                  props.currentGrid.A_EXPOSURE,
+                                ).toFixed(0)}
                               </td>
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0 uppercase">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0 ">
                                 Empfindlichkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.A_SENSITIVITY}
+                                {parseFloat(
+                                  props.currentGrid.A_SENSITIVITY,
+                                ).toFixed(0)}
                               </td>
                             </tr>
 
                             <tr>
-                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0 uppercase">
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0 ">
                                 Risikolevel
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.A_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.A_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                           </tbody>
@@ -433,19 +451,19 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "GEFAHR",
+                        attribute: "Gefahr",
                         val: props.currentGrid.A_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungs–fähigkeit",
+                        attribute: "Bewältigungs fähigkeit",
                         val: props.currentGrid.A_COPING,
                       },
                       {
-                        attribute: "BELASTUNG",
+                        attribute: "Belastung",
                         val: props.currentGrid.A_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        attribute: "Empfind lichkeit (Anfälligkeit)",
                         val: props.currentGrid.A_SENSITIVITY,
                       },
                     ]}
@@ -467,7 +485,7 @@ export default function InfoPanel(props) {
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm ">
                           100 Hohes Risiko =<br /> hohes Anpassungspotenzial
-                          durch NbS NbS
+                          durch NbS
                         </div>
                         <div className="book-info-sm">1 Geringes Risiko</div>
                       </div>
@@ -572,10 +590,13 @@ export default function InfoPanel(props) {
                                   Armutsindex
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                  {props.currentGrid.poverty_index}
+                                  {parseFloat(
+                                    props.currentGrid.poverty_index,
+                                  ).toFixed(2)}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                  Überflutung durch Oberflächenwasser
+                                  Überflutung durch <br />
+                                  Oberflächenwasser
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   1
@@ -606,7 +627,7 @@ export default function InfoPanel(props) {
                                 scope="col"
                                 className="px-3 py-3 text-left book-intro-sm uppercase tracking-wide text-gray-500"
                               >
-                                WERT
+                                Wert
                               </th>
                             </tr>
                           </thead>
@@ -616,16 +637,20 @@ export default function InfoPanel(props) {
                                 Gefahr
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.B_HAZARD}
+                                {parseFloat(props.currentGrid.B_HAZARD).toFixed(
+                                  0,
+                                )}
                               </td>
                             </tr>
 
                             <tr>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
-                                BELASTUNG
+                                Belastung
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.B_EXPOSURE}
+                                {parseFloat(
+                                  props.currentGrid.B_EXPOSURE,
+                                ).toFixed(0)}
                               </td>
                             </tr>
 
@@ -634,7 +659,9 @@ export default function InfoPanel(props) {
                                 Bewältigungsfähigkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.B_COPING}
+                                {parseFloat(props.currentGrid.B_COPING).toFixed(
+                                  0,
+                                )}
                               </td>
                             </tr>
 
@@ -643,7 +670,9 @@ export default function InfoPanel(props) {
                                 Empfindlichkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.B_SENSITIVITY}
+                                {parseFloat(
+                                  props.currentGrid.B_SENSITIVITY,
+                                ).toFixed(0)}
                               </td>
                             </tr>
 
@@ -652,7 +681,9 @@ export default function InfoPanel(props) {
                                 Risikolevel
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.B_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.B_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                           </tbody>
@@ -663,19 +694,19 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "GEFAHR",
+                        attribute: "Gefahr",
                         val: props.currentGrid.B_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungs–fähigkeit",
+                        attribute: "Bewältigungs fähigkeit",
                         val: props.currentGrid.B_COPING,
                       },
                       {
-                        attribute: "BELASTUNG",
+                        attribute: "Belastung",
                         val: props.currentGrid.B_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        attribute: "Empfind lichkeit (Anfälligkeit)",
                         val: props.currentGrid.B_SENSITIVITY,
                       },
                     ]}
@@ -772,7 +803,9 @@ export default function InfoPanel(props) {
                                   Bodenqualität & Versiegelungsgrad
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                  {props.currentGrid.soil_quality}
+                                  {parseFloat(
+                                    props.currentGrid.soil_quality,
+                                  ).toFixed(2)}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   Anfälligkeit (Empfindlichkeit)
@@ -822,7 +855,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
-                                BELASTUNG
+                                Belastung
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                 {props.currentGrid.C_EXPOSURE}
@@ -852,7 +885,9 @@ export default function InfoPanel(props) {
                                 Risikolevel
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.C_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.C_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                           </tbody>
@@ -863,19 +898,19 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "GEFAHR",
+                        attribute: "Gefahr",
                         val: props.currentGrid.C_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungs–fähigkeit",
+                        attribute: "Bewältigungs fähigkeit",
                         val: props.currentGrid.C_COPING,
                       },
                       {
-                        attribute: "BELASTUNG",
+                        attribute: "Belastung",
                         val: props.currentGrid.C_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        attribute: "Empfind lichkeit (Anfälligkeit)",
                         val: props.currentGrid.C_SENSITIVITY,
                       },
                     ]}
@@ -1004,7 +1039,9 @@ export default function InfoPanel(props) {
                                   Bodenqualität & Versiegelungsgrad
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                  {props.currentGrid.soil_quality}
+                                  {parseFloat(
+                                    props.currentGrid.soil_quality,
+                                  ).toFixed(2)}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   Anfälligkeit (Empfindlichkeit)
@@ -1048,16 +1085,20 @@ export default function InfoPanel(props) {
                                 Gefahr
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.D_HAZARD}
+                                {parseFloat(props.currentGrid.D_HAZARD).toFixed(
+                                  0,
+                                )}
                               </td>
                             </tr>
 
                             <tr>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
-                                BELASTUNG
+                                Belastung
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.D_EXPOSURE}
+                                {parseFloat(
+                                  props.currentGrid.D_EXPOSURE,
+                                ).toFixed(0)}
                               </td>
                             </tr>
 
@@ -1066,7 +1107,9 @@ export default function InfoPanel(props) {
                                 Bewältigungsfähigkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.D_COPING}
+                                {parseFloat(props.currentGrid.D_COPING).toFixed(
+                                  0,
+                                )}
                               </td>
                             </tr>
 
@@ -1075,7 +1118,9 @@ export default function InfoPanel(props) {
                                 Empfindlichkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.D_SENSITIVITY}
+                                {parseFloat(
+                                  props.currentGrid.D_SENSITIVITY,
+                                ).toFixed(0)}
                               </td>
                             </tr>
 
@@ -1084,7 +1129,9 @@ export default function InfoPanel(props) {
                                 Risikolevel
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.D_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.D_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                           </tbody>
@@ -1095,19 +1142,19 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "GEFAHR",
+                        attribute: "Gefahr",
                         val: props.currentGrid.D_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungs–fähigkeit",
+                        attribute: "Bewältigungs fähigkeit",
                         val: props.currentGrid.D_COPING,
                       },
                       {
-                        attribute: "BELASTUNG",
+                        attribute: "Belastung",
                         val: props.currentGrid.D_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        attribute: "Empfind lichkeit (Anfälligkeit)",
                         val: props.currentGrid.D_SENSITIVITY,
                       },
                     ]}
@@ -1236,7 +1283,9 @@ export default function InfoPanel(props) {
                                   Bodenqualität & Versiegelungsgrad
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                  {props.currentGrid.soil_quality}
+                                  {parseFloat(
+                                    props.currentGrid.soil_quality,
+                                  ).toFixed(2)}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   Anfälligkeit (Empfindlichkeit)
@@ -1280,16 +1329,20 @@ export default function InfoPanel(props) {
                                 Gefahr
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.E_HAZARD}
+                                {parseFloat(props.currentGrid.E_HAZARD).toFixed(
+                                  0,
+                                )}
                               </td>
                             </tr>
 
                             <tr>
                               <td className="whitespace-nowrap py-4 pl-4 pr-3 book-info-md text-gray-900 sm:pl-0">
-                                BELASTUNG
+                                Belastung
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.E_EXPOSURE}
+                                {parseFloat(
+                                  props.currentGrid.E_EXPOSURE,
+                                ).toFixed(0)}
                               </td>
                             </tr>
 
@@ -1298,7 +1351,9 @@ export default function InfoPanel(props) {
                                 Bewältigungsfähigkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.E_COPING}
+                                {parseFloat(props.currentGrid.E_COPING).toFixed(
+                                  0,
+                                )}
                               </td>
                             </tr>
 
@@ -1307,7 +1362,9 @@ export default function InfoPanel(props) {
                                 Empfindlichkeit (Anfälligkeit)
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.E_SENSITIVITY}
+                                {parseFloat(
+                                  props.currentGrid.E_SENSITIVITY,
+                                ).toFixed(0)}
                               </td>
                             </tr>
 
@@ -1316,7 +1373,9 @@ export default function InfoPanel(props) {
                                 Risikolevel
                               </td>
                               <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                {props.currentGrid.E_risk_score}
+                                {parseFloat(
+                                  props.currentGrid.E_risk_score,
+                                ).toFixed(0)}
                               </td>
                             </tr>
                           </tbody>
@@ -1327,19 +1386,19 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "GEFAHR",
+                        attribute: "Gefahr",
                         val: props.currentGrid.E_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungs–fähigkeit",
+                        attribute: "Bewältigungs fähigkeit",
                         val: props.currentGrid.E_COPING,
                       },
                       {
-                        attribute: "BELASTUNG",
+                        attribute: "Belastung",
                         val: props.currentGrid.E_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind–lichkeit (Anfälligkeit)",
+                        attribute: "Empfind lichkeit (Anfälligkeit)",
                         val: props.currentGrid.E_SENSITIVITY,
                       },
                     ]}

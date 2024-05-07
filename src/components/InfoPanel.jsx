@@ -451,10 +451,6 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "Gefahr",
-                        val: props.currentGrid.A_HAZARD,
-                      },
-                      {
                         attribute: "Bewältigungs fähigkeit",
                         val: props.currentGrid.A_COPING,
                       },
@@ -530,7 +526,7 @@ export default function InfoPanel(props) {
                                   Landoberflächentemperatur (°C)
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                  {props.currentGrid.ls_temperature}
+                                  {(parseFloat(props.currentGrid.ls_temperature * 0.02) - 273.15).toFixed(2)}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   Belasteter Vermögenswert

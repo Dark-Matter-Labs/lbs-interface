@@ -42,7 +42,17 @@ export default function NavBar(props) {
                       alt="TreesAI LBS logo"
                     />
                   </div>
-                  <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                  <div className="hidden sm:flex sm:space-x-8">
+                    <span
+                      className={classNames(
+                        props.current === "portfolio"
+                          ? "border-green-600 text-dark-wood-800"
+                          : "border-transparent text-gray-800",
+                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
+                      )}
+                    >
+                      VORGEHENSWEISE
+                    </span>
                     <span
                       className={classNames(
                         props.current === "portfolio"
@@ -51,7 +61,47 @@ export default function NavBar(props) {
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
                     >
-                      VORGEHENSWEISE
+                      METHODE
+                    </span>
+                    <span
+                      className={classNames(
+                        props.current === "portfolio"
+                          ? "border-green-600 text-dark-wood-800"
+                          : "border-transparent text-gray-500",
+                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
+                      )}
+                    >
+                      WIRKUNGSMODELLIERUNG
+                    </span>
+                    <span
+                      className={classNames(
+                        props.current === "portfolio"
+                          ? "border-green-600 text-dark-wood-800"
+                          : "border-transparent text-gray-500",
+                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
+                      )}
+                    >
+                      LBS WIKI
+                    </span>
+                    <span
+                      className={classNames(
+                        props.current === "portfolio"
+                          ? "border-green-600 text-dark-wood-800"
+                          : "border-transparent text-gray-500",
+                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
+                      )}
+                    >
+                      INFO
+                    </span>
+                    <span
+                      className={classNames(
+                        props.current === "portfolio"
+                          ? "border-green-600 text-dark-wood-800"
+                          : "border-transparent text-gray-500",
+                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
+                      )}
+                    >
+                      KONTAKT
                     </span>
                   </div>
                 </div>

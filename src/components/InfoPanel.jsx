@@ -259,12 +259,12 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.B_risk_score,
                       },
                       {
-                        attribute: "Trocken heitsrisiko für Grünzonen",
+                        attribute: "Trockenheitsrisiko für Grünzonen",
                         val: props.currentGrid.A_risk_score,
                       },
                       {
                         attribute:
-                          "Überschwemmungs gefahr für das Verkehrsnetz",
+                          "Überschwemmungsgefahr für das Verkehrsnetz",
                         val: props.currentGrid.E_risk_score,
                       },
                       {
@@ -451,7 +451,7 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "Bewältigungs fähigkeit",
+                        attribute: "Bewältigungsfähigkeit",
                         val: props.currentGrid.A_COPING,
                       },
                       {
@@ -459,7 +459,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.A_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind lichkeit (Anfälligkeit)",
+                        attribute: "Empfindlichkeit (Anfälligkeit)",
                         val: props.currentGrid.A_SENSITIVITY,
                       },
                     ]}
@@ -694,7 +694,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.B_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungs fähigkeit",
+                        attribute: "Bewältigungsfähigkeit",
                         val: props.currentGrid.B_COPING,
                       },
                       {
@@ -702,7 +702,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.B_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind lichkeit (Anfälligkeit)",
+                        attribute: "Empfindlichkeit (Anfälligkeit)",
                         val: props.currentGrid.B_SENSITIVITY,
                       },
                     ]}
@@ -898,7 +898,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.C_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungs fähigkeit",
+                        attribute: "Bewältigungsfähigkeit",
                         val: props.currentGrid.C_COPING,
                       },
                       {
@@ -906,7 +906,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.C_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind lichkeit (Anfälligkeit)",
+                        attribute: "Empfindlichkeit (Anfälligkeit)",
                         val: props.currentGrid.C_SENSITIVITY,
                       },
                     ]}
@@ -1142,7 +1142,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.D_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungs fähigkeit",
+                        attribute: "Bewältigungsfähigkeit",
                         val: props.currentGrid.D_COPING,
                       },
                       {
@@ -1150,7 +1150,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.D_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind lichkeit (Anfälligkeit)",
+                        attribute: "Empfindlichkeit (Anfälligkeit)",
                         val: props.currentGrid.D_SENSITIVITY,
                       },
                     ]}
@@ -1386,7 +1386,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.E_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungs fähigkeit",
+                        attribute: "Bewältigungsfähigkeit",
                         val: props.currentGrid.E_COPING,
                       },
                       {
@@ -1394,7 +1394,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.E_EXPOSURE,
                       },
                       {
-                        attribute: "Empfind lichkeit (Anfälligkeit)",
+                        attribute: "Empfindlichkeit (Anfälligkeit)",
                         val: props.currentGrid.E_SENSITIVITY,
                       },
                     ]}

@@ -22,7 +22,7 @@ Before you begin, ensure you have the following installed:
 1. **Clone the repository:**
 ```bash
     git clone https://github.com/yourgithub/lbs-interface.git
-   cd lbs-interface
+    cd lbs-interface
 ```
 
 2. **Install dependencies:**
@@ -32,7 +32,7 @@ Before you begin, ensure you have the following installed:
 
 3. **Run the development server:**
  ```bash
-    yarn run dev
+    yarn dev
 ```
 
 This will start the Vite development server and open the app in your default web browser.

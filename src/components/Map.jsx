@@ -67,17 +67,17 @@ export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, city
     map.current.once("load", function () {
       map.current.addSource("district-source", {
         type: "geojson",
-        data: "../../data/250LBS_Stuttgart_updated.geojson",
+        data: "/data/250LBS_Stuttgart_updated.geojson",
       });
 
       map.current.addSource("state-trees", {
         type: "geojson",
-        data: "../../data/state_trees.geojson",
+        data: "/data/state_trees.geojson",
       });
 
       map.current.addSource("a-index", {
         type: "geojson",
-        data: "../../data/armutsindex_1.geojson",
+        data: "/data/armutsindex_1.geojson",
       });
 
       if(cityTrees){

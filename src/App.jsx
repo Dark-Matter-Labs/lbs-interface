@@ -5,9 +5,14 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import LBSMap from "./components/Map";
 import InfoPanel from "./components/InfoPanel";
+import LayerSelector from "./components/LayerSelector"
 
 export default function App() {
   const [showInfoPanel, setShowInfoPanel] = useState(true);
+  const [raster, setRaster] = useState(true);
+  const [topo, setTopo] = useState(false);
+  const [cityTrees, setCityTrees] = useState(false);
+  const [aIndex, setAIndex] = useState(false);
   const [activeHazard, setActiveHazard] = useState("Gesamt");
   const [currentGrid, setCurrentGrid] = useState({
     id: "250mN285175E426025",
@@ -72,19 +77,22 @@ export default function App() {
               setShowPanel={setShowInfoPanel}
               currentGrid={currentGrid}
             />
+             <LayerSelector raster={raster} setRaster={setRaster} topo={topo} setTopo={setTopo} cityTrees={cityTrees} setCityTrees={setCityTrees} aIndex={aIndex} setAIndex={setAIndex}/>
           </div>
-          <LBSMap layer={activeHazard} setCurrentGrid={setCurrentGrid} />
+          <LBSMap layer={activeHazard} setCurrentGrid={setCurrentGrid} raster={raster} topo={topo} cityTrees={cityTrees} risk={showInfoPanel} aIndex={aIndex}/>
         </div>
       ) : (
         <div className="relative">
           <div className="absolute z-20 top-1/4">
-            <div className="px-4 py-10 bg-green-600 rounded-r-full">
+            <div className="px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer" onClick={() => setShowInfoPanel(true)}>
+              <h2 className="text-white">Eukunde das Risiko eines Standorts</h2>
               <button onClick={() => setShowInfoPanel(true)}>
                 <ArrowRightCircleIcon className="text-white-200 w-7 h-7 ml-2" />
               </button>
             </div>
+            <LayerSelector raster={raster} setRaster={setRaster} topo={topo} setTopo={setTopo} cityTrees={cityTrees} setCityTrees={setCityTrees} aIndex={aIndex} setAIndex={setAIndex}/>
           </div>
-          <LBSMap layer={activeHazard} setCurrentGrid={setCurrentGrid} />
+          <LBSMap layer={activeHazard} setCurrentGrid={setCurrentGrid} raster={raster} topo={topo} cityTrees={cityTrees} risk={showInfoPanel} aIndex={aIndex}/>
         </div>
       )}
     </>

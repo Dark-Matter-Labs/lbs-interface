@@ -17,8 +17,9 @@ import {
 const MAPBOX_TOKEN =
   "pk.eyJ1IjoiZ3VyZGVuIiwiYSI6ImNrdXNjdTA3eDA5MWYybm8wZWhiMXVqdzkifQ.NVMz5cLI846KYy281riBhw";
 
-export default function LBSMap({ layer, setCurrentGrid }) {
+export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, cityTrees, aIndex }) {
   const mapContainer = useRef(null);
+  const map = useRef(null);
   const [currentLayer, setCurrentLayer] = useState(genRiskLayer);
 
   const [hoveredDistrict, _setHoveredDistrict] = useState(null);
@@ -30,18 +31,30 @@ export default function LBSMap({ layer, setCurrentGrid }) {
   };
 
   useEffect(() => {
-    let map = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: "mapbox://styles/mapbox/light-v10",
-      center: [8.99, 48.76],
-      zoom: 11,
-      accessToken: MAPBOX_TOKEN,
-    });
+
+    if(topo){
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/satellite-v9',
+        center: [8.99, 48.76],
+        zoom: 11,
+        accessToken: MAPBOX_TOKEN,
+      });
+    } else {
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/light-v11',
+        center: [8.99, 48.76],
+        zoom: 11,
+        accessToken: MAPBOX_TOKEN,
+      });
+    }
+    
 
     // Add zoom and rotation controls to the map.
-    map.addControl(new mapboxgl.NavigationControl());
+    map.current.addControl(new mapboxgl.NavigationControl());
 
-    map.addControl(
+    map.current.addControl(
       new MapboxGeocoder({
         accessToken: MAPBOX_TOKEN,
         mapboxgl: mapboxgl,
@@ -52,17 +65,77 @@ export default function LBSMap({ layer, setCurrentGrid }) {
       "top-right",
     );
 
-    map.once("load", function () {
-      map.addSource("district-source", {
+    map.current.once("load", function () {
+      map.current.addSource("district-source", {
         type: "geojson",
-        data: "https://raw.githubusercontent.com/Dark-Matter-Labs/treesai_registry/main/src/data/250LBS_Stuttgart_updated.geojson",
+        data: "../../data/250LBS_Stuttgart_updated.geojson",
       });
 
-      map.addLayer(currentLayer);
+      map.current.addSource("state-trees", {
+        type: "geojson",
+        data: "../../data/state_trees.geojson",
+      });
 
-      map.addLayer(baseLayer);
+      map.current.addSource("a-index", {
+        type: "geojson",
+        data: "../../data/armutsindex_1.geojson",
+      });
 
-      map.on("click", "district-layer", function (e) {
+      if(cityTrees){
+        map.current.addLayer({
+          'id': 'state-tree-layer',
+          'type': 'circle',
+          'source': 'state-trees',
+          'paint': {
+              'circle-radius': 4,
+              'circle-color': '#3FAD76'
+          },
+          'filter': ['==', '$type', 'Point']
+        });  
+      } else {
+        map.current.removeLayer('state-tree-layer')
+      }
+
+      if(aIndex){
+        map.current.addLayer({
+          'id': 'a-index-layer',
+          type: "fill",
+          'source': 'a-index',
+  paint: {
+    "fill-color": [
+      'interpolate', ['linear'],
+      ['number', ['get', 'Armutsindex_2020']],
+      -2, '#2DC4B2',
+      -1.5, '#3BB3C3', 
+      -1,'#669EC4', 
+      0, '#A2719B', 
+      1, '#AA5E79'
+    ],
+    "fill-opacity":1,
+  },
+  'filter': ['==', '$type', 'Polygon']}
+        );  
+      } else {
+        map.current.removeLayer('a-index-layer')
+      }
+
+     
+      if(risk){
+        map.current.addLayer(currentLayer);
+      } else {
+        map.current.removeLayer('district-layer');
+      }
+
+     
+
+      if(raster){
+        map.current.addLayer(baseLayer);
+      } else {
+        map.current.removeLayer('states-layer-outline');
+      }
+     
+
+      map.current.on("click", "district-layer", function (e) {
         var allFeatures = map.queryRenderedFeatures({
           layers: ["district-layer"],
         });
@@ -71,30 +144,30 @@ export default function LBSMap({ layer, setCurrentGrid }) {
         });
 
         for (var j = 0; j < allFeatures.length; j++) {
-          map.setFeatureState(
+          map.current.setFeatureState(
             { source: "district-source", id: allFeatures[j].id },
             { click: false },
           );
         }
 
         for (var i = 0; i < features.length; i++) {
-          map.setFeatureState(
+          map.current.setFeatureState(
             { source: "district-source", id: features[i].id },
             { click: true },
           );
         }
       });
 
-      map.on("mousedown", "district-layer", function (e) {
+      map.current.on("mousedown", "district-layer", function (e) {
         if (e.features.length > 0) {
           setCurrentGrid(e.features[0].properties);
         }
       });
 
-      map.on("mousemove", "district-layer", function (e) {
+      map.current.on("mousemove", "district-layer", function (e) {
         if (e.features.length > 0) {
           if (hoveredDistrictRef.current && hoveredDistrictRef.current > -1) {
-            map.setFeatureState(
+            map.current.setFeatureState(
               { source: "district-source", id: hoveredDistrictRef.current },
               { hover: false },
             );
@@ -102,7 +175,7 @@ export default function LBSMap({ layer, setCurrentGrid }) {
 
           let _hoveredDistrict = e.features[0].id;
 
-          map.setFeatureState(
+          map.current.setFeatureState(
             { source: "district-source", id: _hoveredDistrict },
             { hover: true },
           );
@@ -113,7 +186,7 @@ export default function LBSMap({ layer, setCurrentGrid }) {
 
       // When the mouse leaves the state-fill layer, update the feature state of the
       // previously hovered feature.
-      map.on("mouseleave", "district-layer", function () {
+      map.current.on("mouseleave", "district-layer", function () {
         if (hoveredDistrictRef.current) {
           map.setFeatureState(
             { source: "district-source", id: hoveredDistrictRef.current },
@@ -123,9 +196,11 @@ export default function LBSMap({ layer, setCurrentGrid }) {
         setHoveredDistrict(null);
       });
 
-      map.on("move", () => {});
+      map.current.on("move", () => {});
     });
-  }, [currentLayer]);
+  }, [currentLayer, raster, topo, risk, cityTrees, aIndex]);
+
+
 
   useEffect(() => {
     if (layer === "Gesamt") {
@@ -146,7 +221,9 @@ export default function LBSMap({ layer, setCurrentGrid }) {
   return (
     <div className="district-map-wrapper">
       <div id="districtDetailMap" className="map">
-        <div style={{ height: "100%" }} ref={mapContainer}></div>
+        <div style={{ height: "100%" }} ref={mapContainer}>
+        </div>
+      
       </div>
     </div>
   );
@@ -159,4 +236,9 @@ export function renderToDom(container) {
 LBSMap.propTypes = {
   layer: PropTypes.string,
   setCurrentGrid: PropTypes.func,
+  raster: PropTypes.bool,
+  topo: PropTypes.bool,
+  risk: PropTypes.bool,
+  cityTrees: PropTypes.bool,
+  aIndex: PropTypes.bool
 };

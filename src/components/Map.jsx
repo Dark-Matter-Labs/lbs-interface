@@ -135,10 +135,10 @@ export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, city
      
 
       map.current.on("click", "district-layer", function (e) {
-        var allFeatures = map.queryRenderedFeatures({
+        var allFeatures = map.current.queryRenderedFeatures({
           layers: ["district-layer"],
         });
-        var features = map.queryRenderedFeatures(e.point, {
+        var features = map.current.queryRenderedFeatures(e.point, {
           layers: ["district-layer"],
         });
 
@@ -187,7 +187,7 @@ export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, city
       // previously hovered feature.
       map.current.on("mouseleave", "district-layer", function () {
         if (hoveredDistrictRef.current) {
-          map.setFeatureState(
+          map.current.setFeatureState(
             { source: "district-source", id: hoveredDistrictRef.current },
             { hover: false },
           );

@@ -14,8 +14,7 @@ import {
   baseLayer,
 } from "./map-style";
 
-const MAPBOX_TOKEN =
-  "pk.eyJ1IjoiZ3VyZGVuIiwiYSI6ImNrdXNjdTA3eDA5MWYybm8wZWhiMXVqdzkifQ.NVMz5cLI846KYy281riBhw";
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
 export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, cityTrees, aIndex }) {
   const mapContainer = useRef(null);

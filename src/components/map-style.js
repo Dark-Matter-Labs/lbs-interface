@@ -215,3 +215,25 @@ export const floodingBuiltRiskLayer = {
     ],
   },
 };
+
+export const test = {
+  id: "armuts-layer",
+  type: "fill",
+  source: "armuts-index",
+  paint: {
+    "fill-color": {
+      property: "Armutsindex 2020",
+      stops: [
+        [-1.5, "#b1c4de"],
+        [-1, "#80b2d4"],
+        [-0.5, "#52a3c0"],
+        [0, "#2795a1"],
+        [0.5, "#10817d"],
+        [1, "#016c59"],
+        [1.5, "#016c59"],
+        [2, "#016c59"],
+      ],
+    },
+    "fill-opacity": 1
+  },
+};

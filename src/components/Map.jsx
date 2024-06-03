@@ -16,7 +16,15 @@ import {
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
-export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, cityTrees, aIndex }) {
+export default function LBSMap({
+  layer,
+  setCurrentGrid,
+  raster,
+  topo,
+  risk,
+  cityTrees,
+  aIndex,
+}) {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [currentLayer, setCurrentLayer] = useState(genRiskLayer);
@@ -30,11 +38,10 @@ export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, city
   };
 
   useEffect(() => {
-
-    if(topo){
+    if (topo) {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/satellite-v9',
+        style: "mapbox://styles/mapbox/satellite-v9",
         center: [8.99, 48.76],
         zoom: 11,
         accessToken: MAPBOX_TOKEN,
@@ -42,13 +49,12 @@ export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, city
     } else {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/light-v11',
+        style: "mapbox://styles/mapbox/light-v11",
         center: [8.99, 48.76],
         zoom: 11,
         accessToken: MAPBOX_TOKEN,
       });
     }
-    
 
     // Add zoom and rotation controls to the map.
     map.current.addControl(new mapboxgl.NavigationControl());
@@ -75,64 +81,82 @@ export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, city
         data: "/data/state_trees.geojson",
       });
 
-      map.current.addSource("a-index", {
+      map.current.addSource("muni-trees", {
+        type: "geojson",
+        data: "/data/municipal_trees_2.geojson",
+      });
+
+      map.current.addSource("a-index-layer", {
         type: "geojson",
         data: "/data/armutsindex_1.geojson",
       });
 
-      if(cityTrees){
+      // map.current.addLayer({
+      //   id: "municipal-tree-layer",
+      //   type: "circle",
+      //   source: "muni-trees",
+      //   paint: {
+      //     "circle-radius": 4,
+      //     "circle-color": "#3FAD76",
+      //   },
+      //   filter: ["==", "$type", "Point"],
+      // });
+
+      if (cityTrees) {
         map.current.addLayer({
-          'id': 'state-tree-layer',
-          'type': 'circle',
-          'source': 'state-trees',
-          'paint': {
-              'circle-radius': 4,
-              'circle-color': '#3FAD76'
+          id: "state-tree-layer",
+          type: "circle",
+          source: "state-trees",
+          paint: {
+            "circle-radius": 4,
+            "circle-color": "#3FAD76",
           },
-          'filter': ['==', '$type', 'Point']
-        });  
+          filter: ["==", "$type", "Point"],
+        });
       } else {
-        map.current.removeLayer('state-tree-layer')
+        map.current.removeLayer("state-tree-layer");
       }
 
-      if(aIndex){
+      if (aIndex) {
         map.current.addLayer({
-          'id': 'a-index-layer',
+          id: "a-index-layer",
           type: "fill",
-          'source': 'a-index',
-  paint: {
-    "fill-color": [
-      'interpolate', ['linear'],
-      ['number', ['get', 'Armutsindex_2020']],
-      -2, '#2DC4B2',
-      -1.5, '#3BB3C3', 
-      -1,'#669EC4', 
-      0, '#A2719B', 
-      1, '#AA5E79'
-    ],
-    "fill-opacity":1,
-  },
-  'filter': ['==', '$type', 'Polygon']}
-        );  
+          source: "a-index",
+          paint: {
+            "fill-color": [
+              "interpolate",
+              ["linear"],
+              ["number", ["get", "Armutsindex_2020"]],
+              -2,
+              "#2DC4B2",
+              -1.5,
+              "#3BB3C3",
+              -1,
+              "#669EC4",
+              0,
+              "#A2719B",
+              1,
+              "#AA5E79",
+            ],
+            "fill-opacity": 1,
+          },
+          filter: ["==", "$type", "Polygon"],
+        });
       } else {
-        map.current.removeLayer('a-index-layer')
+        map.current.removeLayer("a-index-layer");
       }
 
-     
-      if(risk){
+      if (risk) {
         map.current.addLayer(currentLayer);
       } else {
-        map.current.removeLayer('district-layer');
+        map.current.removeLayer("district-layer");
       }
 
-     
-
-      if(raster){
+      if (raster) {
         map.current.addLayer(baseLayer);
       } else {
-        map.current.removeLayer('states-layer-outline');
+        map.current.removeLayer("states-layer-outline");
       }
-     
 
       map.current.on("click", "district-layer", function (e) {
         var allFeatures = map.current.queryRenderedFeatures({
@@ -197,22 +221,21 @@ export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, city
 
       map.current.on("move", () => {});
     });
-  }, [currentLayer, raster, topo, risk, cityTrees, aIndex]);
-
-
+  }, [currentLayer, raster, topo, risk, cityTrees, aIndex, setCurrentGrid]);
+  
 
   useEffect(() => {
-    if (layer === "Gesamt") {
+    if (layer === 0) {
       setCurrentLayer(genRiskLayer);
-    } else if (layer === "Trockenheit") {
+    } else if (layer === 1) {
       setCurrentLayer(droughtRiskLayer);
-    } else if (layer === "Hitze") {
+    } else if (layer === 2) {
       setCurrentLayer(heatRiskLayer);
-    } else if (layer === "Luftverschmutzung") {
+    } else if (layer === 3) {
       setCurrentLayer(airPollutionRiskLayer);
-    } else if (layer === "Überschwemmung") {
+    } else if (layer === 4) {
       setCurrentLayer(floodingRiskLayer);
-    } else if (layer === "Überschwemmung2") {
+    } else if (layer === 5) {
       setCurrentLayer(floodingBuiltRiskLayer);
     }
   }, [layer]);
@@ -220,9 +243,7 @@ export default function LBSMap({ layer, setCurrentGrid, raster, topo, risk, city
   return (
     <div className="district-map-wrapper">
       <div id="districtDetailMap" className="map">
-        <div style={{ height: "100%" }} ref={mapContainer}>
-        </div>
-      
+        <div style={{ height: "100%" }} ref={mapContainer}></div>
       </div>
     </div>
   );
@@ -233,11 +254,11 @@ export function renderToDom(container) {
 }
 
 LBSMap.propTypes = {
-  layer: PropTypes.string,
+  layer: PropTypes.number,
   setCurrentGrid: PropTypes.func,
   raster: PropTypes.bool,
   topo: PropTypes.bool,
   risk: PropTypes.bool,
   cityTrees: PropTypes.bool,
-  aIndex: PropTypes.bool
+  aIndex: PropTypes.bool,
 };

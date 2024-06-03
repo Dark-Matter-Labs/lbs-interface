@@ -15,15 +15,15 @@ function classNames(...classes) {
 }
 
 const hazards = [
-  { title: "Gesamt", name: "AVERAGE_RISK", current: true },
-  { title: "Trockenheit", name: "A_risk_score", current: false },
-  { title: "Hitze", name: "B_risk_score", current: false },
-  { title: "Luftverschmutzung", name: "C_risk_score", current: false },
-  { title: "Überschwemmung", name: "D_risk_score", current: false },
+  { title: "Gesamt", name: "AVERAGE_RISK", current: true, id: 0 },
+  { title: "Trockenheit", name: "A_risk_score", current: false, id: 1 },
+  { title: "Hitze", name: "B_risk_score", current: false, id: 2 },
+  { title: "Luftverschmutzung", name: "C_risk_score", current: false, id: 3 },
+  { title: "Überschwemmung", name: "D_risk_score", current: false, id: 4 },
 ];
 
 export default function InfoPanel(props) {
-  const [currentRisk, setCurrentRisk] = useState("Gesamt");
+  const [currentRisk, setCurrentRisk] = useState(0);
   const [transportBuiltSwitch, setTransportBuiltSwitch] = useState("Transport");
 
   return (
@@ -41,9 +41,9 @@ export default function InfoPanel(props) {
         leaveTo="translate-x-full"
       >
         <div className="pb-10 max-w-4xl">
-          <div className="px-10 py-4 bg-green-600 flex flex-row items-center my-auto justify-between rounded-tr-[30px]">
+          <div className="pr-4 py-4 bg-green-600 flex flex-row items-center my-auto justify-between rounded-tr-[30px]">
             <div>
-              <span className="bold-intro-md text-white-200 pl-6">
+              <span className="medium-intro-sm text-white-200 pl-6">
                 Erkunde das Risiko eines Standorts
               </span>
             </div>
@@ -66,7 +66,7 @@ export default function InfoPanel(props) {
                 defaultValue={hazards.find((tab) => tab.current).title}
               >
                 {hazards.map((tab) => (
-                  <option key={tab.name}>{tab.title}</option>
+                  <option key={tab.id}>{tab.title}</option>
                 ))}
               </select>
             </div>
@@ -75,18 +75,21 @@ export default function InfoPanel(props) {
                 <nav className="-mb-px flex space-x-8" aria-label="Tabs">
                   {hazards.map((tab) => (
                     <span
-                      key={tab.name}
+                      key={tab.id}
+                      id={tab.id}
                       onClick={(e) => {
-                        setCurrentRisk(e.target.innerHTML);
+                        setCurrentRisk(Number(e.target.id));
+
                         const oldIndex = hazards.findIndex(
                           (obj) => obj.current === true,
                         );
                         const newIndex = hazards.findIndex(
-                          (obj) => obj.title === e.target.innerHTML,
+                          (obj) => obj.id === Number(e.target.id),
                         );
+
                         hazards[oldIndex].current = false;
                         hazards[newIndex].current = true;
-                        props.setActiveHazard(e.target.innerHTML);
+                        props.setActiveHazard(Number(e.target.id));
                       }}
                       className={classNames(
                         tab.current
@@ -103,7 +106,7 @@ export default function InfoPanel(props) {
             </div>
           </div>
           <div className="px-4 pt-4">
-            {currentRisk === "Gesamt" ? (
+            {currentRisk === 0 ? (
               <>
                 <h2>Gesamtrisikobewertung</h2>
                 <p className="book-info-sm">
@@ -263,8 +266,7 @@ export default function InfoPanel(props) {
                         val: props.currentGrid.A_risk_score,
                       },
                       {
-                        attribute:
-                          "Überschwemmungsgefahr für das Verkehrsnetz",
+                        attribute: "Überschwemmungsgefahr für das Verkehrsnetz",
                         val: props.currentGrid.E_risk_score,
                       },
                       {
@@ -280,7 +282,7 @@ export default function InfoPanel(props) {
                   />
                 </div>
               </>
-            ) : currentRisk === "Trockenheit" ? (
+            ) : currentRisk === 1 ? (
               <>
                 <h2>Wirkungskette</h2>
                 <img src={heatCard} />
@@ -466,7 +468,7 @@ export default function InfoPanel(props) {
                   />
                 </div>
               </>
-            ) : currentRisk === "Hitze" ? (
+            ) : currentRisk === 2 ? (
               <>
                 <h2>Wirkungskette</h2>
                 <img src={hitzeCard} />
@@ -526,7 +528,11 @@ export default function InfoPanel(props) {
                                   Landoberflächentemperatur (°C)
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                  {(parseFloat(props.currentGrid.ls_temperature * 0.02) - 273.15).toFixed(2)}
+                                  {(
+                                    parseFloat(
+                                      props.currentGrid.ls_temperature * 0.02,
+                                    ) - 273.15
+                                  ).toFixed(2)}
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                   Belasteter Vermögenswert
@@ -709,7 +715,7 @@ export default function InfoPanel(props) {
                   />
                 </div>
               </>
-            ) : currentRisk === "Luftverschmutzung" ? (
+            ) : currentRisk === 3 ? (
               <>
                 <h2>Wirkungskette</h2>
                 <img src={luftCard} />
@@ -913,7 +919,7 @@ export default function InfoPanel(props) {
                   />
                 </div>
               </>
-            ) : currentRisk === "Überschwemmung" ? (
+            ) : currentRisk === 4 ? (
               <>
                 {/* text with onclick state update, if render rest of bottom component based on choice*/}
                 <div className="flex">
@@ -926,8 +932,8 @@ export default function InfoPanel(props) {
                     )}
                     onClick={() => {
                       setTransportBuiltSwitch("Transport");
-                      props.setActiveHazard("Überschwemmung");
-                      setCurrentRisk("Überschwemmung");
+                      props.setActiveHazard(4);
+                      setCurrentRisk(4);
                     }}
                   >
                     Transport Netzwerk |
@@ -941,8 +947,8 @@ export default function InfoPanel(props) {
                     )}
                     onClick={() => {
                       setTransportBuiltSwitch("Built");
-                      props.setActiveHazard("Überschwemmung2");
-                      setCurrentRisk("Überschwemmung2");
+                      props.setActiveHazard(5);
+                      setCurrentRisk(5);
                     }}
                   >
                     Bebautes Gebiet
@@ -1157,7 +1163,7 @@ export default function InfoPanel(props) {
                   />
                 </div>
               </>
-            ) : currentRisk === "Überschwemmung2" ? (
+            ) : currentRisk === 5 ? (
               <>
                 {/* text with onclick state update, if render rest of bottom component based on choice*/}
                 <div className="flex">
@@ -1170,8 +1176,8 @@ export default function InfoPanel(props) {
                     )}
                     onClick={() => {
                       setTransportBuiltSwitch("Transport");
-                      props.setActiveHazard("Überschwemmung");
-                      setCurrentRisk("Überschwemmung");
+                      props.setActiveHazard(4);
+                      setCurrentRisk(4);
                     }}
                   >
                     Transport Netzwerk |
@@ -1185,8 +1191,8 @@ export default function InfoPanel(props) {
                     )}
                     onClick={() => {
                       setTransportBuiltSwitch("Built");
-                      props.setActiveHazard("Überschwemmung2");
-                      setCurrentRisk("Überschwemmung2");
+                      props.setActiveHazard(5);
+                      setCurrentRisk(5);
                     }}
                   >
                     Bebautes Gebiet
@@ -1415,6 +1421,6 @@ InfoPanel.propTypes = {
   show: PropTypes.bool,
   setShowPanel: PropTypes.func,
   setActiveHazard: PropTypes.func,
-  activeHazard: PropTypes.string,
+  activeHazard: PropTypes.number,
   currentGrid: PropTypes.object,
 };

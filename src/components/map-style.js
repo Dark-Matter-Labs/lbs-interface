@@ -234,6 +234,6 @@ export const test = {
         [2, "#016c59"],
       ],
     },
-    "fill-opacity": 1
+    "fill-opacity": 1,
   },
 };

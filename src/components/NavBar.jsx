@@ -12,7 +12,7 @@ export default function NavBar(props) {
     <>
       <Disclosure
         as="nav"
-        className="bg-white border sticky top-0 z-50 rounded-full"
+        className="bg-white border sticky top-0 z-50 "
       >
         {({ open }) => (
           <>
@@ -36,11 +36,14 @@ export default function NavBar(props) {
                       src={logo}
                       alt="TreesAI LBS logo"
                     />
-                    <img
-                      className="hidden h-6 w-auto lg:block"
-                      src={logo}
-                      alt="TreesAI LBS logo"
-                    />
+                    <div className="flex items-baseline ">
+                      <img
+                        className="hidden h-6 w-auto lg:block pr-1"
+                        src={logo}
+                        alt="TreesAI LBS logo"
+                      />
+                      <h3>.LBS</h3>
+                    </div>
                   </div>
                   <div className="hidden sm:flex sm:space-x-8">
                     <span

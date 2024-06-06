@@ -1,9 +1,9 @@
 // For more information on data-driven styles, see https://www.mapbox.com/help/gl-dds-ref/
 
 export const baseLayer = {
-  id: "states-layer-outline",
+  id: "raster-layer",
   type: "line",
-  source: "district-source",
+  source: "lbs-source",
   layout: {},
   paint: {
     "line-width": [
@@ -22,10 +22,9 @@ export const baseLayer = {
 };
 
 export const genRiskLayer = {
-  id: "district-layer",
+  id: "risk-layer",
   type: "fill",
-  source: "district-source",
-  layout: {},
+  source: "lbs-source",
   paint: {
     "fill-color": {
       property: "AVERAGE_RISK",
@@ -44,7 +43,7 @@ export const genRiskLayer = {
       "case",
       ["boolean", ["feature-state", "click"], false],
       1,
-      0.6,
+      0.5,
     ],
     "fill-outline-color": [
       "case",
@@ -56,9 +55,9 @@ export const genRiskLayer = {
 };
 
 export const droughtRiskLayer = {
-  id: "district-layer",
+  id: "risk-layer",
   type: "fill",
-  source: "district-source",
+  source: "lbs-source",
   paint: {
     "fill-color": {
       property: "A_risk_score",
@@ -77,7 +76,7 @@ export const droughtRiskLayer = {
       "case",
       ["boolean", ["feature-state", "click"], false],
       1,
-      0.4,
+      0.5,
     ],
     "fill-outline-color": [
       "case",
@@ -89,9 +88,9 @@ export const droughtRiskLayer = {
 };
 
 export const heatRiskLayer = {
-  id: "district-layer",
+  id: "risk-layer",
   type: "fill",
-  source: "district-source",
+  source: "lbs-source",
   paint: {
     "fill-color": {
       property: "B_risk_score",
@@ -122,9 +121,9 @@ export const heatRiskLayer = {
 };
 
 export const airPollutionRiskLayer = {
-  id: "district-layer",
+  id: "risk-layer",
   type: "fill",
-  source: "district-source",
+  source: "lbs-source",
   paint: {
     "fill-color": {
       property: "C_risk_score",
@@ -155,9 +154,9 @@ export const airPollutionRiskLayer = {
 };
 
 export const floodingRiskLayer = {
-  id: "district-layer",
+  id: "risk-layer",
   type: "fill",
-  source: "district-source",
+  source: "lbs-source",
   paint: {
     "fill-color": {
       property: "D_risk_score",
@@ -174,7 +173,7 @@ export const floodingRiskLayer = {
       "case",
       ["boolean", ["feature-state", "click"], false],
       1,
-      0.6,
+      0.5,
     ],
     "fill-outline-color": [
       "case",
@@ -186,9 +185,9 @@ export const floodingRiskLayer = {
 };
 
 export const floodingBuiltRiskLayer = {
-  id: "district-layer",
+  id: "risk-layer",
   type: "fill",
-  source: "district-source",
+  source: "lbs-source",
   paint: {
     "fill-color": {
       property: "E_risk_score",
@@ -205,7 +204,7 @@ export const floodingBuiltRiskLayer = {
       "case",
       ["boolean", ["feature-state", "click"], false],
       1,
-      0.6,
+      0.5,
     ],
     "fill-outline-color": [
       "case",
@@ -213,27 +212,5 @@ export const floodingBuiltRiskLayer = {
       "#FFFFFF",
       "transparent",
     ],
-  },
-};
-
-export const test = {
-  id: "armuts-layer",
-  type: "fill",
-  source: "armuts-index",
-  paint: {
-    "fill-color": {
-      property: "Armutsindex 2020",
-      stops: [
-        [-1.5, "#b1c4de"],
-        [-1, "#80b2d4"],
-        [-0.5, "#52a3c0"],
-        [0, "#2795a1"],
-        [0.5, "#10817d"],
-        [1, "#016c59"],
-        [1.5, "#016c59"],
-        [2, "#016c59"],
-      ],
-    },
-    "fill-opacity": 1,
   },
 };

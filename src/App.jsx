@@ -14,6 +14,8 @@ export default function App() {
   const [cityTrees, setCityTrees] = useState(false);
   const [aIndex, setAIndex] = useState(false);
   const [activeHazard, setActiveHazard] = useState(0);
+
+  // TODO: Move this to util
   const [currentGrid, setCurrentGrid] = useState({
     id: "250mN285175E426025",
     stadtbezirk_id: 1,
@@ -105,7 +107,9 @@ export default function App() {
               className="px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer w-52"
               onClick={() => setShowInfoPanel(true)}
             >
-              <span className="text-white medium-intro-sm ">Eukunde das Risiko eines Standorts</span>
+              <span className="text-white medium-intro-sm ">
+                Eukunde das Risiko eines Standorts
+              </span>
               <button onClick={() => setShowInfoPanel(true)}>
                 <ArrowRightCircleIcon className="text-white-200 w-7 h-7 ml-2" />
               </button>

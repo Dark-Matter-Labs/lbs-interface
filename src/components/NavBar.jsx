@@ -10,10 +10,7 @@ function classNames(...classes) {
 export default function NavBar(props) {
   return (
     <>
-      <Disclosure
-        as="nav"
-        className="bg-white border sticky top-0 z-50 "
-      >
+      <Disclosure as="nav" className="bg-white border sticky top-0 z-50 ">
         {({ open }) => (
           <>
             <div className="global-margin px-2 sm:px-6 lg:px-8 border-b-2 border-b-dark-wood-800">

@@ -40,7 +40,7 @@ export default function LBSMap({
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/light-v11",
-      center: [8.99, 48.76],
+      center: [9.06, 48.76],
       zoom: 11,
       accessToken: MAPBOX_TOKEN,
     });
@@ -68,11 +68,6 @@ export default function LBSMap({
       map.current.addSource("state-trees", {
         type: "geojson",
         data: "/data/state_trees.geojson",
-      });
-
-      map.current.addSource("muni-trees", {
-        type: "geojson",
-        data: "/data/municipal_trees_2.geojson",
       });
 
       map.current.addSource("a-index", {
@@ -230,6 +225,8 @@ export default function LBSMap({
             "#A2719B",
             1,
             "#AA5E79",
+            999,
+            "transparent",
           ],
           "fill-opacity": 1,
         },

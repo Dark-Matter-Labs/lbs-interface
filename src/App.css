@@ -35,6 +35,10 @@
     @apply font-favoritBook font-book text-2xl leading-5;
   }
 
+  .medium-info-sm {
+    @apply font-favorit text-sm font-medium leading-4;
+  }
+
   .medium-intro-sm {
     @apply font-favorit text-md font-medium leading-4;
   }

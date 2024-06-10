@@ -20,7 +20,7 @@ export default function InfoPanel({
     <Transition.Root
       show={true}
       as={Fragment}
-      className="bg-transparent mt-10 rounded-r-[30px]"
+      className=" mt-56  justify-self-end "
     >
       <Transition.Child
         enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -30,7 +30,7 @@ export default function InfoPanel({
         leaveFrom="translate-x-0"
         leaveTo="translate-x-full"
       >
-        <div className="pb-10  mx-10 ">
+        <div className=" mx-10 grid grid-cols-1 gap-y-8 justify-items-end">
           <button
             type="button"
             onClick={() => {

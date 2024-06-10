@@ -179,16 +179,6 @@ export default function LBSMap({
   }, [raster]);
 
   useEffect(() => {
-    // map.current.addLayer({
-    //   id: "municipal-tree-layer",
-    //   type: "circle",
-    //   source: "muni-trees",
-    //   paint: {
-    //     "circle-radius": 4,
-    //     "circle-color": "#3FAD76",
-    //   },
-    //   filter: ["==", "$type", "Point"],
-    // });
 
     if (cityTrees) {
       map.current.addLayer({

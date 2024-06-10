@@ -30,7 +30,7 @@ export default function InfoPanel(props) {
     <Transition.Root
       show={props.show}
       as={Fragment}
-      className="bg-white-200 mt-10 rounded-r-[30px]"
+      className="bg-white-200 mt-10 rounded-r-[30px] z-10"
     >
       <Transition.Child
         enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -348,7 +348,7 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="px-2 py-3 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHTUNG
+                                  GEWICHT
                                 </th>
                               </tr>
                             </thead>
@@ -540,7 +540,7 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="px-2 py-3 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHTUNG
+                                  GEWICHT
                                 </th>
                               </tr>
                             </thead>
@@ -787,7 +787,7 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="px-2 py-3 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHTUNG
+                                  GEWICHT
                                 </th>
                               </tr>
                             </thead>
@@ -1022,7 +1022,7 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="px-2 py-3 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHTUNG
+                                  GEWICHT
                                 </th>
                               </tr>
                             </thead>
@@ -1265,7 +1265,7 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="px-2 py-3 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHTUNG
+                                  GEWICHT
                                 </th>
                               </tr>
                             </thead>

@@ -40,7 +40,7 @@ export default function LBSMap({
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/light-v11",
-      center: [9.06, 48.76],
+      center: [9.07, 48.76],
       zoom: 11,
       accessToken: MAPBOX_TOKEN,
     });
@@ -179,7 +179,6 @@ export default function LBSMap({
   }, [raster]);
 
   useEffect(() => {
-
     if (cityTrees) {
       map.current.addLayer({
         id: "state-tree-layer",
@@ -218,7 +217,7 @@ export default function LBSMap({
             999,
             "transparent",
           ],
-          "fill-opacity": 1,
+          "fill-opacity": 0.7,
         },
         filter: ["==", "$type", "Polygon"],
       });
@@ -244,8 +243,8 @@ export default function LBSMap({
   }, [layer]);
 
   return (
-    <div className="district-map-wrapper">
-      <div id="districtDetailMap" className="map">
+    <div className="">
+      <div id="" className="map">
         <div style={{ height: "100%" }} ref={mapContainer}></div>
       </div>
     </div>

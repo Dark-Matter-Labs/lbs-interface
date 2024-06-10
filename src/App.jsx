@@ -71,7 +71,7 @@ export default function App() {
       <NavBar />
       {showInfoPanel ? (
         <div className="relative">
-          <div className="absolute z-20 grid grid-cols-2 justify-items-start w-full">
+          <div className="absolute grid grid-cols-2 justify-items-start w-full">
             <InfoPanel
               activeHazard={activeHazard}
               setActiveHazard={setActiveHazard}
@@ -102,9 +102,9 @@ export default function App() {
         </div>
       ) : (
         <div className="relative">
-          <div className="absolute z-20   grid grid-cols-2 justify-items-start w-full">
+          <div className="absolute  grid grid-cols-2 justify-items-start w-full">
             <div
-              className="px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer w-52"
+              className="z-10 px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer w-52"
               onClick={() => setShowInfoPanel(true)}
             >
               <span className="text-white medium-intro-sm ">

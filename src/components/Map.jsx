@@ -4,6 +4,8 @@ import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
+
+
 import {
   genRiskLayer,
   droughtRiskLayer,
@@ -20,10 +22,11 @@ export default function LBSMap({
   layer,
   setCurrentGrid,
   raster,
-  //topo,
+  topo,
   cityTrees,
   aIndex,
 }) {
+
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [currentLayer, setCurrentLayer] = useState(genRiskLayer);
@@ -139,15 +142,15 @@ export default function LBSMap({
         setHoveredDistrict(null);
       });
     });
-  }, []);
+  }, [topo]);
 
-  // useEffect(() => {
-  //   if (topo) {
-  //     map.current.setStyle('mapbox://styles/mapbox/satellite-v9');
-  //   } else {
-  //     map.current.setStyle("mapbox://styles/mapbox/light-v11");
-  //   }
-  // }, [topo]);
+  useEffect(() => {
+    if (topo) {
+      map.current.setStyle('mapbox://styles/mapbox/satellite-v9');
+    } else {
+      map.current.setStyle("mapbox://styles/mapbox/light-v11");
+    }
+  }, [topo]);
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {

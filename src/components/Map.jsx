@@ -4,8 +4,6 @@ import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
-
-
 import {
   genRiskLayer,
   droughtRiskLayer,
@@ -57,7 +55,7 @@ export default function LBSMap({
         mapboxgl: mapboxgl,
         language: "de-DE",
         countries: "DE",
-        collapsed: true,
+        collapsed: true
       }),
       "top-right",
     );

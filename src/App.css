@@ -83,3 +83,12 @@ html {
   height: 100vh;
   z-index: 10;
 }
+
+.mapboxgl-ctrl-geocoder--input {
+  padding-left: 26px !important;
+}
+
+.mapboxgl-export-list {
+  position: relative;
+  z-index: 90 !important;
+}

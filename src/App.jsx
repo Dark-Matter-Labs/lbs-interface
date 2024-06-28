@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
+import "@watergis/mapbox-gl-export/dist/mapbox-gl-export.css";
 
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -13,7 +14,9 @@ export default function App() {
   const [topo, setTopo] = useState(false);
   const [cityTrees, setCityTrees] = useState(false);
   const [aIndex, setAIndex] = useState(false);
+  const [neighbors, setNeighbors] = useState(false);
   const [activeHazard, setActiveHazard] = useState(0);
+  const [onlyCritical, setOnlyCritical] = useState(false);
 
   // TODO: Move this to util
   const [currentGrid, setCurrentGrid] = useState({
@@ -78,6 +81,8 @@ export default function App() {
               show={showInfoPanel}
               setShowPanel={setShowInfoPanel}
               currentGrid={currentGrid}
+              onlyCritical={onlyCritical}
+              setOnlyCritical={setOnlyCritical}
             />
             <LayerSelector
               raster={raster}
@@ -88,6 +93,8 @@ export default function App() {
               setCityTrees={setCityTrees}
               aIndex={aIndex}
               setAIndex={setAIndex}
+              neighbors={neighbors}
+              setNeighbors={setNeighbors}
             />
           </div>
           <LBSMap
@@ -98,6 +105,8 @@ export default function App() {
             cityTrees={cityTrees}
             risk={showInfoPanel}
             aIndex={aIndex}
+            neighbors={neighbors}
+            onlyCritical={onlyCritical}
           />
         </div>
       ) : (
@@ -123,6 +132,8 @@ export default function App() {
               setCityTrees={setCityTrees}
               aIndex={aIndex}
               setAIndex={setAIndex}
+              neighbors={neighbors}
+              setNeighbors={setNeighbors}
             />
           </div>
           <LBSMap
@@ -133,6 +144,8 @@ export default function App() {
             cityTrees={cityTrees}
             risk={showInfoPanel}
             aIndex={aIndex}
+            neighbors={neighbors}
+            onlyCritical={onlyCritical}
           />
         </div>
       )}

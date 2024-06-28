@@ -15,12 +15,14 @@ export default function InfoPanel({
   setCityTrees,
   aIndex,
   setAIndex,
+  neighbors,
+  setNeighbors,
 }) {
   return (
     <Transition.Root
       show={true}
       as={Fragment}
-      className="mt-56 justify-self-end z-10"
+      className="mt-[24rem] justify-self-end z-10"
     >
       <Transition.Child
         enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -125,6 +127,21 @@ export default function InfoPanel({
                 {" "}
               </button>
             </div>
+            <div className="flex justify-center items-center my-2">
+              <span className="text-green-600 book-info-sm">Stadbezirk</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setNeighbors(!neighbors);
+                }}
+                className={classNames(
+                  neighbors ? "bg-green-600" : "bg-dark-wood-700",
+                  "bold-intro-sm inline-flex justify-center rounded-full border border-transparent  py-4 px-4 border-white ml-2",
+                )}
+              >
+                {" "}
+              </button>
+            </div>
           </div>
         </div>
       </Transition.Child>
@@ -141,4 +158,6 @@ InfoPanel.propTypes = {
   setCityTrees: PropTypes.func,
   aIndex: PropTypes.bool,
   setAIndex: PropTypes.func,
+  neighbors: PropTypes.bool,
+  setNeighbors: PropTypes.func,
 };

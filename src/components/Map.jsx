@@ -3,6 +3,13 @@ import { createRoot } from "react-dom/client";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import {
+  MapboxExportControl,
+  Size,
+  PageOrientation,
+  Format,
+  DPI,
+} from "@watergis/mapbox-gl-export";
 
 import {
   genRiskLayer,
@@ -23,8 +30,10 @@ export default function LBSMap({
   topo,
   cityTrees,
   aIndex,
+  onlyCritical,
+  neighbors,
+  // currentGrid
 }) {
-
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [currentLayer, setCurrentLayer] = useState(genRiskLayer);
@@ -44,6 +53,7 @@ export default function LBSMap({
       center: [9.07, 48.76],
       zoom: 11,
       accessToken: MAPBOX_TOKEN,
+      preserveDrawingBuffer: true,
     });
 
     // Add zoom and rotation controls to the map.
@@ -55,15 +65,28 @@ export default function LBSMap({
         mapboxgl: mapboxgl,
         language: "de-DE",
         countries: "DE",
-        collapsed: true
+        collapsed: true,
       }),
       "top-right",
     );
 
+    const exportControl = new MapboxExportControl({
+      PageSize: Size.A3,
+      PageOrientation: PageOrientation.Portrait,
+      Format: Format.PDF,
+      DPI: DPI[96],
+      Crosshair: true,
+      PrintableArea: true,
+      Local: "de",
+      accessToken: MAPBOX_TOKEN,
+    });
+
+    map.current.addControl(exportControl, "top-right");
+
     map.current.once("load", function () {
       map.current.addSource("lbs-source", {
         type: "geojson",
-        data: "/data/250LBS_Stuttgart_updated.geojson",
+        data: "/data/250LBS_Stuttgart.geojson",
       });
 
       map.current.addSource("state-trees", {
@@ -74,6 +97,11 @@ export default function LBSMap({
       map.current.addSource("a-index", {
         type: "geojson",
         data: "/data/armutsindex_1.geojson",
+      });
+
+      map.current.addSource("neighbors", {
+        type: "geojson",
+        data: "/data/Stadbezirk-neighbourhood.geojson",
       });
 
       map.current.addLayer(currentLayer);
@@ -144,7 +172,7 @@ export default function LBSMap({
 
   useEffect(() => {
     if (topo) {
-      map.current.setStyle('mapbox://styles/mapbox/satellite-v9');
+      map.current.setStyle("mapbox://styles/mapbox/satellite-v9");
     } else {
       map.current.setStyle("mapbox://styles/mapbox/light-v11");
     }
@@ -225,7 +253,22 @@ export default function LBSMap({
     } else if (map.current.getLayer("a-index-layer") !== undefined) {
       map.current.removeLayer("a-index-layer");
     }
-  }, [cityTrees, aIndex]);
+
+    if (neighbors) {
+      map.current.addLayer({
+        id: "neighbor-boundary",
+        type: "line",
+        source: "neighbors",
+        paint: {
+          "fill-color": "#888888",
+          "fill-opacity": 1,
+        },
+        filter: ["==", "$type", "Polygon"],
+      });
+    } else if (map.current.getLayer("neighbor-boundary") !== undefined) {
+      map.current.removeLayer("neighbor-boundary");
+    }
+  }, [cityTrees, aIndex, neighbors]);
 
   useEffect(() => {
     if (layer === 0) {
@@ -242,6 +285,96 @@ export default function LBSMap({
       setCurrentLayer(floodingBuiltRiskLayer);
     }
   }, [layer]);
+
+  useEffect(() => {
+    if (map.current.getLayer("risk-layer") !== undefined) {
+      if (layer === 0) {
+        if (onlyCritical) {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "AVERAGE_RISK"]],
+            48.8,
+          ]);
+        } else {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "AVERAGE_RISK"]],
+            0,
+          ]);
+        }
+      } else if (layer === 1) {
+        if (onlyCritical) {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "A_risk_score"]],
+            38.3,
+          ]);
+        } else {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "A_risk_score"]],
+            0,
+          ]);
+        }
+      } else if (layer === 2) {
+        if (onlyCritical) {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "B_risk_score"]],
+            55.1,
+          ]);
+        } else {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "B_risk_score"]],
+            0,
+          ]);
+        }
+      } else if (layer === 3) {
+        if (onlyCritical) {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "C_risk_score"]],
+            61.7,
+          ]);
+        } else {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "C_risk_score"]],
+            0,
+          ]);
+        }
+      } else if (layer === 4) {
+        if (onlyCritical) {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "D_risk_score"]],
+            42.3,
+          ]);
+        } else {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "D_risk_score"]],
+            0,
+          ]);
+        }
+      } else if (layer === 5) {
+        if (onlyCritical) {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "E_risk_score"]],
+            55.2,
+          ]);
+        } else {
+          map.current.setFilter("risk-layer", [
+            ">",
+            ["to-number", ["get", "E_risk_score"]],
+            0,
+          ]);
+        }
+      }
+    }
+  }, [onlyCritical, layer]);
 
   return (
     <div className="">
@@ -264,4 +397,7 @@ LBSMap.propTypes = {
   risk: PropTypes.bool,
   cityTrees: PropTypes.bool,
   aIndex: PropTypes.bool,
+  neighbors: PropTypes.bool,
+  onlyCritical: PropTypes.bool,
+  currentGrid: PropTypes.object,
 };

@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 import { Transition } from "@headlessui/react";
 import PropTypes from "prop-types";
+import { Switch } from "@headlessui/react";
 
 import RiskRadar from "./RadarChart";
 import heatCard from "../assets/heat_card.png";
@@ -108,11 +109,39 @@ export default function InfoPanel(props) {
           <div className="px-4 pt-4">
             {currentRisk === 0 ? (
               <>
-                <h2>Gesamtrisikobewertung</h2>
-                <p className="book-info-sm">
-                  Klicken Sie bitte auf ein Rasterfeld auf der Karte, um Details
-                  anzuzeigen.
-                </p>
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h2>Gesamtrisikobewertung</h2>
+                    <p className="book-info-sm">
+                      Klicken Sie bitte auf ein Rasterfeld auf der Karte, um
+                      Details anzuzeigen.
+                    </p>
+                  </div>
+                  <div>
+                    <span className="pr-2 book-info-sm ">alle Daten</span>
+                    <Switch
+                      checked={props.onlyCritical}
+                      onChange={props.setOnlyCritical}
+                      className={classNames(
+                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                      )}
+                    >
+                      <span className="sr-only">Critical or all</span>
+                      <span
+                        aria-hidden="true"
+                        className={classNames(
+                          props.onlyCritical
+                            ? "translate-x-5"
+                            : "translate-x-0",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                        )}
+                      />
+                    </Switch>
+                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-2 border-t border-t-green-600 my-4">
                   <div className="pt-2 border-r border-r-green-600">
                     <span className="book-info-sm ">LEGENDE</span>
@@ -300,7 +329,34 @@ export default function InfoPanel(props) {
               </>
             ) : currentRisk === 1 ? (
               <>
-                <h2>Wirkungskette</h2>
+                <div className="flex justify-between items-center pb-2">
+                  <div>
+                    <h2>Wirkungskette</h2>
+                  </div>
+                  <div>
+                    <span className="pr-2 book-info-sm ">alle Daten</span>
+                    <Switch
+                      checked={props.onlyCritical}
+                      onChange={props.setOnlyCritical}
+                      className={classNames(
+                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                      )}
+                    >
+                      <span className="sr-only">Critical or all</span>
+                      <span
+                        aria-hidden="true"
+                        className={classNames(
+                          props.onlyCritical
+                            ? "translate-x-5"
+                            : "translate-x-0",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                        )}
+                      />
+                    </Switch>
+                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                  </div>
+                </div>
                 <img src={heatCard} />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
@@ -492,7 +548,34 @@ export default function InfoPanel(props) {
               </>
             ) : currentRisk === 2 ? (
               <>
-                <h2>Wirkungskette</h2>
+                <div className="flex justify-between items-center pb-2">
+                  <div>
+                    <h2>Wirkungskette</h2>
+                  </div>
+                  <div>
+                    <span className="pr-2 book-info-sm ">alle Daten</span>
+                    <Switch
+                      checked={props.onlyCritical}
+                      onChange={props.setOnlyCritical}
+                      className={classNames(
+                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                      )}
+                    >
+                      <span className="sr-only">Critical or all</span>
+                      <span
+                        aria-hidden="true"
+                        className={classNames(
+                          props.onlyCritical
+                            ? "translate-x-5"
+                            : "translate-x-0",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                        )}
+                      />
+                    </Switch>
+                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                  </div>
+                </div>
                 <img src={hitzeCard} />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
@@ -739,7 +822,34 @@ export default function InfoPanel(props) {
               </>
             ) : currentRisk === 3 ? (
               <>
-                <h2>Wirkungskette</h2>
+                <div className="flex justify-between items-center pb-2">
+                  <div>
+                    <h2>Wirkungskette</h2>
+                  </div>
+                  <div>
+                    <span className="pr-2 book-info-sm ">alle Daten</span>
+                    <Switch
+                      checked={props.onlyCritical}
+                      onChange={props.setOnlyCritical}
+                      className={classNames(
+                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                      )}
+                    >
+                      <span className="sr-only">Critical or all</span>
+                      <span
+                        aria-hidden="true"
+                        className={classNames(
+                          props.onlyCritical
+                            ? "translate-x-5"
+                            : "translate-x-0",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                        )}
+                      />
+                    </Switch>
+                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                  </div>
+                </div>
                 <img src={luftCard} />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
@@ -943,6 +1053,34 @@ export default function InfoPanel(props) {
               </>
             ) : currentRisk === 4 ? (
               <>
+                <div className="flex justify-between items-center pb-2">
+                  <div>
+                    <h2>Wirkungskette</h2>
+                  </div>
+                  <div>
+                    <span className="pr-2 book-info-sm ">alle Daten</span>
+                    <Switch
+                      checked={props.onlyCritical}
+                      onChange={props.setOnlyCritical}
+                      className={classNames(
+                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                      )}
+                    >
+                      <span className="sr-only">Critical or all</span>
+                      <span
+                        aria-hidden="true"
+                        className={classNames(
+                          props.onlyCritical
+                            ? "translate-x-5"
+                            : "translate-x-0",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                        )}
+                      />
+                    </Switch>
+                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                  </div>
+                </div>
                 <div className="flex">
                   <h2
                     className={classNames(
@@ -1186,6 +1324,34 @@ export default function InfoPanel(props) {
               </>
             ) : currentRisk === 5 ? (
               <>
+                <div className="flex justify-between items-center pb-2">
+                  <div>
+                    <h2>Wirkungskette</h2>
+                  </div>
+                  <div>
+                    <span className="pr-2 book-info-sm ">alle Daten</span>
+                    <Switch
+                      checked={props.onlyCritical}
+                      onChange={props.setOnlyCritical}
+                      className={classNames(
+                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                      )}
+                    >
+                      <span className="sr-only">Critical or all</span>
+                      <span
+                        aria-hidden="true"
+                        className={classNames(
+                          props.onlyCritical
+                            ? "translate-x-5"
+                            : "translate-x-0",
+                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                        )}
+                      />
+                    </Switch>
+                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                  </div>
+                </div>
                 <div className="flex">
                   <h2
                     className={classNames(
@@ -1443,4 +1609,6 @@ InfoPanel.propTypes = {
   setActiveHazard: PropTypes.func,
   activeHazard: PropTypes.number,
   currentGrid: PropTypes.object,
+  onlyCritical: PropTypes.bool,
+  setOnlyCritical: PropTypes.func,
 };

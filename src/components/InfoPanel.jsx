@@ -1,9 +1,17 @@
 import { Fragment, useState } from "react";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
-import { Transition } from "@headlessui/react";
+import {
+  Transition,
+  Popover,
+  PopoverButton,
+  PopoverPanel,
+  Switch,
+} from "@headlessui/react";
 import PropTypes from "prop-types";
-import { Switch } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
+import ComboFilter from "./ComboFilter";
+import InfoSlideOver from "./InfoSlideOver";
 import RiskRadar from "./RadarChart";
 import heatCard from "../assets/heat_card.png";
 import hitzeCard from "../assets/hitze_card.png";
@@ -26,6 +34,8 @@ const hazards = [
 export default function InfoPanel(props) {
   const [currentRisk, setCurrentRisk] = useState(0);
   const [transportBuiltSwitch, setTransportBuiltSwitch] = useState("Transport");
+  const [selectedFilterPop, setSelectedFilterPop] = useState(null);
+  const [selectedFilterPov, setSelectedFilterPov] = useState(null);
 
   return (
     <Transition.Root
@@ -73,6 +83,9 @@ export default function InfoPanel(props) {
             </div>
             <div className="hidden sm:block px-4">
               <div className="border-b border-gray-200">
+                <span className="book-intro-sm">
+                  Stadtbezirk: {props.currentGrid.stadtbezirk}
+                </span>
                 <nav className="-mb-px flex space-x-8" aria-label="Tabs">
                   {hazards.map((tab) => (
                     <span
@@ -80,7 +93,6 @@ export default function InfoPanel(props) {
                       id={tab.id}
                       onClick={(e) => {
                         setCurrentRisk(Number(e.target.id));
-
                         const oldIndex = hazards.findIndex(
                           (obj) => obj.current === true,
                         );
@@ -112,12 +124,8 @@ export default function InfoPanel(props) {
                 <div className="flex justify-between items-center">
                   <div>
                     <h2>Gesamtrisikobewertung</h2>
-                    <p className="book-info-sm">
-                      Klicken Sie bitte auf ein Rasterfeld auf der Karte, um
-                      Details anzuzeigen.
-                    </p>
                   </div>
-                  <div>
+                  <div className="flex items-baseline">
                     <span className="pr-2 book-info-sm ">alle Daten</span>
                     <Switch
                       checked={props.onlyCritical}
@@ -138,7 +146,56 @@ export default function InfoPanel(props) {
                         )}
                       />
                     </Switch>
-                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                    <span className="pl-2 book-info-sm pr-4">nur kritisch</span>
+                    <Popover className="relative">
+                      <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                        <span className=" book-info-sm">
+                          Filtern nach demografischen
+                        </span>
+                        <ChevronDownIcon
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                      </PopoverButton>
+
+                      <PopoverPanel
+                        transition
+                        className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                      >
+                        <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                          <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
+                            <ComboFilter
+                              label="Wohndichte"
+                              selectedFilter={selectedFilterPop}
+                              setSelectedFilter={setSelectedFilterPop}
+                              setFilterState={props.setPopulationFilter}
+                            />
+
+                            <ComboFilter
+                              label="Haushalte in Armut"
+                              selectedFilter={selectedFilterPov}
+                              setSelectedFilter={setSelectedFilterPov}
+                              setFilterState={props.setPovertyFilter}
+                            />
+
+                            <ComboFilter
+                              label="Baumbestand"
+                              selectedFilter={selectedFilterPov}
+                              setSelectedFilter={setSelectedFilterPov}
+                              setFilterState={props.setPovertyFilter}
+                            />
+
+                            <ComboFilter
+                              label="Vorhandensein kritischer Infrastruktur"
+                              selectedFilter={selectedFilterPov}
+                              setSelectedFilter={setSelectedFilterPov}
+                              setFilterState={props.setPovertyFilter}
+                            />
+                          </div>
+                        </div>
+                      </PopoverPanel>
+                    </Popover>
+                    <InfoSlideOver label="simple" />
                   </div>
                 </div>
 
@@ -1611,4 +1668,6 @@ InfoPanel.propTypes = {
   currentGrid: PropTypes.object,
   onlyCritical: PropTypes.bool,
   setOnlyCritical: PropTypes.func,
+  setPopulationFilter: PropTypes.func,
+  setPovertyFilter: PropTypes.func,
 };

@@ -32,7 +32,10 @@ export default function LBSMap({
   aIndex,
   onlyCritical,
   neighbors,
-  // currentGrid
+  populationFilter,
+  povertyFilter,
+  treeFilter,
+  criticalFilter,
 }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -376,6 +379,104 @@ export default function LBSMap({
     }
   }, [onlyCritical, layer]);
 
+  useEffect(() => {
+    if (map.current.getLayer("risk-layer") !== undefined) {
+      if (populationFilter === "high") {
+        map.current.setFilter("risk-layer", [
+          ">",
+          ["to-number", ["get", "population_est"]],
+          100,
+        ]);
+      } else if (populationFilter === "low") {
+        map.current.setFilter("risk-layer", [
+          "<",
+          ["to-number", ["get", "population_est"]],
+          20,
+        ]);
+      } else {
+        map.current.setFilter("risk-layer", [
+          ">=",
+          ["to-number", ["get", "population_est"]],
+          0,
+        ]);
+      }
+    }
+  }, [populationFilter, layer]);
+
+  useEffect(() => {
+    if (map.current.getLayer("risk-layer") !== undefined) {
+      if (povertyFilter === "high") {
+        map.current.setFilter("risk-layer", [
+          ">",
+          ["to-number", ["get", "poverty_index"]],
+          1,
+        ]);
+      } else if (povertyFilter === "low") {
+        map.current.setFilter("risk-layer", [
+          "<=",
+          ["to-number", ["get", "poverty_index"]],
+          1,
+        ]);
+      } else {
+        map.current.setFilter("risk-layer", [
+          ">=",
+          ["to-number", ["get", "poverty_index"]],
+          -2,
+        ]);
+      }
+    }
+  }, [povertyFilter, layer]);
+
+  useEffect(() => {
+    if (map.current.getLayer("risk-layer") !== undefined) {
+      if (treeFilter === "high") {
+        map.current.setFilter("risk-layer", [
+          ">",
+          ["to-number", ["get", "tree_state"]] +
+            ["to-number", ["get", "tree_municipal"]],
+          50,
+        ]);
+      } else if (treeFilter === "low") {
+        map.current.setFilter("risk-layer", [
+          "<=",
+          ["to-number", ["get", "tree_state"]] +
+            ["to-number", ["get", "tree_municipal"]],
+          20,
+        ]);
+      } else {
+        map.current.setFilter("risk-layer", [
+          ">=",
+          ["to-number", ["get", "poverty_index"]],
+          0,
+        ]);
+      }
+    }
+  }, [treeFilter, layer]);
+
+  useEffect(() => {
+    if (map.current.getLayer("risk-layer") !== undefined) {
+      if (criticalFilter === "high") {
+        map.current.setFilter("risk-layer", [
+          ">",
+          ["to-number", ["get", "critical_infrastructure"]],
+          50,
+        ]);
+      } else if (criticalFilter === "low") {
+        map.current.setFilter("risk-layer", [
+          "<=",
+          ["to-number", ["get", "critical_infrastructure"]],
+          20,
+        ]);
+      } else {
+        map.current.setFilter("risk-layer", [
+          ">=",
+          ["to-number", ["get", "critical_infrastructure"]],
+          0,
+        ]);
+      }
+    }
+  }, [criticalFilter, layer]);
+
   return (
     <div className="">
       <div id="" className="map">
@@ -400,4 +501,8 @@ LBSMap.propTypes = {
   neighbors: PropTypes.bool,
   onlyCritical: PropTypes.bool,
   currentGrid: PropTypes.object,
+  populationFilter: PropTypes.string,
+  povertyFilter: PropTypes.string,
+  treeFilter: PropTypes.string,
+  criticalFilter: PropTypes.string,
 };

@@ -34,14 +34,12 @@ const hazards = [
 export default function InfoPanel(props) {
   const [currentRisk, setCurrentRisk] = useState(0);
   const [transportBuiltSwitch, setTransportBuiltSwitch] = useState("Transport");
-  const [selectedFilterPop, setSelectedFilterPop] = useState(null);
-  const [selectedFilterPov, setSelectedFilterPov] = useState(null);
 
   return (
     <Transition.Root
       show={props.show}
       as={Fragment}
-      className="bg-white-200 mt-10 rounded-r-[30px] z-10"
+      className="bg-white-200 rounded-r-[30px] z-10"
     >
       <Transition.Child
         enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -146,7 +144,7 @@ export default function InfoPanel(props) {
                         )}
                       />
                     </Switch>
-                    <span className="pl-2 book-info-sm pr-4">nur kritisch</span>
+                    <span className="px-2 book-info-sm pr-4">nur kritisch</span>
                     <Popover className="relative">
                       <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                         <span className=" book-info-sm">
@@ -166,42 +164,35 @@ export default function InfoPanel(props) {
                           <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
                             <ComboFilter
                               label="Wohndichte"
-                              selectedFilter={selectedFilterPop}
-                              setSelectedFilter={setSelectedFilterPop}
                               setFilterState={props.setPopulationFilter}
                             />
 
                             <ComboFilter
                               label="Haushalte in Armut"
-                              selectedFilter={selectedFilterPov}
-                              setSelectedFilter={setSelectedFilterPov}
                               setFilterState={props.setPovertyFilter}
                             />
 
                             <ComboFilter
                               label="Baumbestand"
-                              selectedFilter={selectedFilterPov}
-                              setSelectedFilter={setSelectedFilterPov}
-                              setFilterState={props.setPovertyFilter}
+                              setFilterState={props.setTreeFilter}
                             />
 
                             <ComboFilter
                               label="Vorhandensein kritischer Infrastruktur"
-                              selectedFilter={selectedFilterPov}
-                              setSelectedFilter={setSelectedFilterPov}
-                              setFilterState={props.setPovertyFilter}
+                              setFilterState={props.setCriticalFilter}
                             />
                           </div>
                         </div>
                       </PopoverPanel>
                     </Popover>
-                    <InfoSlideOver label="simple" />
+                    <InfoSlideOver label="filter" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 border-t border-t-green-600 my-4">
                   <div className="pt-2 border-r border-r-green-600">
                     <span className="book-info-sm ">LEGENDE</span>
+                    <InfoSlideOver label="topLegendOverall" />
                     <div className="flex">
                       <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-indigo-400 to-green-600"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
@@ -236,7 +227,9 @@ export default function InfoPanel(props) {
 
                     <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
                       <span className="px-8 medium-intro-sm">
-                        {props.currentGrid.critical_infrastructure}
+                        {parseFloat(
+                          props.currentGrid.critical_infrastructure,
+                        ).toFixed(2)}
                       </span>
                       <span className="book-info-sm text-right">
                         KRITISCHE INFRASTRUKTUR
@@ -254,6 +247,7 @@ export default function InfoPanel(props) {
                   </div>
                 </div>
                 <hr className="-mx-4 border-8 border-green-600" />
+                <InfoSlideOver label="bottomTableOverall" />
                 <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
                   <div className="mt-8 flow-root">
                     <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
@@ -390,34 +384,78 @@ export default function InfoPanel(props) {
                   <div>
                     <h2>Wirkungskette</h2>
                   </div>
-                  <div>
-                    <span className="pr-2 book-info-sm ">alle Daten</span>
-                    <Switch
-                      checked={props.onlyCritical}
-                      onChange={props.setOnlyCritical}
-                      className={classNames(
-                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
-                      )}
-                    >
-                      <span className="sr-only">Critical or all</span>
-                      <span
-                        aria-hidden="true"
+                  <div className="grow-0">
+                    <div className="flex items-baseline">
+                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <Switch
+                        checked={props.onlyCritical}
+                        onChange={props.setOnlyCritical}
                         className={classNames(
-                          props.onlyCritical
-                            ? "translate-x-5"
-                            : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
-                      />
-                    </Switch>
-                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                      >
+                        <span className="sr-only">Critical or all</span>
+                        <span
+                          aria-hidden="true"
+                          className={classNames(
+                            props.onlyCritical
+                              ? "translate-x-5"
+                              : "translate-x-0",
+                            "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          )}
+                        />
+                      </Switch>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <Popover className="relative">
+                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                          <span className=" book-info-sm">
+                            Filtern nach demografischen
+                          </span>
+                          <ChevronDownIcon
+                            className="h-5 w-5"
+                            aria-hidden="true"
+                          />
+                        </PopoverButton>
+
+                        <PopoverPanel
+                          transition
+                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                        >
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
+                              <ComboFilter
+                                label="Wohndichte"
+                                setFilterState={props.setPopulationFilter}
+                              />
+
+                              <ComboFilter
+                                label="Haushalte in Armut"
+                                setFilterState={props.setPovertyFilter}
+                              />
+
+                              <ComboFilter
+                                label="Baumbestand"
+                                setFilterState={props.setTreeFilter}
+                              />
+
+                              <ComboFilter
+                                label="Vorhandensein kritischer Infrastruktur"
+                                setFilterState={props.setCriticalFilter}
+                              />
+                            </div>
+                          </div>
+                        </PopoverPanel>
+                      </Popover>
+                      <InfoSlideOver label="filter" />
+                    </div>
                   </div>
                 </div>
-                <img src={heatCard} />
+                <img src={heatCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
-                  <div className="pt-2 border-r border-r-green-600">
+                  <div className="pt-2 border-r border-r-green-600 grow-0">
                     <span className="book-info-sm">LEGENDE</span>
+                    <InfoSlideOver label="topLegendTrocken" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung
                     </p>
@@ -432,34 +470,34 @@ export default function InfoPanel(props) {
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <div className="mt-8 flow-root px-2 ">
-                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
-                        <div className="inline-block  py-2 align-middle sm:px-6 lg:px-8">
+                  <div className="grow-0">
+                    <div className="mt-2 px-2 ">
+                      <div className="">
+                        <div className="inline-block py-2 align-middle ">
                           <table className=" divide-y divide-gray-300">
                             <thead>
                               <tr>
                                 <th
                                   scope="col"
-                                  className="py-3 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
+                                  className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                                 >
                                   INDIKATOR
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-2 py-3 text-left medium-info-sm uppercase bg-green-500 text-white"
+                                  className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
                                   WERT
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-2 py-3 text-left medium-info-sm uppercase bg-green-500 text-white"
+                                  className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
                                   KLASSE
                                 </th>
                                 <th
                                   scope="col"
-                                  className="px-2 py-3 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
+                                  className="px-2 py-2 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
                                   GEWICHT
                                 </th>
@@ -467,18 +505,18 @@ export default function InfoPanel(props) {
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
                               <tr>
-                                <td className=" py-4 px-2 book-info-sm text-gray-900 ">
+                                <td className=" py-2 px-2 book-info-sm text-gray-900 ">
                                   Anzahl städtischer
                                   <br /> Bäume
                                 </td>
-                                <td className=" px-2 py-4 medium-intro-sm text-green-600">
+                                <td className=" px-2 py-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.tree_municipal}
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-gray-900">
+                                <td className=" px-2 py-2 book-info-sm text-gray-900">
                                   Belasteter <br />
                                   Vermögenswert
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-dark-wood-700 text-right">
+                                <td className=" px-2 py-2 book-info-sm text-dark-wood-700 ">
                                   1
                                 </td>
                               </tr>
@@ -495,7 +533,7 @@ export default function InfoPanel(props) {
                                   Belasteter
                                   <br /> Vermögenswert
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-dark-wood-700 text-right">
+                                <td className=" px-2 py-4 book-info-sm text-dark-wood-700 ">
                                   1
                                 </td>
                               </tr>
@@ -511,9 +549,10 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className=" px-2 py-4 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  Anfälligkeit <br />
+                                  (Empfindlichkeit)
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-dark-wood-700 text-right">
+                                <td className=" px-2 py-4 book-info-sm text-dark-wood-700 ">
                                   3
                                 </td>
                               </tr>
@@ -524,11 +563,11 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="mx-10 border-8 border-green-600" />
-                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
-                  <div className="mt-8 flow-root">
-                    <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
-                      <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
+                <div className="flex border-t border-t-green-600 mt-4">
+                  <div className="mt-4">
+                    <div className="">
+                      <div className="inline-block py-2 align-middle">
+                        <InfoSlideOver label="bottomTable" />
                         <table className=" divide-y divide-gray-300">
                           <thead>
                             <tr>
@@ -610,33 +649,77 @@ export default function InfoPanel(props) {
                     <h2>Wirkungskette</h2>
                   </div>
                   <div>
-                    <span className="pr-2 book-info-sm ">alle Daten</span>
-                    <Switch
-                      checked={props.onlyCritical}
-                      onChange={props.setOnlyCritical}
-                      className={classNames(
-                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
-                      )}
-                    >
-                      <span className="sr-only">Critical or all</span>
-                      <span
-                        aria-hidden="true"
+                    <div className="flex items-baseline">
+                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <Switch
+                        checked={props.onlyCritical}
+                        onChange={props.setOnlyCritical}
                         className={classNames(
-                          props.onlyCritical
-                            ? "translate-x-5"
-                            : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
-                      />
-                    </Switch>
-                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                      >
+                        <span className="sr-only">Critical or all</span>
+                        <span
+                          aria-hidden="true"
+                          className={classNames(
+                            props.onlyCritical
+                              ? "translate-x-5"
+                              : "translate-x-0",
+                            "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          )}
+                        />
+                      </Switch>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <Popover className="relative">
+                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                          <span className=" book-info-sm">
+                            Filtern nach demografischen
+                          </span>
+                          <ChevronDownIcon
+                            className="h-5 w-5"
+                            aria-hidden="true"
+                          />
+                        </PopoverButton>
+
+                        <PopoverPanel
+                          transition
+                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                        >
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
+                              <ComboFilter
+                                label="Wohndichte"
+                                setFilterState={props.setPopulationFilter}
+                              />
+
+                              <ComboFilter
+                                label="Haushalte in Armut"
+                                setFilterState={props.setPovertyFilter}
+                              />
+
+                              <ComboFilter
+                                label="Baumbestand"
+                                setFilterState={props.setTreeFilter}
+                              />
+
+                              <ComboFilter
+                                label="Vorhandensein kritischer Infrastruktur"
+                                setFilterState={props.setCriticalFilter}
+                              />
+                            </div>
+                          </div>
+                        </PopoverPanel>
+                      </Popover>
+                      <InfoSlideOver label="filter" />
+                    </div>
                   </div>
                 </div>
-                <img src={hitzeCard} />
+                <img src={hitzeCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
                     <span className="book-info-sm">LEGENDE</span>
+                    <InfoSlideOver label="topLegendHitze" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung
                     </p>
@@ -653,7 +736,7 @@ export default function InfoPanel(props) {
                   </div>
                   <div>
                     <div className="mt-8 flow-root px-2 ">
-                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8 h-40 overflow-y-scroll">
                         <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
                           <table className="divide-y divide-gray-300">
                             <thead>
@@ -773,11 +856,12 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="mx-10 border-8 border-green-600" />
+
                 <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
                   <div className="mt-8 flow-root">
                     <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
                       <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
+                        <InfoSlideOver label="bottomTable" />
                         <table className="divide-y divide-gray-300">
                           <thead>
                             <tr>
@@ -884,33 +968,77 @@ export default function InfoPanel(props) {
                     <h2>Wirkungskette</h2>
                   </div>
                   <div>
-                    <span className="pr-2 book-info-sm ">alle Daten</span>
-                    <Switch
-                      checked={props.onlyCritical}
-                      onChange={props.setOnlyCritical}
-                      className={classNames(
-                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
-                      )}
-                    >
-                      <span className="sr-only">Critical or all</span>
-                      <span
-                        aria-hidden="true"
+                    <div className="flex items-baseline">
+                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <Switch
+                        checked={props.onlyCritical}
+                        onChange={props.setOnlyCritical}
                         className={classNames(
-                          props.onlyCritical
-                            ? "translate-x-5"
-                            : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
-                      />
-                    </Switch>
-                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                      >
+                        <span className="sr-only">Critical or all</span>
+                        <span
+                          aria-hidden="true"
+                          className={classNames(
+                            props.onlyCritical
+                              ? "translate-x-5"
+                              : "translate-x-0",
+                            "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          )}
+                        />
+                      </Switch>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <Popover className="relative">
+                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                          <span className=" book-info-sm">
+                            Filtern nach demografischen
+                          </span>
+                          <ChevronDownIcon
+                            className="h-5 w-5"
+                            aria-hidden="true"
+                          />
+                        </PopoverButton>
+
+                        <PopoverPanel
+                          transition
+                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                        >
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
+                              <ComboFilter
+                                label="Wohndichte"
+                                setFilterState={props.setPopulationFilter}
+                              />
+
+                              <ComboFilter
+                                label="Haushalte in Armut"
+                                setFilterState={props.setPovertyFilter}
+                              />
+
+                              <ComboFilter
+                                label="Baumbestand"
+                                setFilterState={props.setTreeFilter}
+                              />
+
+                              <ComboFilter
+                                label="Vorhandensein kritischer Infrastruktur"
+                                setFilterState={props.setCriticalFilter}
+                              />
+                            </div>
+                          </div>
+                        </PopoverPanel>
+                      </Popover>
+                      <InfoSlideOver label="filter" />
+                    </div>
                   </div>
                 </div>
-                <img src={luftCard} />
+                <img src={luftCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
                     <span className="book-info-sm">LEGENDE</span>
+                    <InfoSlideOver label="topLegendLuft" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung
                     </p>
@@ -927,7 +1055,7 @@ export default function InfoPanel(props) {
                   </div>
                   <div>
                     <div className="mt-8 flow-root px-2 ">
-                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8 h-40 overflow-y-scroll">
                         <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
                           <table className="divide-y divide-gray-300">
                             <thead>
@@ -1012,11 +1140,11 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="mx-10 border-8 border-green-600" />
-                <div className="flex border-t border-t-green-600 mt-4">
+                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
                   <div className="mt-8 flow-root">
-                    <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+                    <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8 h-60 overflow-y-scroll">
                       <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
+                        <InfoSlideOver label="bottomTable" />
                         <table className="divide-y divide-gray-300">
                           <thead>
                             <tr>
@@ -1115,27 +1243,70 @@ export default function InfoPanel(props) {
                     <h2>Wirkungskette</h2>
                   </div>
                   <div>
-                    <span className="pr-2 book-info-sm ">alle Daten</span>
-                    <Switch
-                      checked={props.onlyCritical}
-                      onChange={props.setOnlyCritical}
-                      className={classNames(
-                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
-                      )}
-                    >
-                      <span className="sr-only">Critical or all</span>
-                      <span
-                        aria-hidden="true"
+                    <div className="flex items-baseline">
+                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <Switch
+                        checked={props.onlyCritical}
+                        onChange={props.setOnlyCritical}
                         className={classNames(
-                          props.onlyCritical
-                            ? "translate-x-5"
-                            : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
-                      />
-                    </Switch>
-                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                      >
+                        <span className="sr-only">Critical or all</span>
+                        <span
+                          aria-hidden="true"
+                          className={classNames(
+                            props.onlyCritical
+                              ? "translate-x-5"
+                              : "translate-x-0",
+                            "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          )}
+                        />
+                      </Switch>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <Popover className="relative">
+                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                          <span className=" book-info-sm">
+                            Filtern nach demografischen
+                          </span>
+                          <ChevronDownIcon
+                            className="h-5 w-5"
+                            aria-hidden="true"
+                          />
+                        </PopoverButton>
+
+                        <PopoverPanel
+                          transition
+                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                        >
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
+                              <ComboFilter
+                                label="Wohndichte"
+                                setFilterState={props.setPopulationFilter}
+                              />
+
+                              <ComboFilter
+                                label="Haushalte in Armut"
+                                setFilterState={props.setPovertyFilter}
+                              />
+
+                              <ComboFilter
+                                label="Baumbestand"
+                                setFilterState={props.setTreeFilter}
+                              />
+
+                              <ComboFilter
+                                label="Vorhandensein kritischer Infrastruktur"
+                                setFilterState={props.setCriticalFilter}
+                              />
+                            </div>
+                          </div>
+                        </PopoverPanel>
+                      </Popover>
+                      <InfoSlideOver label="filter" />
+                    </div>
                   </div>
                 </div>
                 <div className="flex">
@@ -1170,10 +1341,11 @@ export default function InfoPanel(props) {
                     Bebautes Gebiet
                   </h2>
                 </div>
-                <img src={uberCard} />
+                <img src={uberCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
                     <span className="book-info-sm">LEGENDE</span>
+                    <InfoSlideOver label="topLegendUber1" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung
                     </p>
@@ -1190,7 +1362,7 @@ export default function InfoPanel(props) {
                   </div>
                   <div>
                     <div className="mt-8 flow-root px-2 ">
-                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8 h-40 overflow-y-scroll">
                         <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
                           <table className="divide-y divide-gray-300">
                             <thead>
@@ -1278,8 +1450,9 @@ export default function InfoPanel(props) {
                 <hr className="mx-10 border-8 border-green-600" />
                 <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
                   <div className="mt-8 flow-root">
-                    <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+                    <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8 h-60 overflow-y-scroll">
                       <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
+                        <InfoSlideOver label="bottomTable" />
                         <table className="divide-y divide-gray-300">
                           <thead>
                             <tr>
@@ -1386,27 +1559,70 @@ export default function InfoPanel(props) {
                     <h2>Wirkungskette</h2>
                   </div>
                   <div>
-                    <span className="pr-2 book-info-sm ">alle Daten</span>
-                    <Switch
-                      checked={props.onlyCritical}
-                      onChange={props.setOnlyCritical}
-                      className={classNames(
-                        props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
-                      )}
-                    >
-                      <span className="sr-only">Critical or all</span>
-                      <span
-                        aria-hidden="true"
+                    <div className="flex ietms-baseline">
+                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <Switch
+                        checked={props.onlyCritical}
+                        onChange={props.setOnlyCritical}
                         className={classNames(
-                          props.onlyCritical
-                            ? "translate-x-5"
-                            : "translate-x-0",
-                          "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          props.onlyCritical ? "bg-green-600" : "bg-gray-200",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
-                      />
-                    </Switch>
-                    <span className="pl-2 book-info-sm">nur kritisch</span>
+                      >
+                        <span className="sr-only">Critical or all</span>
+                        <span
+                          aria-hidden="true"
+                          className={classNames(
+                            props.onlyCritical
+                              ? "translate-x-5"
+                              : "translate-x-0",
+                            "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out",
+                          )}
+                        />
+                      </Switch>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <Popover className="relative">
+                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                          <span className=" book-info-sm">
+                            Filtern nach demografischen
+                          </span>
+                          <ChevronDownIcon
+                            className="h-5 w-5"
+                            aria-hidden="true"
+                          />
+                        </PopoverButton>
+
+                        <PopoverPanel
+                          transition
+                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                        >
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
+                              <ComboFilter
+                                label="Wohndichte"
+                                setFilterState={props.setPopulationFilter}
+                              />
+
+                              <ComboFilter
+                                label="Haushalte in Armut"
+                                setFilterState={props.setPovertyFilter}
+                              />
+
+                              <ComboFilter
+                                label="Baumbestand"
+                                setFilterState={props.setTreeFilter}
+                              />
+
+                              <ComboFilter
+                                label="Vorhandensein kritischer Infrastruktur"
+                                setFilterState={props.setCriticalFilter}
+                              />
+                            </div>
+                          </div>
+                        </PopoverPanel>
+                      </Popover>
+                      <InfoSlideOver label="filter" />
+                    </div>
                   </div>
                 </div>
                 <div className="flex">
@@ -1441,10 +1657,11 @@ export default function InfoPanel(props) {
                     Bebautes Gebiet
                   </h2>
                 </div>
-                <img src={uberBuiltCard} />
+                <img src={uberBuiltCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
                     <span className="book-info-sm">LEGENDE</span>
+                    <InfoSlideOver label="topLegendUber2" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung
                     </p>
@@ -1461,7 +1678,7 @@ export default function InfoPanel(props) {
                   </div>
                   <div>
                     <div className="mt-8 flow-root px-2 ">
-                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8 h-40 overflow-y-scroll">
                         <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
                           <table className="divide-y divide-gray-300">
                             <thead>
@@ -1546,11 +1763,11 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="mx-10 border-8 border-green-600" />
                 <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
                   <div className="mt-8 flow-root">
-                    <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+                    <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8 h-60 overflow-y-scroll">
                       <div className="inline-block py-2 align-middle sm:px-6 lg:px-8">
+                        <InfoSlideOver label="bottomTable" />
                         <table className="divide-y divide-gray-300">
                           <thead>
                             <tr>
@@ -1670,4 +1887,6 @@ InfoPanel.propTypes = {
   setOnlyCritical: PropTypes.func,
   setPopulationFilter: PropTypes.func,
   setPovertyFilter: PropTypes.func,
+  setTreeFilter: PropTypes.func,
+  setCriticalFilter: PropTypes.func,
 };

@@ -64,7 +64,7 @@ const RiskRadar = (props) => {
         keys={["val"]}
         gridShape="linear"
         indexBy="attribute"
-        margin={{ top: 10, right: 40, bottom: 10, left: 40 }}
+        margin={{ top: 20, right: 40, bottom: 20, left: 40 }}
         colors={["#1EB792", "#2F3130", "#4F46E5"]}
         borderColor={{ from: "color" }}
         dotSize={5}

@@ -384,7 +384,7 @@ export default function InfoPanel(props) {
                   <div>
                     <h2>Wirkungskette</h2>
                   </div>
-                  <div className="grow-0">
+                  <div className="">
                     <div className="flex items-baseline">
                       <span className="pr-2 book-info-sm ">alle Daten</span>
                       <Switch
@@ -563,7 +563,7 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <div className="flex border-t border-t-green-600 mt-4">
+                <div className="grid grid-cols-2 border-t border-t-green-600 mt-4">
                   <div className="mt-4">
                     <div className="">
                       <div className="inline-block py-2 align-middle">

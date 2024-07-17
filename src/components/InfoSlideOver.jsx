@@ -1,6 +1,11 @@
 import PropTypes from "prop-types";
-import { Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  DialogBackdrop,
+} from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import infoImage from "../assets/T_Little_eye.svg";
 import { get_slide_texts } from "../utils/slide_over_texts";
@@ -20,59 +25,47 @@ export default function InfoSlideOver({ label }) {
 
         <img className="inline-block h-6 w-6" src={infoImage} />
       </button>
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-50" onClose={setOpen}>
-          <div className="fixed inset-0" />
-
-          <div className="fixed inset-0 overflow-hidden">
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                <Transition.Child
-                  as={Fragment}
-                  enter="transform transition ease-in-out duration-500 sm:duration-700"
-                  enterFrom="translate-x-full"
-                  enterTo="translate-x-0"
-                  leave="transform transition ease-in-out duration-500 sm:duration-700"
-                  leaveFrom="translate-x-0"
-                  leaveTo="translate-x-full"
-                >
-                  <Dialog.Panel className="pointer-events-auto w-screen max-w-md pt-20">
-                    <div className="flex  flex-col overflow-y-scroll bg-white shadow-xl rounded-tl-[60px]">
-                      <div className="bg-indigo-600 py-6 px-4 sm:px-6">
-                        <div className="flex items-center justify-between">
-                          <Dialog.Title className="text-white-200">
-                            {slide_text[label].title}
-                          </Dialog.Title>
-                          <div className="ml-3 flex h-7 items-center">
-                            <button
-                              type="button"
-                              className="rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-                              onClick={() => setOpen(false)}
-                            >
-                              <span className="sr-only">Close panel</span>
-                              <XMarkIcon
-                                className="h-6 w-6"
-                                aria-hidden="true"
-                              />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="relative flex-1 py-6 px-4 sm:px-6">
-                        {slide_text[label].text}
-                        <div className="absolute inset-0 py-6 px-4 sm:px-6">
-                          <div className="h-full" aria-hidden="true" />
-                        </div>
-                        {/* /End replace */}
-                      </div>
+      <Dialog open={open} onClose={setOpen} className="relative z-10">
+        <DialogBackdrop
+          transition
+          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
+        />
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <DialogPanel
+              transition
+              className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-sm  data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            >
+              <div className="">
+                <div className="bg-indigo-600 py-6 px-4 sm:px-6">
+                  <div className="flex items-center justify-between">
+                    <DialogTitle className="text-white-200">
+                      {slide_text[label].title}
+                    </DialogTitle>
+                    <div className="ml-3 flex h-7 items-center">
+                      <button
+                        type="button"
+                        className="rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className="sr-only">Close panel</span>
+                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
                     </div>
-                  </Dialog.Panel>
-                </Transition.Child>
+                  </div>
+                </div>
+                <div className="relative flex-1 py-6 px-4 sm:px-6">
+                  {slide_text[label].text}
+                  <div className="absolute inset-0 py-6 px-4 sm:px-6">
+                    <div className="h-full" aria-hidden="true" />
+                  </div>
+                  {/* /End replace */}
+                </div>
               </div>
-            </div>
+            </DialogPanel>
           </div>
-        </Dialog>
-      </Transition.Root>
+        </div>
+      </Dialog>
     </>
   );
 }

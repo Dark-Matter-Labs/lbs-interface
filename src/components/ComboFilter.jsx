@@ -26,13 +26,9 @@ const rangeFilterOptions = [
   },
 ];
 
-export default function ComboFilter({
-  label,
-  selectedFilter,
-  setSelectedFilter,
-  setFilterState,
-}) {
+export default function ComboFilter({ label, setFilterState }) {
   const [query, setQuery] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState(null);
   const filteredRange =
     query === ""
       ? rangeFilterOptions
@@ -114,7 +110,5 @@ export default function ComboFilter({
 
 ComboFilter.propTypes = {
   label: PropTypes.string,
-  selectedFilter: PropTypes.obj,
-  setSelectedFilter: PropTypes.func,
   setFilterState: PropTypes.func,
 };

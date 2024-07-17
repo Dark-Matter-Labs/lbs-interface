@@ -29,9 +29,12 @@ export default function LBSMap({
   raster,
   topo,
   cityTrees,
+  muniTrees,
+  greenspace,
   aIndex,
   onlyCritical,
   neighbors,
+  popDen,
   populationFilter,
   povertyFilter,
   treeFilter,
@@ -53,11 +56,24 @@ export default function LBSMap({
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/light-v11",
-      center: [9.07, 48.76],
+      center: [9.07, 48.78],
       zoom: 11,
       accessToken: MAPBOX_TOKEN,
       preserveDrawingBuffer: true,
     });
+
+    const exportControl = new MapboxExportControl({
+      PageSize: Size.A3,
+      PageOrientation: PageOrientation.Portrait,
+      Format: Format.PDF,
+      DPI: DPI[96],
+      Crosshair: true,
+      PrintableArea: true,
+      Local: "de",
+      accessToken: MAPBOX_TOKEN,
+    });
+
+    map.current.addControl(exportControl, "top-right");
 
     // Add zoom and rotation controls to the map.
     map.current.addControl(new mapboxgl.NavigationControl());
@@ -72,19 +88,6 @@ export default function LBSMap({
       }),
       "top-right",
     );
-
-    const exportControl = new MapboxExportControl({
-      PageSize: Size.A3,
-      PageOrientation: PageOrientation.Portrait,
-      Format: Format.PDF,
-      DPI: DPI[96],
-      Crosshair: true,
-      PrintableArea: true,
-      Local: "de",
-      accessToken: MAPBOX_TOKEN,
-    });
-
-    map.current.addControl(exportControl, "top-right");
 
     map.current.once("load", function () {
       map.current.addSource("lbs-source", {
@@ -105,6 +108,26 @@ export default function LBSMap({
       map.current.addSource("neighbors", {
         type: "geojson",
         data: "/data/Stadbezirk-neighbourhood.geojson",
+      });
+
+      map.current.addSource("muni-trees-north", {
+        type: "geojson",
+        data: "/data/Municipal_Trees_North.geojson",
+      });
+
+      map.current.addSource("muni-trees-south", {
+        type: "geojson",
+        data: "/data/Municipal_Trees_South.geojson",
+      });
+
+      map.current.addSource("greenspace", {
+        type: "geojson",
+        data: "/data/parks_greenspace.geojson",
+      });
+
+      map.current.addSource("pop-den", {
+        type: "geojson",
+        data: "/data/population_density.geojson",
       });
 
       map.current.addLayer(currentLayer);
@@ -217,13 +240,58 @@ export default function LBSMap({
         type: "circle",
         source: "state-trees",
         paint: {
-          "circle-radius": 4,
+          "circle-radius": 7,
           "circle-color": "#3FAD76",
+          "circle-opacity": 0.2,
         },
         filter: ["==", "$type", "Point"],
       });
     } else if (map.current.getLayer("state-tree-layer") !== undefined) {
       map.current.removeLayer("state-tree-layer");
+    }
+
+    if (muniTrees) {
+      map.current.addLayer({
+        id: "m-tree-layer-n",
+        type: "circle",
+        source: "muni-trees-north",
+        paint: {
+          "circle-radius": 7,
+          "circle-color": "#3FAD76",
+          "circle-opacity": 0.2,
+        },
+        filter: ["==", "$type", "Point"],
+      });
+
+      map.current.addLayer({
+        id: "m-tree-layer-s",
+        type: "circle",
+        source: "muni-trees-south",
+        paint: {
+          "circle-radius": 7,
+          "circle-color": "#3FAD76",
+        },
+        filter: ["==", "$type", "Point"],
+      });
+    } else if (
+      map.current.getLayer("m-tree-layer-n") !== undefined &&
+      map.current.getLayer("m-tree-layer-s") !== undefined
+    ) {
+      map.current.removeLayer("m-tree-layer-n");
+      map.current.removeLayer("m-tree-layer-s");
+    }
+
+    if (greenspace) {
+      map.current.addLayer({
+        id: "greenspace-layer",
+        type: "fill",
+        source: "greenspace",
+        paint: {
+          "fill-color": "#b2df8a",
+        },
+      });
+    } else if (map.current.getLayer("greenspace-layer") !== undefined) {
+      map.current.removeLayer("greenspace-layer");
     }
 
     if (aIndex) {
@@ -257,6 +325,45 @@ export default function LBSMap({
       map.current.removeLayer("a-index-layer");
     }
 
+    if (popDen) {
+      map.current.addLayer({
+        id: "pop-den-layer",
+        type: "fill",
+        source: "pop-den",
+        paint: {
+          "fill-color": [
+            "interpolate",
+            ["linear"],
+            ["number", ["get", "_Populatio"]],
+            14,
+            "#edf8fb",
+            127,
+            "#d4e5f1",
+            3485,
+            "#bad2e6",
+            5084,
+            "#a6bbda",
+            6692,
+            "#95a2cd",
+            8030,
+            "#8b88bf",
+            9920,
+            "#896bb2",
+            12886,
+            "#874ea2",
+            17147,
+            "#842e8f",
+            34605,
+            "#810f7b",
+          ],
+          "fill-opacity": 0.7,
+        },
+        filter: ["==", "$type", "Polygon"],
+      });
+    } else if (map.current.getLayer("pop-den-layer") !== undefined) {
+      map.current.removeLayer("pop-den-layer");
+    }
+
     if (neighbors) {
       map.current.addLayer({
         id: "neighbor-boundary",
@@ -271,7 +378,7 @@ export default function LBSMap({
     } else if (map.current.getLayer("neighbor-boundary") !== undefined) {
       map.current.removeLayer("neighbor-boundary");
     }
-  }, [cityTrees, aIndex, neighbors]);
+  }, [cityTrees, aIndex, neighbors, muniTrees, greenspace, popDen]);
 
   useEffect(() => {
     if (layer === 0) {
@@ -385,13 +492,13 @@ export default function LBSMap({
         map.current.setFilter("risk-layer", [
           ">",
           ["to-number", ["get", "population_est"]],
-          100,
+          205,
         ]);
       } else if (populationFilter === "low") {
         map.current.setFilter("risk-layer", [
           "<",
           ["to-number", ["get", "population_est"]],
-          20,
+          12,
         ]);
       } else {
         map.current.setFilter("risk-layer", [
@@ -409,13 +516,13 @@ export default function LBSMap({
         map.current.setFilter("risk-layer", [
           ">",
           ["to-number", ["get", "poverty_index"]],
-          1,
+          0,
         ]);
       } else if (povertyFilter === "low") {
         map.current.setFilter("risk-layer", [
           "<=",
           ["to-number", ["get", "poverty_index"]],
-          1,
+          0,
         ]);
       } else {
         map.current.setFilter("risk-layer", [
@@ -432,21 +539,19 @@ export default function LBSMap({
       if (treeFilter === "high") {
         map.current.setFilter("risk-layer", [
           ">",
-          ["to-number", ["get", "tree_state"]] +
-            ["to-number", ["get", "tree_municipal"]],
-          50,
+          ["to-number", ["get", "Total_Trees"]],
+          100,
         ]);
       } else if (treeFilter === "low") {
         map.current.setFilter("risk-layer", [
-          "<=",
-          ["to-number", ["get", "tree_state"]] +
-            ["to-number", ["get", "tree_municipal"]],
+          "<",
+          ["to-number", ["get", "Total_Trees"]],
           20,
         ]);
       } else {
         map.current.setFilter("risk-layer", [
           ">=",
-          ["to-number", ["get", "poverty_index"]],
+          ["to-number", ["get", "Total_Trees"]],
           0,
         ]);
       }
@@ -459,13 +564,13 @@ export default function LBSMap({
         map.current.setFilter("risk-layer", [
           ">",
           ["to-number", ["get", "critical_infrastructure"]],
-          50,
+          0,
         ]);
       } else if (criticalFilter === "low") {
         map.current.setFilter("risk-layer", [
           "<=",
           ["to-number", ["get", "critical_infrastructure"]],
-          20,
+          1,
         ]);
       } else {
         map.current.setFilter("risk-layer", [
@@ -478,9 +583,9 @@ export default function LBSMap({
   }, [criticalFilter, layer]);
 
   return (
-    <div className="">
+    <div className="overflow-hidden">
       <div id="" className="map">
-        <div style={{ height: "100%" }} ref={mapContainer}></div>
+        <div style={{ height: "93vh" }} ref={mapContainer}></div>
       </div>
     </div>
   );
@@ -505,4 +610,7 @@ LBSMap.propTypes = {
   povertyFilter: PropTypes.string,
   treeFilter: PropTypes.string,
   criticalFilter: PropTypes.string,
+  popDen: PropTypes.bool,
+  muniTrees: PropTypes.bool,
+  greenspace: PropTypes.bool,
 };

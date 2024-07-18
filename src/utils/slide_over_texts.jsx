@@ -2,99 +2,83 @@ const slide_texts = {
   filter: {
     text: (
       <p className="book-intro-md text-dark-wood-800">
-        Here you can filter to see the locations/areas/spots assessed with the
-        most climate risk (worst 20%) and need for adaptation solutions
+       Hier können Sie filtern, um die Standorte/Gebiete/Spots anzuzeigen, die mit dem größten Klimarisiko (schlechteste 20 %) und dem Bedarf an Anpassungslösungen bewertet wurden.
       </p>
     ),
-    title: "Filter detail",
   },
   bottomTable: {
     text: (
       <div className="book-intro-md text-dark-wood-800">
-        <p>Summary of risk components for selected grid</p>
+        <p>Zusammenfassung der Risikokomponenten für ausgewählte Netze.</p>
       </div>
     ),
-    title: "",
   },
   bottomTableOverall: {
     text: (
       <div className="book-intro-md text-dark-wood-800">
         <p>
-          This table summarizes the scores of the different assessed climate
-          risk impact chains from the location selected.
+        In dieser Tabelle sind die Bewertungen der verschiedenen bewerteten Klimarisiko-Wirkungsketten des ausgewählten Standorts zusammengefasst.
         </p>
       </div>
     ),
-    title: "",
   },
   topLegendHitze: {
     text: (
       <div className="book-intro-md text-dark-wood-800">
         <p>
-          The risk for heat on population’s health and wellbeing is assessed
-          based on the indicators and weights shown in this table.
+        Das Risiko der Hitze für die Gesundheit und das Wohlbefinden der Bevölkerung wird anhand der in dieser Tabelle aufgeführten Indikatoren und Gewichtungen beurteilt.
         </p>
       </div>
     ),
-    title: "",
   },
   topLegendTrocken: {
     text: (
       <div className="book-intro-md text-dark-wood-800">
         <p>
-          The risk for drought on tree health is assessed based on the
-          indicators and weights shown in this table.
+        Das Dürrerisiko für die Baumgesundheit wird anhand der in dieser Tabelle aufgeführten Indikatoren und Gewichtungen beurteilt.
         </p>
       </div>
     ),
-    title: "",
   },
   topLegendLuft: {
     text: (
       <div className="book-intro-md text-dark-wood-800">
         <p>
-          The risk for air pollution on population’s health is assessed based on
-          the indicators and weights shown in this table.
+        Das Risiko der Luftverschmutzung für die Gesundheit der Bevölkerung wird anhand der in dieser Tabelle aufgeführten Indikatoren und Gewichtungen beurteilt.
         </p>
       </div>
     ),
-    title: "",
   },
   topLegendUber1: {
     text: (
       <div className="book-intro-md text-dark-wood-800">
         <p>
-          The risk for surfacewater flooding on the built-up area is assessed
-          based on the indicators and weights shown in this table.
+        Das Risiko einer Überschwemmung bebauter Flächen durch Oberflächenwasser wird anhand der in dieser Tabelle aufgeführten Indikatoren und Gewichtungen beurteilt.
         </p>
       </div>
     ),
-    title: "",
   },
   topLegendUber2: {
     text: (
       <div className="book-intro-md text-dark-wood-800">
         <p>
-          The risk for surfacewater flooding on the transport network is
-          assessed based on the indicators and weights shown in this table.
+        Das Risiko von Überschwemmungen des Verkehrsnetzes durch Oberflächenwasser wird anhand der in dieser Tabelle aufgeführten Indikatoren und Gewichtungen beurteilt.
         </p>
       </div>
     ),
-    title: "",
   },
   topLegendOverall: {
     text: (
       <div className="book-intro-md text-dark-wood-800">
         <p>
-          Here is the legend for the risk grids overalayed in the map. The
-          higher the value, the higher the compounded risk from the different
-          hazards (drought, heat, air pollution and flood). Check the table
-          shown below to unpack how this risk is distributed amongst these
-          hazards.
+        Hier ist die Legende für die Risikoraster, die in der Karte übereinandergelegt sind. Je
+höher der Wert, desto höher das kombinierte Risiko durch die verschiedenen
+Gefahren (Dürre, Hitze, Luftverschmutzung und Überschwemmung). Sehen Sie sich die Tabelle
+unten an, um herauszufinden, wie sich dieses Risiko auf diese
+Gefahren verteilt.
         </p>
       </div>
     ),
-    title: "",
   },
 };
 

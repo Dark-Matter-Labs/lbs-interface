@@ -87,14 +87,14 @@ export default function LayerSelector({
 
           <div className="bg-dark-wood-800 px-2 py-4 rounded-[10px] my-4 ">
             <span className="text-center book-info-sm uppercase text-dark-wood-300">
-              Baums-
+              Baum-
               <br />
-              chichten
+              schichten
             </span>
             <hr className="border-1 border-white" />
             <div className="flex justify-between items-center my-2">
               <span className="text-green-600 book-info-sm">
-                Städtische <br />
+              Landes <br />
                 Bäume
               </span>
 
@@ -113,7 +113,7 @@ export default function LayerSelector({
             </div>
             <div className="flex justify-between items-center my-2">
               <span className="text-green-600 book-info-sm">
-                Gemeinde <br />
+              Städtische <br />
                 Bäume
               </span>
               <button

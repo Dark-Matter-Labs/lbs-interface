@@ -148,7 +148,7 @@ export default function InfoPanel(props) {
                     <Popover className="relative">
                       <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                         <span className=" book-info-sm">
-                          Filtern nach demografischen
+                          Demografische Filter
                         </span>
                         <ChevronDownIcon
                           className="h-5 w-5"
@@ -410,7 +410,7 @@ export default function InfoPanel(props) {
                       <Popover className="relative">
                         <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
-                            Filtern nach demografischen
+                            Demografische Filter
                           </span>
                           <ChevronDownIcon
                             className="h-5 w-5"
@@ -674,7 +674,7 @@ export default function InfoPanel(props) {
                       <Popover className="relative">
                         <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
-                            Filtern nach demografischen
+                            Demografische Filter
                           </span>
                           <ChevronDownIcon
                             className="h-5 w-5"
@@ -993,7 +993,7 @@ export default function InfoPanel(props) {
                       <Popover className="relative">
                         <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
-                            Filtern nach demografischen
+                            Demografische Filter
                           </span>
                           <ChevronDownIcon
                             className="h-5 w-5"
@@ -1268,7 +1268,7 @@ export default function InfoPanel(props) {
                       <Popover className="relative">
                         <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
-                            Filtern nach demografischen
+                            Demografische Filter
                           </span>
                           <ChevronDownIcon
                             className="h-5 w-5"
@@ -1584,7 +1584,7 @@ export default function InfoPanel(props) {
                       <Popover className="relative">
                         <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
-                            Filtern nach demografischen
+                            Demografische Filter
                           </span>
                           <ChevronDownIcon
                             className="h-5 w-5"

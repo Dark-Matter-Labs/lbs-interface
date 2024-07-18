@@ -541,19 +541,19 @@ export default function LBSMap({
       if (treeFilter === "hoch") {
         map.current.setFilter("risk-layer", [
           ">",
-          ["to-number", ["get", "Total_Trees"]],
+          ["to-number", ["get", "total_tree"]],
           100,
         ]);
       } else if (treeFilter === "niedrig") {
         map.current.setFilter("risk-layer", [
           "<",
-          ["to-number", ["get", "Total_Trees"]],
+          ["to-number", ["get", "total_tree"]],
           20,
         ]);
       } else {
         map.current.setFilter("risk-layer", [
           ">=",
-          ["to-number", ["get", "Total_Trees"]],
+          ["to-number", ["get", "total_tree"]],
           0,
         ]);
       }

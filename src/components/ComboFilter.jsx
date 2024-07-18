@@ -44,7 +44,7 @@ export default function ComboFilter({ label, setFilterState, binary = false }) {
           return filter.name.toLowerCase().includes(query.toLowerCase());
         });
 
-      const filteredRangeBinary =
+  const filteredRangeBinary =
     query === ""
       ? binaryFilterOptions
       : binaryFilterOptions.filter((filter) => {
@@ -79,86 +79,83 @@ export default function ComboFilter({ label, setFilterState, binary = false }) {
             />
           </ComboboxButton>
 
-          {binary ? 
-                    filteredRangeBinary.length > 0 && (
-                      <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                        {filteredRangeBinary.map((filter) => (
-                          <ComboboxOption
-                            key={filter.id}
-                            value={filter}
-                            className={({ focus }) =>
-                              classNames(
-                                "relative cursor-default select-none py-2 pl-3 pr-9",
-                                focus ? "bg-indigo-600 text-white" : "text-gray-900",
-                              )
-                            }
-                          >
-                            {({ focus, selected }) => (
-                              <>
-                                <span
-                                  className={classNames(
-                                    "block truncate",
-                                    selected && "font-semibold",
-                                  )}
-                                >
-                                  {filter.name}
-                                </span>
-          
-                                {selected && (
-                                  <span
-                                    className={classNames(
-                                      "absolute inset-y-0 right-0 flex items-center pr-4",
-                                      focus ? "text-white" : "text-indigo-600",
-                                    )}
-                                  ></span>
-                                )}
-                              </>
+          {binary
+            ? filteredRangeBinary.length > 0 && (
+                <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                  {filteredRangeBinary.map((filter) => (
+                    <ComboboxOption
+                      key={filter.id}
+                      value={filter}
+                      className={({ focus }) =>
+                        classNames(
+                          "relative cursor-default select-none py-2 pl-3 pr-9",
+                          focus ? "bg-indigo-600 text-white" : "text-gray-900",
+                        )
+                      }
+                    >
+                      {({ focus, selected }) => (
+                        <>
+                          <span
+                            className={classNames(
+                              "block truncate",
+                              selected && "font-semibold",
                             )}
-                          </ComboboxOption>
-                        ))}
-                      </ComboboxOptions>
-                    )
-          :
-          filteredRange.length > 0 && (
-            <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {filteredRange.map((filter) => (
-                <ComboboxOption
-                  key={filter.id}
-                  value={filter}
-                  className={({ focus }) =>
-                    classNames(
-                      "relative cursor-default select-none py-2 pl-3 pr-9",
-                      focus ? "bg-indigo-600 text-white" : "text-gray-900",
-                    )
-                  }
-                >
-                  {({ focus, selected }) => (
-                    <>
-                      <span
-                        className={classNames(
-                          "block truncate",
-                          selected && "font-semibold",
-                        )}
-                      >
-                        {filter.name}
-                      </span>
+                          >
+                            {filter.name}
+                          </span>
 
-                      {selected && (
-                        <span
-                          className={classNames(
-                            "absolute inset-y-0 right-0 flex items-center pr-4",
-                            focus ? "text-white" : "text-indigo-600",
+                          {selected && (
+                            <span
+                              className={classNames(
+                                "absolute inset-y-0 right-0 flex items-center pr-4",
+                                focus ? "text-white" : "text-indigo-600",
+                              )}
+                            ></span>
                           )}
-                        ></span>
+                        </>
                       )}
-                    </>
-                  )}
-                </ComboboxOption>
-              ))}
-            </ComboboxOptions>
-          )
-          }
+                    </ComboboxOption>
+                  ))}
+                </ComboboxOptions>
+              )
+            : filteredRange.length > 0 && (
+                <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                  {filteredRange.map((filter) => (
+                    <ComboboxOption
+                      key={filter.id}
+                      value={filter}
+                      className={({ focus }) =>
+                        classNames(
+                          "relative cursor-default select-none py-2 pl-3 pr-9",
+                          focus ? "bg-indigo-600 text-white" : "text-gray-900",
+                        )
+                      }
+                    >
+                      {({ focus, selected }) => (
+                        <>
+                          <span
+                            className={classNames(
+                              "block truncate",
+                              selected && "font-semibold",
+                            )}
+                          >
+                            {filter.name}
+                          </span>
 
+                          {selected && (
+                            <span
+                              className={classNames(
+                                "absolute inset-y-0 right-0 flex items-center pr-4",
+                                focus ? "text-white" : "text-indigo-600",
+                              )}
+                            ></span>
+                          )}
+                        </>
+                      )}
+                    </ComboboxOption>
+                  ))}
+                </ComboboxOptions>
+              )}
         </div>
       </Combobox>
     </div>
@@ -168,5 +165,5 @@ export default function ComboFilter({ label, setFilterState, binary = false }) {
 ComboFilter.propTypes = {
   label: PropTypes.string,
   setFilterState: PropTypes.func,
-  binary: PropTypes.bool
+  binary: PropTypes.bool,
 };

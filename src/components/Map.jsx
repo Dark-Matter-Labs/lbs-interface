@@ -40,7 +40,7 @@ export default function LBSMap({
   treeFilter,
   criticalFilter,
   oldFilter,
-  youngFilter
+  youngFilter,
 }) {
   const mapContainer = useRef(null);
   const map = useRef(null);

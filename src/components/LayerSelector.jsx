@@ -94,7 +94,7 @@ export default function LayerSelector({
             <hr className="border-1 border-white" />
             <div className="flex justify-between items-center my-2">
               <span className="text-green-600 book-info-sm">
-              Landes <br />
+                Landes <br />
                 Bäume
               </span>
 
@@ -113,7 +113,7 @@ export default function LayerSelector({
             </div>
             <div className="flex justify-between items-center my-2">
               <span className="text-green-600 book-info-sm">
-              Städtische <br />
+                Städtische <br />
                 Bäume
               </span>
               <button
@@ -200,22 +200,23 @@ export default function LayerSelector({
               </button>
             </div>
           </div>
-          {aIndex &&
-                    <div className="bg-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
-                    <p className="medium-info-sm text-dark-wood-800">Geringes - Risiko - Hohes</p>
-                    <div className="ml-4 mt-4 rounded-[10px] w-28 h-4 py-2 px-10 bg-gradient-to-r from-[#2DC4B2] via-[#669EC4] to-[#AA5E79]"></div>
-                    </div>
-          
-          }
+          {aIndex && (
+            <div className="bg-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
+              <p className="medium-info-sm text-dark-wood-800">
+                Geringes - Risiko - Hohes
+              </p>
+              <div className="ml-4 mt-4 rounded-[10px] w-28 h-4 py-2 px-10 bg-gradient-to-r from-[#2DC4B2] via-[#669EC4] to-[#AA5E79]"></div>
+            </div>
+          )}
 
-{popDen &&
-                    <div className="bg-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
-                    <p className="medium-info-sm text-dark-wood-800">Geringes - Risiko - Hohes</p>
-                    <div className="ml-4 mt-4 rounded-[10px] w-28 h-4 py-2 px-10 bg-gradient-to-r from-[#EDF8FB] via-[#95A2CD] to-[#810f7b]"></div>
-                    </div>
-          
-          }
-
+          {popDen && (
+            <div className="bg-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
+              <p className="medium-info-sm text-dark-wood-800">
+                Geringes - Risiko - Hohes
+              </p>
+              <div className="ml-4 mt-4 rounded-[10px] w-28 h-4 py-2 px-10 bg-gradient-to-r from-[#EDF8FB] via-[#95A2CD] to-[#810f7b]"></div>
+            </div>
+          )}
         </div>
       </Transition.Child>
     </Transition.Root>

@@ -1,10 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import {
-  Dialog,
-  DialogPanel,
-  DialogBackdrop,
-} from "@headlessui/react";
+import { Dialog, DialogPanel, DialogBackdrop } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import infoImage from "../assets/T_Little_eye.svg";
 import { get_slide_texts } from "../utils/slide_over_texts";
@@ -36,17 +32,17 @@ export default function InfoSlideOver({ label }) {
               className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-sm  data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
             >
               <div className="">
-                  <div className="flex items-end justify-end">
-                    <div className="ml-3 flex h-7 items-center">
-                      <button
-                        type="button"
-                        className="rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-                        onClick={() => setOpen(false)}
-                      >
-                        <span className="sr-only">Close panel</span>
-                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                      </button>
-                    </div>
+                <div className="flex items-end justify-end">
+                  <div className="ml-3 flex h-7 items-center">
+                    <button
+                      type="button"
+                      className="rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                      onClick={() => setOpen(false)}
+                    >
+                      <span className="sr-only">Close panel</span>
+                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                    </button>
+                  </div>
                 </div>
                 <div className="relative flex-1 py-6 px-4 sm:px-6">
                   {slide_text[label].text}

@@ -188,7 +188,7 @@ export default function InfoPanel(props) {
                               setFilterState={props.setOldFilter}
                             />
 
-                          <ComboFilter
+                            <ComboFilter
                               label="Einwohner unter 10 Jahren"
                               binary={true}
                               setFilterState={props.setYoungFilter}
@@ -456,16 +456,16 @@ export default function InfoPanel(props) {
                                 setFilterState={props.setCriticalFilter}
                               />
 
-<ComboFilter
-                              label="Einwohner über 65 Jahre"
-                              binary={true}
-                              setFilterState={props.setOldFilter}
-                            />
+                              <ComboFilter
+                                label="Einwohner über 65 Jahre"
+                                binary={true}
+                                setFilterState={props.setOldFilter}
+                              />
 
-                          <ComboFilter
-                              label="Einwohner unter 10 Jahren"
-                              binary={true}
-                              setFilterState={props.setYoungFilter}
+                              <ComboFilter
+                                label="Einwohner unter 10 Jahren"
+                                binary={true}
+                                setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -731,16 +731,16 @@ export default function InfoPanel(props) {
                                 label="Vorhandensein kritischer Infrastruktur"
                                 setFilterState={props.setCriticalFilter}
                               />
-                               <ComboFilter
-                              label="Einwohner über 65 Jahre"
-                              binary={true}
-                              setFilterState={props.setOldFilter}
-                            />
+                              <ComboFilter
+                                label="Einwohner über 65 Jahre"
+                                binary={true}
+                                setFilterState={props.setOldFilter}
+                              />
 
-                          <ComboFilter
-                              label="Einwohner unter 10 Jahren"
-                              binary={true}
-                              setFilterState={props.setYoungFilter}
+                              <ComboFilter
+                                label="Einwohner unter 10 Jahren"
+                                binary={true}
+                                setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -1061,16 +1061,16 @@ export default function InfoPanel(props) {
                                 label="Vorhandensein kritischer Infrastruktur"
                                 setFilterState={props.setCriticalFilter}
                               />
-                               <ComboFilter
-                              label="Einwohner über 65 Jahre"
-                              binary={true}
-                              setFilterState={props.setOldFilter}
-                            />
+                              <ComboFilter
+                                label="Einwohner über 65 Jahre"
+                                binary={true}
+                                setFilterState={props.setOldFilter}
+                              />
 
-                          <ComboFilter
-                              label="Einwohner unter 10 Jahren"
-                              binary={true}
-                              setFilterState={props.setYoungFilter}
+                              <ComboFilter
+                                label="Einwohner unter 10 Jahren"
+                                binary={true}
+                                setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -1347,16 +1347,16 @@ export default function InfoPanel(props) {
                                 label="Vorhandensein kritischer Infrastruktur"
                                 setFilterState={props.setCriticalFilter}
                               />
-                                <ComboFilter
-                              label="Einwohner über 65 Jahre"
-                              binary={true}
-                              setFilterState={props.setOldFilter}
-                            />
+                              <ComboFilter
+                                label="Einwohner über 65 Jahre"
+                                binary={true}
+                                setFilterState={props.setOldFilter}
+                              />
 
-                          <ComboFilter
-                              label="Einwohner unter 10 Jahren"
-                              binary={true}
-                              setFilterState={props.setYoungFilter}
+                              <ComboFilter
+                                label="Einwohner unter 10 Jahren"
+                                binary={true}
+                                setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -1674,16 +1674,16 @@ export default function InfoPanel(props) {
                                 label="Vorhandensein kritischer Infrastruktur"
                                 setFilterState={props.setCriticalFilter}
                               />
-                                <ComboFilter
-                              label="Einwohner über 65 Jahre"
-                              binary={true}
-                              setFilterState={props.setOldFilter}
-                            />
+                              <ComboFilter
+                                label="Einwohner über 65 Jahre"
+                                binary={true}
+                                setFilterState={props.setOldFilter}
+                              />
 
-                          <ComboFilter
-                              label="Einwohner unter 10 Jahren"
-                              binary={true}
-                              setFilterState={props.setYoungFilter}
+                              <ComboFilter
+                                label="Einwohner unter 10 Jahren"
+                                binary={true}
+                                setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -1958,5 +1958,5 @@ InfoPanel.propTypes = {
   setTreeFilter: PropTypes.func,
   setCriticalFilter: PropTypes.func,
   setOldFilter: PropTypes.func,
-  setYoungFilter: PropTypes.func
+  setYoungFilter: PropTypes.func,
 };

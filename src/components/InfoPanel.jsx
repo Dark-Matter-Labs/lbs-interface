@@ -160,7 +160,7 @@ export default function InfoPanel(props) {
                         transition
                         className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                       >
-                        <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                        <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
                           <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
                             <ComboFilter
                               label="Wohndichte"
@@ -180,6 +180,18 @@ export default function InfoPanel(props) {
                             <ComboFilter
                               label="Vorhandensein kritischer Infrastruktur"
                               setFilterState={props.setCriticalFilter}
+                            />
+
+                            <ComboFilter
+                              label="Einwohner über 65 Jahre"
+                              binary={true}
+                              setFilterState={props.setOldFilter}
+                            />
+
+                          <ComboFilter
+                              label="Einwohner unter 10 Jahren"
+                              binary={true}
+                              setFilterState={props.setYoungFilter}
                             />
                           </div>
                         </div>
@@ -422,7 +434,7 @@ export default function InfoPanel(props) {
                           transition
                           className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                         >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
                             <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
                               <ComboFilter
                                 label="Wohndichte"
@@ -442,6 +454,18 @@ export default function InfoPanel(props) {
                               <ComboFilter
                                 label="Vorhandensein kritischer Infrastruktur"
                                 setFilterState={props.setCriticalFilter}
+                              />
+
+<ComboFilter
+                              label="Einwohner über 65 Jahre"
+                              binary={true}
+                              setFilterState={props.setOldFilter}
+                            />
+
+                          <ComboFilter
+                              label="Einwohner unter 10 Jahren"
+                              binary={true}
+                              setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -686,7 +710,7 @@ export default function InfoPanel(props) {
                           transition
                           className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                         >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
                             <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
                               <ComboFilter
                                 label="Wohndichte"
@@ -706,6 +730,17 @@ export default function InfoPanel(props) {
                               <ComboFilter
                                 label="Vorhandensein kritischer Infrastruktur"
                                 setFilterState={props.setCriticalFilter}
+                              />
+                               <ComboFilter
+                              label="Einwohner über 65 Jahre"
+                              binary={true}
+                              setFilterState={props.setOldFilter}
+                            />
+
+                          <ComboFilter
+                              label="Einwohner unter 10 Jahren"
+                              binary={true}
+                              setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -1005,7 +1040,7 @@ export default function InfoPanel(props) {
                           transition
                           className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                         >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
                             <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
                               <ComboFilter
                                 label="Wohndichte"
@@ -1025,6 +1060,17 @@ export default function InfoPanel(props) {
                               <ComboFilter
                                 label="Vorhandensein kritischer Infrastruktur"
                                 setFilterState={props.setCriticalFilter}
+                              />
+                               <ComboFilter
+                              label="Einwohner über 65 Jahre"
+                              binary={true}
+                              setFilterState={props.setOldFilter}
+                            />
+
+                          <ComboFilter
+                              label="Einwohner unter 10 Jahren"
+                              binary={true}
+                              setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -1280,7 +1326,7 @@ export default function InfoPanel(props) {
                           transition
                           className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                         >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
                             <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
                               <ComboFilter
                                 label="Wohndichte"
@@ -1300,6 +1346,17 @@ export default function InfoPanel(props) {
                               <ComboFilter
                                 label="Vorhandensein kritischer Infrastruktur"
                                 setFilterState={props.setCriticalFilter}
+                              />
+                                <ComboFilter
+                              label="Einwohner über 65 Jahre"
+                              binary={true}
+                              setFilterState={props.setOldFilter}
+                            />
+
+                          <ComboFilter
+                              label="Einwohner unter 10 Jahren"
+                              binary={true}
+                              setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -1596,7 +1653,7 @@ export default function InfoPanel(props) {
                           transition
                           className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
                         >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-96">
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
                             <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
                               <ComboFilter
                                 label="Wohndichte"
@@ -1616,6 +1673,17 @@ export default function InfoPanel(props) {
                               <ComboFilter
                                 label="Vorhandensein kritischer Infrastruktur"
                                 setFilterState={props.setCriticalFilter}
+                              />
+                                <ComboFilter
+                              label="Einwohner über 65 Jahre"
+                              binary={true}
+                              setFilterState={props.setOldFilter}
+                            />
+
+                          <ComboFilter
+                              label="Einwohner unter 10 Jahren"
+                              binary={true}
+                              setFilterState={props.setYoungFilter}
                               />
                             </div>
                           </div>
@@ -1889,4 +1957,6 @@ InfoPanel.propTypes = {
   setPovertyFilter: PropTypes.func,
   setTreeFilter: PropTypes.func,
   setCriticalFilter: PropTypes.func,
+  setOldFilter: PropTypes.func,
+  setYoungFilter: PropTypes.func
 };

@@ -21,10 +21,12 @@ export default function App() {
   const [popDen, setPopDen] = useState(false);
   const [activeHazard, setActiveHazard] = useState(0);
   const [onlyCritical, setOnlyCritical] = useState(false);
-  const [populationFilter, setPopulationFilter] = useState("none");
-  const [povertyFilter, setPovertyFilter] = useState("none");
-  const [treeFilter, setTreeFilter] = useState("none");
-  const [criticalFilter, setCriticalFilter] = useState("none");
+  const [populationFilter, setPopulationFilter] = useState("keiner");
+  const [povertyFilter, setPovertyFilter] = useState("keiner");
+  const [treeFilter, setTreeFilter] = useState("keiner");
+  const [criticalFilter, setCriticalFilter] = useState("keiner");
+  const [youngFilter, setYoungFilter] = useState("deaktiviert");
+  const [oldFilter, setOldFilter] = useState("deaktiviert");
 
   const [currentGrid, setCurrentGrid] = useState({
     id: "1",
@@ -92,6 +94,8 @@ export default function App() {
               setPovertyFilter={setPovertyFilter}
               setTreeFilter={setTreeFilter}
               setCriticalFilter={setCriticalFilter}
+              setYoungFilter={setYoungFilter}
+              setOldFilter={setOldFilter}
             />
             <LayerSelector
               raster={raster}
@@ -129,6 +133,8 @@ export default function App() {
             povertyFilter={povertyFilter}
             treeFilter={treeFilter}
             criticalFilter={criticalFilter}
+            oldFilter={oldFilter}
+            youngFilter={youngFilter}
           />
         </div>
       ) : (
@@ -178,6 +184,8 @@ export default function App() {
             povertyFilter={povertyFilter}
             treeFilter={treeFilter}
             criticalFilter={criticalFilter}
+            oldFilter={oldFilter}
+            youngFilter={youngFilter}
           />
         </div>
       )}

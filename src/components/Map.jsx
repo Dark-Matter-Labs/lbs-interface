@@ -39,6 +39,8 @@ export default function LBSMap({
   povertyFilter,
   treeFilter,
   criticalFilter,
+  oldFilter,
+  youngFilter
 }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -488,13 +490,13 @@ export default function LBSMap({
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
-      if (populationFilter === "high") {
+      if (populationFilter === "hoch") {
         map.current.setFilter("risk-layer", [
           ">",
           ["to-number", ["get", "population_est"]],
           205,
         ]);
-      } else if (populationFilter === "low") {
+      } else if (populationFilter === "niedrig") {
         map.current.setFilter("risk-layer", [
           "<",
           ["to-number", ["get", "population_est"]],
@@ -512,13 +514,13 @@ export default function LBSMap({
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
-      if (povertyFilter === "high") {
+      if (povertyFilter === "hoch") {
         map.current.setFilter("risk-layer", [
           ">",
           ["to-number", ["get", "poverty_index"]],
           0,
         ]);
-      } else if (povertyFilter === "low") {
+      } else if (povertyFilter === "niedrig") {
         map.current.setFilter("risk-layer", [
           "<=",
           ["to-number", ["get", "poverty_index"]],
@@ -536,13 +538,13 @@ export default function LBSMap({
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
-      if (treeFilter === "high") {
+      if (treeFilter === "hoch") {
         map.current.setFilter("risk-layer", [
           ">",
           ["to-number", ["get", "Total_Trees"]],
           100,
         ]);
-      } else if (treeFilter === "low") {
+      } else if (treeFilter === "niedrig") {
         map.current.setFilter("risk-layer", [
           "<",
           ["to-number", ["get", "Total_Trees"]],
@@ -560,13 +562,13 @@ export default function LBSMap({
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
-      if (criticalFilter === "high") {
+      if (criticalFilter === "hoch") {
         map.current.setFilter("risk-layer", [
           ">",
           ["to-number", ["get", "critical_infrastructure"]],
           0,
         ]);
-      } else if (criticalFilter === "low") {
+      } else if (criticalFilter === "niedrig") {
         map.current.setFilter("risk-layer", [
           "<=",
           ["to-number", ["get", "critical_infrastructure"]],
@@ -581,6 +583,42 @@ export default function LBSMap({
       }
     }
   }, [criticalFilter, layer]);
+
+  useEffect(() => {
+    if (map.current.getLayer("risk-layer") !== undefined) {
+      if (oldFilter === "ermöglicht") {
+        map.current.setFilter("risk-layer", [
+          ">",
+          ["to-number", ["get", "elderly"]],
+          18,
+        ]);
+      } else {
+        map.current.setFilter("risk-layer", [
+          ">=",
+          ["to-number", ["get", "elderly"]],
+          0,
+        ]);
+      }
+    }
+  }, [oldFilter, layer]);
+
+  useEffect(() => {
+    if (map.current.getLayer("risk-layer") !== undefined) {
+      if (youngFilter === "ermöglicht") {
+        map.current.setFilter("risk-layer", [
+          ">",
+          ["to-number", ["get", "young_pop"]],
+          18,
+        ]);
+      } else {
+        map.current.setFilter("risk-layer", [
+          ">=",
+          ["to-number", ["get", "young_pop"]],
+          0,
+        ]);
+      }
+    }
+  }, [youngFilter, layer]);
 
   return (
     <div className="overflow-hidden">
@@ -613,4 +651,6 @@ LBSMap.propTypes = {
   popDen: PropTypes.bool,
   muniTrees: PropTypes.bool,
   greenspace: PropTypes.bool,
+  oldFilter: PropTypes.string,
+  youngFilter: PropTypes.string,
 };

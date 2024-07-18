@@ -28,7 +28,7 @@ export default function LayerSelector({
     <Transition.Root
       show={true}
       as={Fragment}
-      className="mt-[13rem] justify-self-end z-10 mr-2"
+      className="mt-[11rem] justify-self-end z-10 mr-2"
     >
       <Transition.Child
         enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -200,6 +200,22 @@ export default function LayerSelector({
               </button>
             </div>
           </div>
+          {aIndex &&
+                    <div className="bg-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
+                    <p className="medium-info-sm text-dark-wood-800">Geringes - Risiko - Hohes</p>
+                    <div className="ml-4 mt-4 rounded-[10px] w-28 h-4 py-2 px-10 bg-gradient-to-r from-[#2DC4B2] via-[#669EC4] to-[#AA5E79]"></div>
+                    </div>
+          
+          }
+
+{popDen &&
+                    <div className="bg-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
+                    <p className="medium-info-sm text-dark-wood-800">Geringes - Risiko - Hohes</p>
+                    <div className="ml-4 mt-4 rounded-[10px] w-28 h-4 py-2 px-10 bg-gradient-to-r from-[#EDF8FB] via-[#95A2CD] to-[#810f7b]"></div>
+                    </div>
+          
+          }
+
         </div>
       </Transition.Child>
     </Transition.Root>

@@ -8,6 +8,7 @@ import {
   Switch,
 } from "@headlessui/react";
 import PropTypes from "prop-types";
+import { useTranslation } from 'react-i18next';
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 import ComboFilter from "./ComboFilter";
@@ -24,16 +25,18 @@ function classNames(...classes) {
 }
 
 const hazards = [
-  { title: "Gesamt", name: "AVERAGE_RISK", current: true, id: 0 },
-  { title: "Trockenheit", name: "A_risk_score", current: false, id: 1 },
-  { title: "Hitze", name: "B_risk_score", current: false, id: 2 },
-  { title: "Luftverschmutzung", name: "C_risk_score", current: false, id: 3 },
-  { title: "Überschwemmung", name: "D_risk_score", current: false, id: 4 },
+  { name: "AVERAGE_RISK", current: true, id: 0 },
+  { name: "A_risk_score", current: false, id: 1 },
+  { name: "B_risk_score", current: false, id: 2 },
+  { name: "C_risk_score", current: false, id: 3 },
+  { name: "D_risk_score", current: false, id: 4 },
 ];
 
 export default function InfoPanel(props) {
   const [currentRisk, setCurrentRisk] = useState(0);
   const [transportBuiltSwitch, setTransportBuiltSwitch] = useState("Transport");
+  // eslint-disable-next-line
+  const { t, i18n } = useTranslation();
 
   return (
     <Transition.Root
@@ -53,7 +56,7 @@ export default function InfoPanel(props) {
           <div className="pr-4 py-4 bg-green-600 flex flex-row items-center my-auto justify-between rounded-tr-[30px]">
             <div>
               <span className="medium-intro-sm text-white-200 pl-6">
-                Erkunde das Risiko eines Standorts
+                {t('info_panel.title')}
               </span>
             </div>
             <div className="">
@@ -75,14 +78,14 @@ export default function InfoPanel(props) {
                 defaultValue={hazards.find((tab) => tab.current).title}
               >
                 {hazards.map((tab) => (
-                  <option key={tab.id}>{tab.title}</option>
+                  <option key={tab.id}> {t(`info_panel.${tab.name}`)}</option>
                 ))}
               </select>
             </div>
             <div className="hidden sm:block px-4">
               <div className="border-b border-gray-200">
                 <span className="book-intro-sm">
-                  Stadtbezirk: {props.currentGrid.stadtbezirk}
+                {t('info_panel.neighbor_label')}: {props.currentGrid.stadtbezirk}
                 </span>
                 <nav className="-mb-px flex space-x-8" aria-label="Tabs">
                   {hazards.map((tab) => (
@@ -109,7 +112,7 @@ export default function InfoPanel(props) {
                         "whitespace-nowrap border-b-2 py-4 px-1 bold-intro-sm cursor-pointer",
                       )}
                     >
-                      {tab.title}
+                      {t(`info_panel.${tab.name}`)}
                     </span>
                   ))}
                 </nav>
@@ -121,10 +124,10 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center">
                   <div>
-                    <span className="book-info-md">Gesamtrisikobewertung</span>
+                    <span className="book-info-md">{t('info_panel.overall_title')}</span>
                   </div>
                   <div className="flex items-baseline">
-                    <span className="pr-2 book-info-sm ">alle Daten</span>
+                    <span className="pr-2 book-info-sm ">{t('info_panel.critical_filter_0')}</span>
                     <Switch
                       checked={props.onlyCritical}
                       onChange={props.setOnlyCritical}
@@ -144,11 +147,11 @@ export default function InfoPanel(props) {
                         )}
                       />
                     </Switch>
-                    <span className="px-2 book-info-sm pr-4">nur kritisch</span>
+                    <span className="px-2 book-info-sm pr-4">{t('info_panel.critical_filter_1')}</span>
                     <Popover className="relative">
                       <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                         <span className=" book-info-sm">
-                          Demografische Filter
+                        {t('info_panel.dem_filter_title')}
                         </span>
                         <ChevronDownIcon
                           className="h-5 w-5"
@@ -163,33 +166,33 @@ export default function InfoPanel(props) {
                         <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
                           <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
                             <ComboFilter
-                              label="Wohndichte"
+                              label={t('info_panel.dem_filter_population')}
                               setFilterState={props.setPopulationFilter}
                             />
 
                             <ComboFilter
-                              label="Haushalte in Armut"
+                              label={t('info_panel.dem_filter_poverty')}
                               setFilterState={props.setPovertyFilter}
                             />
 
                             <ComboFilter
-                              label="Baumbestand"
+                              label={t('info_panel.dem_filter_trees')}
                               setFilterState={props.setTreeFilter}
                             />
 
                             <ComboFilter
-                              label="Vorhandensein kritischer Infrastruktur"
+                              label={t('info_panel.dem_filter_critical')}
                               setFilterState={props.setCriticalFilter}
                             />
 
                             <ComboFilter
-                              label="Einwohner über 65 Jahre"
+                              label={t('info_panel.dem_filter_old')}
                               binary={true}
                               setFilterState={props.setOldFilter}
                             />
 
                             <ComboFilter
-                              label="Einwohner unter 10 Jahren"
+                              label={t('info_panel.dem_filter_young')}
                               binary={true}
                               setFilterState={props.setYoungFilter}
                             />
@@ -203,17 +206,15 @@ export default function InfoPanel(props) {
 
                 <div className="grid grid-cols-2 border-t border-t-green-600 my-4">
                   <div className="pt-2 border-r border-r-green-600">
-                    <span className="book-info-sm ">LEGENDE</span>
+                    <span className="book-info-sm uppercase">{t('info_panel.legend')}</span>
                     <InfoSlideOver label="topLegendOverall" />
                     <div className="flex">
                       <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-indigo-400 to-green-600"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
-                        <div className="book-info-sm ">
-                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
-                          <br />
-                          durch NbS
+                        <div className="book-info-sm max-w-[90px]">
+                        {t('info_panel.overall_legend_top')}
                         </div>
-                        <div className="book-info-sm">0 Geringes Risiko</div>
+                        <div className="book-info-sm">{t('info_panel.overall_legend_bottom')}</div>
                       </div>
                     </div>
                   </div>
@@ -222,9 +223,8 @@ export default function InfoPanel(props) {
                       <span className="px-8 medium-intro-sm">
                         {props.currentGrid.tree_municipal}
                       </span>
-                      <span className="book-info-sm text-right">
-                        BÄUME AUF <br />
-                        LANDESLIEGENSCHAFTEN
+                      <span className="book-info-sm text-right uppercase">
+                      {t('info_panel.state_trees')}
                       </span>
                     </div>
 
@@ -232,8 +232,8 @@ export default function InfoPanel(props) {
                       <span className="px-8 medium-intro-sm">
                         {props.currentGrid.tree_state}
                       </span>
-                      <span className="book-info-sm text-right">
-                        STÄDTISCHE BÄUME
+                      <span className="book-info-sm text-right uppercase">
+                      {t('info_panel.city_trees')}
                       </span>
                     </div>
 
@@ -243,8 +243,8 @@ export default function InfoPanel(props) {
                           props.currentGrid.critical_infrastructure,
                         ).toFixed(2)}
                       </span>
-                      <span className="book-info-sm text-right">
-                        KRITISCHE INFRASTRUKTUR
+                      <span className="book-info-sm text-right uppercase">
+                      {t('info_panel.critical_infra')}
                       </span>
                     </div>
 
@@ -252,8 +252,8 @@ export default function InfoPanel(props) {
                       <span className="px-8 medium-intro-sm">
                         {parseFloat(props.currentGrid.poverty_index).toFixed(2)}
                       </span>
-                      <span className="book-info-sm text-right">
-                        ARMUTSINDEX
+                      <span className="book-info-sm text-right uppercase">
+                      {t('info_panel.pov_index')}
                       </span>
                     </div>
                   </div>
@@ -478,7 +478,7 @@ export default function InfoPanel(props) {
                 <img src={heatCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600 grow-0">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">{t('info_panel.legend')}</span>
                     <InfoSlideOver label="topLegendTrocken" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung
@@ -753,7 +753,7 @@ export default function InfoPanel(props) {
                 <img src={hitzeCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">{t('info_panel.legend')}</span>
                     <InfoSlideOver label="topLegendHitze" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung
@@ -1083,7 +1083,7 @@ export default function InfoPanel(props) {
                 <img src={luftCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">{t('info_panel.legend')}</span>
                     <InfoSlideOver label="topLegendLuft" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung
@@ -1401,7 +1401,7 @@ export default function InfoPanel(props) {
                 <img src={uberCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">{t('info_panel.legend')}</span>
                     <InfoSlideOver label="topLegendUber1" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung
@@ -1728,7 +1728,7 @@ export default function InfoPanel(props) {
                 <img src={uberBuiltCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
                   <div className="pt-2 border-r border-r-green-600">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">{t('info_panel.legend')}</span>
                     <InfoSlideOver label="topLegendUber2" />
                     <p className="book-info-md pt-1">
                       Spezifische Risikobewertung

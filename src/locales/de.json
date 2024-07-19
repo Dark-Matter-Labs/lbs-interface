@@ -1,0 +1,32 @@
+{
+    "translation": {
+        "info_panel": {
+            "title": "Erkunde das Risiko eines Standorts",
+            "neighbor_label": "Stadtbezirk",
+            "AVERAGE_RISK": "Gesamt",
+            "A_risk_score": "Trockenheit",
+            "B_risk_score": "Hitze",
+            "C_risk_score": "Luftverschmutzung",
+            "D_risk_score": "Überschwemmung",
+            "E_risk_score": "",
+            "overall_title": "Gesamtrisikobewertung",
+            "critical_filter_0": "alle Daten",
+            "critical_filter_1": "nur kritisch",
+            "dem_filter_title": "Demografische Filter",
+            "dem_filter_population": "Wohndichte",
+            "dem_filter_poverty": "Haushalte in Armut",
+            "dem_filter_trees": "Baumbestand",
+            "dem_filter_critical":"Vorhandensein kritischer Infrastruktur",
+            "dem_filter_old": "Einwohner über 65 Jahre",
+            "dem_filter_young": "Einwohner unter 10 Jahren",
+            "legend": "Legende",
+            "overall_legend_top": "100 Hohes Risiko = hohes Anpassungspotenzial durch NbS",
+            "overall_legend_bottom": "0 Geringes Risiko",
+            "state_trees": "Bäume auf Landesliegenschaften",
+            "city_trees": "Städtische bäume",
+            "critical_infra": "Kritische infrastruktur",
+            "pov_index": "Armutsindex",
+            "risk": "Gefahr"
+        }
+    }
+}

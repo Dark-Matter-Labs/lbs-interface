@@ -144,9 +144,10 @@ export default function InfoPanel(props) {
                         )}
                       />
                     </Switch>
-                    <span className="px-2 book-info-sm pr-4">nur kritisch</span>
+                    <span className="px-1 book-info-sm">nur kritisch</span>
+                    <InfoSlideOver label="filter" />
                     <Popover className="relative">
-                      <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                      <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                         <span className=" book-info-sm">
                           Demografische Filter
                         </span>
@@ -197,7 +198,6 @@ export default function InfoPanel(props) {
                         </div>
                       </PopoverPanel>
                     </Popover>
-                    <InfoSlideOver label="filter" />
                   </div>
                 </div>
 
@@ -418,9 +418,10 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <InfoSlideOver label="filter" />
                       <Popover className="relative">
-                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
                             Demografische Filter
                           </span>
@@ -471,7 +472,6 @@ export default function InfoPanel(props) {
                           </div>
                         </PopoverPanel>
                       </Popover>
-                      <InfoSlideOver label="filter" />
                     </div>
                   </div>
                 </div>
@@ -694,9 +694,10 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <InfoSlideOver label="filter" />
                       <Popover className="relative">
-                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
                             Demografische Filter
                           </span>
@@ -746,7 +747,6 @@ export default function InfoPanel(props) {
                           </div>
                         </PopoverPanel>
                       </Popover>
-                      <InfoSlideOver label="filter" />
                     </div>
                   </div>
                 </div>
@@ -1024,9 +1024,10 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <InfoSlideOver label="filter" />
                       <Popover className="relative">
-                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
                             Demografische Filter
                           </span>
@@ -1076,7 +1077,7 @@ export default function InfoPanel(props) {
                           </div>
                         </PopoverPanel>
                       </Popover>
-                      <InfoSlideOver label="filter" />
+                      
                     </div>
                   </div>
                 </div>
@@ -1310,9 +1311,10 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <InfoSlideOver label="filter" />
                       <Popover className="relative">
-                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
                             Demografische Filter
                           </span>
@@ -1362,7 +1364,7 @@ export default function InfoPanel(props) {
                           </div>
                         </PopoverPanel>
                       </Popover>
-                      <InfoSlideOver label="filter" />
+                      
                     </div>
                   </div>
                 </div>
@@ -1616,7 +1618,7 @@ export default function InfoPanel(props) {
                     <span className="book-info-md">Wirkungskette</span>
                   </div>
                   <div>
-                    <div className="flex ietms-baseline">
+                    <div className="flex items-baseline">
                       <span className="pr-2 book-info-sm ">alle Daten</span>
                       <Switch
                         checked={props.onlyCritical}
@@ -1637,9 +1639,10 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <InfoSlideOver label="filter" />
                       <Popover className="relative">
-                        <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                           <span className=" book-info-sm">
                             Demografische Filter
                           </span>
@@ -1689,7 +1692,7 @@ export default function InfoPanel(props) {
                           </div>
                         </PopoverPanel>
                       </Popover>
-                      <InfoSlideOver label="filter" />
+                      
                     </div>
                   </div>
                 </div>

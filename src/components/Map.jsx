@@ -242,7 +242,7 @@ export default function LBSMap({
         type: "circle",
         source: "state-trees",
         paint: {
-          "circle-radius": 7,
+          "circle-radius": 5,
           "circle-color": "#3FAD76",
           "circle-opacity": 0.2,
         },
@@ -258,7 +258,7 @@ export default function LBSMap({
         type: "circle",
         source: "muni-trees-north",
         paint: {
-          "circle-radius": 7,
+          "circle-radius": 5,
           "circle-color": "#3FAD76",
           "circle-opacity": 0.2,
         },
@@ -270,7 +270,7 @@ export default function LBSMap({
         type: "circle",
         source: "muni-trees-south",
         paint: {
-          "circle-radius": 7,
+          "circle-radius": 5,
           "circle-color": "#3FAD76",
         },
         filter: ["==", "$type", "Point"],

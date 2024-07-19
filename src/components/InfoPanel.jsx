@@ -121,7 +121,7 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center">
                   <div>
-                    <h2>Gesamtrisikobewertung</h2>
+                    <span className="book-info-md">Gesamtrisikobewertung</span>
                   </div>
                   <div className="flex items-baseline">
                     <span className="pr-2 book-info-sm ">alle Daten</span>
@@ -394,7 +394,7 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <h2>Wirkungskette</h2>
+                    <span className="book-info-md">Wirkungskette</span>
                   </div>
                   <div className="">
                     <div className="flex items-baseline">
@@ -670,7 +670,7 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <h2>Wirkungskette</h2>
+                    <span className="book-info-md">Wirkungskette</span>
                   </div>
                   <div>
                     <div className="flex items-baseline">
@@ -1000,7 +1000,7 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <h2>Wirkungskette</h2>
+                    <span className="book-info-md">Wirkungskette</span>
                   </div>
                   <div>
                     <div className="flex items-baseline">
@@ -1286,7 +1286,7 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <h2>Wirkungskette</h2>
+                    <span className="book-info-md">Wirkungskette</span>
                   </div>
                   <div>
                     <div className="flex items-baseline">
@@ -1367,12 +1367,12 @@ export default function InfoPanel(props) {
                   </div>
                 </div>
                 <div className="flex">
-                  <h2
+                  <span
                     className={classNames(
                       transportBuiltSwitch === "Transport"
                         ? " text-green-600"
                         : "text-dark-wood-500 hover:text-green-600",
-                      "pb-4 hover:cursor-pointer",
+                      "pb-4 hover:cursor-pointer book-intro-sm",
                     )}
                     onClick={() => {
                       setTransportBuiltSwitch("Transport");
@@ -1381,13 +1381,13 @@ export default function InfoPanel(props) {
                     }}
                   >
                     Transport Netzwerk |
-                  </h2>
-                  <h2
+                  </span>
+                  <span
                     className={classNames(
                       transportBuiltSwitch === "Built"
                         ? " text-green-600"
                         : "text-dark-wood-500 hover:text-green-600",
-                      "pl-2 hover:cursor-pointer",
+                      "pl-2 hover:cursor-pointer book-intro-sm",
                     )}
                     onClick={() => {
                       setTransportBuiltSwitch("Built");
@@ -1396,7 +1396,7 @@ export default function InfoPanel(props) {
                     }}
                   >
                     Bebautes Gebiet
-                  </h2>
+                  </span>
                 </div>
                 <img src={uberCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">
@@ -1613,7 +1613,7 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <h2>Wirkungskette</h2>
+                    <span className="book-info-md">Wirkungskette</span>
                   </div>
                   <div>
                     <div className="flex ietms-baseline">
@@ -1694,12 +1694,12 @@ export default function InfoPanel(props) {
                   </div>
                 </div>
                 <div className="flex">
-                  <h2
+                  <span
                     className={classNames(
                       transportBuiltSwitch === "Transport"
                         ? " text-green-600"
                         : "text-dark-wood-500 hover:text-green-600",
-                      "pb-4 hover:cursor-pointer",
+                      "pb-4 hover:cursor-pointer book-intro-sm",
                     )}
                     onClick={() => {
                       setTransportBuiltSwitch("Transport");
@@ -1708,13 +1708,13 @@ export default function InfoPanel(props) {
                     }}
                   >
                     Transport Netzwerk |
-                  </h2>
-                  <h2
+                  </span>
+                  <span
                     className={classNames(
                       transportBuiltSwitch === "Built"
                         ? " text-green-600"
                         : "text-dark-wood-500 hover:text-green-600",
-                      "pl-2 hover:cursor-pointer",
+                      "pl-2 hover:cursor-pointer book-intro-sm",
                     )}
                     onClick={() => {
                       setTransportBuiltSwitch("Built");
@@ -1723,7 +1723,7 @@ export default function InfoPanel(props) {
                     }}
                   >
                     Bebautes Gebiet
-                  </h2>
+                  </span>
                 </div>
                 <img src={uberBuiltCard} className="w-[80%]" />
                 <div className="flex border-t border-t-green-600 mt-4">

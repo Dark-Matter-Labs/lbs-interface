@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Disclosure } from "@headlessui/react";
+import { Link } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/lbs-logo.svg";
 
@@ -28,80 +29,86 @@ export default function NavBar(props) {
                 </div>
                 <div className="flex flex-1 items-center justify-center  sm:items-stretch sm:justify-start">
                   <div className="flex flex-shrink-0 items-center pr-20">
-                    <img
-                      className="block h-8 w-auto lg:hidden"
-                      src={logo}
-                      alt="TreesAI LBS logo"
-                    />
-                    <div className="flex items-baseline ">
+                    <Link to="/">
                       <img
-                        className="hidden h-6 w-auto lg:block pr-1"
+                        className="block h-8 w-auto lg:hidden"
                         src={logo}
                         alt="TreesAI LBS logo"
                       />
-                      <h3>.LBS</h3>
-                    </div>
+                      <div className="flex items-baseline ">
+                        <img
+                          className="hidden h-6 w-auto lg:block pr-1"
+                          src={logo}
+                          alt="TreesAI LBS logo"
+                        />
+                        <h3>.LBS</h3>
+                      </div>
+                    </Link>
                   </div>
                   <div className="hidden sm:flex sm:space-x-8">
                     <span
                       className={classNames(
-                        props.current === "portfolio"
+                        props.current === "home"
                           ? "border-green-600 text-dark-wood-800"
                           : "border-transparent text-gray-800",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
                     >
-                      VORGEHENSWEISE
+                      <Link to="/">VORGEHENSWEISE</Link>
                     </span>
+
                     <span
                       className={classNames(
-                        props.current === "portfolio"
+                        props.current === "method"
                           ? "border-green-600 text-dark-wood-800"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
                     >
-                      METHODE
+                      <Link to="/methode">METHODE</Link>
                     </span>
+
                     <span
                       className={classNames(
-                        props.current === "portfolio"
+                        props.current === "wirkung"
                           ? "border-green-600 text-dark-wood-800"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
                     >
-                      WIRKUNGSMODELLIERUNG
+                      <Link to="/wirkungsmodellierung">
+                        WIRKUNGSMODELLIERUNG
+                      </Link>
                     </span>
                     <span
                       className={classNames(
-                        props.current === "portfolio"
+                        props.current === "wiki"
                           ? "border-green-600 text-dark-wood-800"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
                     >
-                      LBS WIKI
+                      <Link to="/wiki">LBS WIKI</Link>
                     </span>
                     <span
                       className={classNames(
-                        props.current === "portfolio"
+                        props.current === "info"
                           ? "border-green-600 text-dark-wood-800"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
                     >
-                      INFO
+                      <Link to="/info">INFO</Link>
                     </span>
                     <span
                       className={classNames(
-                        props.current === "portfolio"
+                        props.current === "contact"
                           ? "border-green-600 text-dark-wood-800"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
                     >
-                      KONTAKT
+                      <Link to="/kontact">KONTAKT</Link>
                     </span>
                   </div>
                 </div>

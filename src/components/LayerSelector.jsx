@@ -41,11 +41,11 @@ export default function LayerSelector({
         <div className=" mx-10 ">
           <div className="bg-dark-wood-800 px-2 py-4 rounded-[10px] my-4">
             <span className="text-center book-info-sm uppercase text-dark-wood-300">
-              Grundschicht
+              HINTERGRUND
             </span>
             <hr className="border-1 border-white" />
             <div className="flex justify-between items-center my-2">
-              <span className="text-green-600 book-info-sm">Grid raster</span>
+              <span className="text-green-600 book-info-sm">Raster</span>
               <button
                 type="button"
                 onClick={() => {
@@ -62,8 +62,8 @@ export default function LayerSelector({
 
             <div className="flex justify-between my-2">
               <span className="text-white book-info-sm">
-                Basic / <br />
-                <span className="text-green-600">Satellite</span>
+                Einfach / <br />
+                <span className="text-green-600">Satellit</span>
               </span>
               <Switch
                 checked={topo}

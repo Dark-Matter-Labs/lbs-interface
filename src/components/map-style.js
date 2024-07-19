@@ -10,7 +10,7 @@ export const baseLayer = {
       "case",
       ["boolean", ["feature-state", "hover"], false],
       4,
-      0.4,
+      0.6,
     ],
     "line-color": [
       "case",

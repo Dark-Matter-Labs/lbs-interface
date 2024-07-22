@@ -32,7 +32,7 @@ export default function Home() {
     tree_state: 0,
     tree_municipal: 0,
     tree_uknown: 0,
-    "greenspace_area(m2)_s": 0,
+    greenspace: 0,
     soil_quality: 0,
     ls_temperature: 0,
     pm10_mean: 0,

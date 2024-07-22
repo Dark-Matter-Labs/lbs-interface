@@ -44,8 +44,8 @@ export const genRiskLayer = {
     "fill-opacity": [
       "case",
       ["boolean", ["feature-state", "click"], false],
-      1,
-      0.7,
+      0.8,
+      0.6,
     ],
     "fill-outline-color": [
       "case",
@@ -77,8 +77,8 @@ export const droughtRiskLayer = {
     "fill-opacity": [
       "case",
       ["boolean", ["feature-state", "click"], false],
-      1,
-      0.5,
+      0.8,
+      0.6,
     ],
     "fill-outline-color": [
       "case",
@@ -110,8 +110,8 @@ export const heatRiskLayer = {
     "fill-opacity": [
       "case",
       ["boolean", ["feature-state", "click"], false],
-      1,
-      0.5,
+      0.8,
+      0.6,
     ],
     "fill-outline-color": [
       "case",
@@ -143,8 +143,8 @@ export const airPollutionRiskLayer = {
     "fill-opacity": [
       "case",
       ["boolean", ["feature-state", "click"], false],
-      1,
-      0.5,
+      0.8,
+      0.6,
     ],
     "fill-outline-color": [
       "case",
@@ -176,8 +176,8 @@ export const floodingRiskLayer = {
     "fill-opacity": [
       "case",
       ["boolean", ["feature-state", "click"], false],
-      1,
-      0.5,
+      0.8,
+      0.6,
     ],
     "fill-outline-color": [
       "case",
@@ -207,8 +207,8 @@ export const floodingBuiltRiskLayer = {
     "fill-opacity": [
       "case",
       ["boolean", ["feature-state", "click"], false],
-      1,
-      0.5,
+      0.8,
+      0.6,
     ],
     "fill-outline-color": [
       "case",

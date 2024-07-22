@@ -272,6 +272,7 @@ export default function LBSMap({
         paint: {
           "circle-radius": 5,
           "circle-color": "#3FAD76",
+          "circle-opacity": 0.2,
         },
         filter: ["==", "$type", "Point"],
       });
@@ -319,7 +320,7 @@ export default function LBSMap({
             999,
             "transparent",
           ],
-          "fill-opacity": 0.7,
+          "fill-opacity": 0.4,
         },
         filter: ["==", "$type", "Polygon"],
       });
@@ -358,7 +359,7 @@ export default function LBSMap({
             34605,
             "#810f7b",
           ],
-          "fill-opacity": 0.7,
+          "fill-opacity": 0.4,
         },
         filter: ["==", "$type", "Polygon"],
       });

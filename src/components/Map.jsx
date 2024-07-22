@@ -244,7 +244,7 @@ export default function LBSMap({
         paint: {
           "circle-radius": 5,
           "circle-color": "#3FAD76",
-          "circle-opacity": 0.2,
+          "circle-opacity": 0.4,
         },
         filter: ["==", "$type", "Point"],
       });
@@ -260,7 +260,7 @@ export default function LBSMap({
         paint: {
           "circle-radius": 5,
           "circle-color": "#3FAD76",
-          "circle-opacity": 0.2,
+          "circle-opacity": 0.4,
         },
         filter: ["==", "$type", "Point"],
       });
@@ -272,7 +272,7 @@ export default function LBSMap({
         paint: {
           "circle-radius": 5,
           "circle-color": "#3FAD76",
-          "circle-opacity": 0.2,
+          "circle-opacity": 0.4,
         },
         filter: ["==", "$type", "Point"],
       });

@@ -85,3 +85,7 @@ html {
   position: relative;
   z-index: 90 !important;
 }
+
+.mapboxgl-ctrl-top-right {
+  z-index: 99;
+}

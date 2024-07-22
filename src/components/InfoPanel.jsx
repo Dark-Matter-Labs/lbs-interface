@@ -375,11 +375,11 @@ export default function InfoPanel(props) {
                       },
                       {
                         attribute: "Überschwemmungsgefahr für das Verkehrsnetz",
-                        val: props.currentGrid.E_risk_score,
+                        val: props.currentGrid.D_risk_score,
                       },
                       {
                         attribute: "Überschwemmungsgefahr für bebaute Gebiete",
-                        val: props.currentGrid.D_risk_score,
+                        val: props.currentGrid.E_risk_score,
                       },
                       {
                         attribute:

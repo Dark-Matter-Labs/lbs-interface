@@ -580,6 +580,24 @@ export default function InfoPanel(props) {
                                   3
                                 </td>
                               </tr>
+
+                              <tr>
+                                <td className=" py-4 px-2 book-info-sm text-gray-900 ">
+                                  Durchschnitt digitales Höhenmodell (DEM)
+                                </td>
+                                <td className=" px-2 py-4 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.average_dem,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className=" px-2 py-4 book-info-sm text-gray-900">
+                                  Anfälligkeit <br />
+                                  (Empfindlichkeit)
+                                </td>
+                                <td className=" px-2 py-4 book-info-sm text-dark-wood-700 ">
+                                  2
+                                </td>
+                              </tr>
                             </tbody>
                           </table>
                         </div>
@@ -815,55 +833,55 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
+                                  Gefahr
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  1
+                                  2
                                 </td>
                               </tr>
 
                               <tr>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Anzahl Bäume auf Landesliegenschaften
+                                  Geschätzte Einwohnerschaft
                                 </td>
                                 <td className="py-4 px-2 medium-intro-sm text-green-600">
-                                  {props.currentGrid.tree_state}
+                                  {props.currentGrid.population_est}
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
                                   Belasteter Vermögenswert
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  1
+                                  6
                                 </td>
                               </tr>
 
                               <tr>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Bäume auf Anhöhen
+                                  Geschätzte ältere Bevölkerung ({">"}64)
                                 </td>
                                 <td className="py-4 px-2 medium-intro-sm text-green-600">
-                                  {props.currentGrid.tree_municipal}
+                                  {props.currentGrid.elderly}
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
                                   Anfälligkeit (Empfindlichkeit)
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  1
+                                  70
                                 </td>
                               </tr>
 
                               <tr>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Grünfläche
+                                  Geschätzte Vorschulbevölkerung ({"<"}10)
                                 </td>
                                 <td className="py-4 px-2 medium-intro-sm text-green-600">
-                                  {props.currentGrid.greenspace}
+                                  {props.currentGrid.young_pop}
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
                                   Anfälligkeit (Empfindlichkeit)
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  3
+                                  15
                                 </td>
                               </tr>
 
@@ -877,11 +895,79 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Überflutung durch <br />
-                                  Oberflächenwasser
+                                  Anfälligkeit (Empfindlichkeit)
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  1
+                                  55
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Prozentsatz der undurchlässigen Fläche
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.impervious,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  35
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Vorhandensein von Schulen, Kindergärten und
+                                  Pflegeheimen
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.school_kindergarden,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  30
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Fläche der Grünflächen (Parks, Grünflächen und
+                                  Friedhof)
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.greenspace,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  9
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anzahl der staatlichen, kommunalen und
+                                  sonstigen Bäume
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {props.currentGrid.total_tree}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  6
                                 </td>
                               </tr>
                             </tbody>
@@ -1077,7 +1163,6 @@ export default function InfoPanel(props) {
                           </div>
                         </PopoverPanel>
                       </Popover>
-                      
                     </div>
                   </div>
                 </div>
@@ -1136,48 +1221,153 @@ export default function InfoPanel(props) {
                             <tbody className="divide-y divide-gray-200 bg-white">
                               <tr>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Anzahl städtischer Bäume
-                                </td>
-                                <td className="py-4 px-2 medium-intro-sm text-green-600">
-                                  {props.currentGrid.tree_municipal}
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  1
-                                </td>
-                              </tr>
-
-                              <tr>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Anzahl Bäume auf Landesliegenschaften
-                                </td>
-                                <td className="py-4 px-2 medium-intro-sm text-green-600">
-                                  {props.currentGrid.tree_state}
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  1
-                                </td>
-                              </tr>
-
-                              <tr>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Bodenqualität & Versiegelungsgrad
+                                  Durchschnittlich gemessener Feinstaub (PM 10)
+                                  µg/m³
                                 </td>
                                 <td className="py-4 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
-                                    props.currentGrid.soil_quality,
+                                    props.currentGrid.pm10_mean,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Gefahr
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  6
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Durchschnittlich gemessenes Stickstoffdioxid
+                                  (NO2) µg/m³
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.no2_mean,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Gefahr
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  6
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Geschätzte Einwohnerschaft
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.population_est,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  4
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Geschätzte ältere Bevölkerung ({">"}64)
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {props.currentGrid.elderly}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  2
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Geschätzte Vorschulbevölkerung ({"<"}10)
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {props.currentGrid.young_pop}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  18
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Armutsindex
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.poverty_index,
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
                                   Anfälligkeit (Empfindlichkeit)
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  3
+                                  12
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Vorhandensein von Schulen, Kindergärten und
+                                  Pflegeheimen
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.school_kindergarden,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  12
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anzahl der staatlichen, kommunalen und
+                                  sonstigen Bäume
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {props.currentGrid.total_tree}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  10
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Fläche der Grünflächen (Parks, Grünflächen und
+                                  Friedhof)
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.greenspace,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  8
                                 </td>
                               </tr>
                             </tbody>
@@ -1364,7 +1554,6 @@ export default function InfoPanel(props) {
                           </div>
                         </PopoverPanel>
                       </Popover>
-                      
                     </div>
                   </div>
                 </div>
@@ -1455,6 +1644,123 @@ export default function InfoPanel(props) {
                             <tbody className="divide-y divide-gray-200 bg-white">
                               <tr>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Überschwemmung durch Oberflächenwasser m2
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.flood_area,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Gefahr
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  3
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Industrie & Gewerbegebiet m2
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.industrial_commecrcial,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  4
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Kritische Infrastrukturen m2
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.critical_infrastructure,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  24
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Geschätzte Einwohnerschaft
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {props.currentGrid.population_est}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  10
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Armutsindex
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.poverty_index,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  6
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Prozentsatz der undurchlässigen Fläche
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.impervious,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  26
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Durchschnittliche Steigung
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.slope_mean,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  16
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
                                   Anzahl städtischer Bäume
                                 </td>
                                 <td className="py-4 px-2 medium-intro-sm text-green-600">
@@ -1470,33 +1776,19 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Anzahl Bäume auf Landesliegenschaften
-                                </td>
-                                <td className="py-4 px-2 medium-intro-sm text-green-600">
-                                  {props.currentGrid.tree_state}
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  1
-                                </td>
-                              </tr>
-
-                              <tr>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Bodenqualität & Versiegelungsgrad
+                                  Fläche der Grünflächen (Parks, Grünflächen und
+                                  Friedhof)
                                 </td>
                                 <td className="py-4 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
-                                    props.currentGrid.soil_quality,
+                                    props.currentGrid.greenspace,
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  Bewältigungsfähigkeit (Anfälligkeit)
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  3
+                                  13
                                 </td>
                               </tr>
                             </tbody>
@@ -1692,7 +1984,6 @@ export default function InfoPanel(props) {
                           </div>
                         </PopoverPanel>
                       </Popover>
-                      
                     </div>
                   </div>
                 </div>
@@ -1783,48 +2074,171 @@ export default function InfoPanel(props) {
                             <tbody className="divide-y divide-gray-200 bg-white">
                               <tr>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Anzahl städtischer Bäume
-                                </td>
-                                <td className="py-4 px-2 medium-intro-sm text-green-600">
-                                  {props.currentGrid.tree_municipal}
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  1
-                                </td>
-                              </tr>
-
-                              <tr>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Anzahl Bäume auf Landesliegenschaften
-                                </td>
-                                <td className="py-4 px-2 medium-intro-sm text-green-600">
-                                  {props.currentGrid.tree_state}
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
-                                </td>
-                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  1
-                                </td>
-                              </tr>
-
-                              <tr>
-                                <td className="py-4 px-2 book-info-sm text-gray-900">
-                                  Bodenqualität & Versiegelungsgrad
+                                  Überschwemmung durch Oberflächenwasser m2
                                 </td>
                                 <td className="py-4 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
-                                    props.currentGrid.soil_quality,
+                                    props.currentGrid.flood_area,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Gefahr
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  5
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Überschwemmungsgefahr in der Straße (erhöht,
+                                  hoch und mittel) m
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.Roads_risk_flooding,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Gefahr
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  10
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Straßenbahn- und Zugnetz m3
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.tram_train,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  15
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Straßennetz m3
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.tram_train,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  15
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Fußgängernetz m3
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.pedestrian,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  9
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Fahrradnetz m3
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(props.currentGrid.bike).toFixed(
+                                    2,
+                                  )}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Belasteter Vermögenswert
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  6
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Geschätzte Einwohnerschaft
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {props.currentGrid.population_est}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  18
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Armutsindex
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.poverty_index,
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-gray-900">
                                   Anfälligkeit (Empfindlichkeit)
                                 </td>
                                 <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
-                                  3
+                                  14
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Durchschnittliche Steigung
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.slope_mean,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Anfälligkeit (Empfindlichkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  6
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Fläche der Grünflächen (Parks, Grünflächen und
+                                  Friedhof)
+                                </td>
+                                <td className="py-4 px-2 medium-intro-sm text-green-600">
+                                  {parseFloat(
+                                    props.currentGrid.greenspace,
+                                  ).toFixed(2)}
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-gray-900">
+                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                </td>
+                                <td className="py-4 px-2 book-info-sm text-dark-wood-700 text-right">
+                                  11
                                 </td>
                               </tr>
                             </tbody>

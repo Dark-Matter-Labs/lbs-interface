@@ -2,7 +2,9 @@ const slide_texts = {
   filter: {
     text: (
       <p className="book-intro-md text-dark-wood-800">
-        Hier können Sie filtern, um alle diejenigen Standorte anzuzeigen, die mit dem größten Klimarisiko (schlechteste 20%) und dem größten Bedarf an Anpassungslösungen bewertet wurden.
+        Hier können Sie filtern, um alle diejenigen Standorte anzuzeigen, die
+        mit dem größten Klimarisiko (schlechteste 20%) und dem größten Bedarf an
+        Anpassungslösungen bewertet wurden.
       </p>
     ),
   },

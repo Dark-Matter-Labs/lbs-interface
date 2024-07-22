@@ -3,13 +3,13 @@ import { createRoot } from "react-dom/client";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-import {
-  MapboxExportControl,
-  Size,
-  PageOrientation,
-  Format,
-  DPI,
-} from "@watergis/mapbox-gl-export";
+// import {
+//   MapboxExportControl,
+//   Size,
+//   PageOrientation,
+//   Format,
+//   DPI,
+// } from "@watergis/mapbox-gl-export";
 
 import {
   genRiskLayer,
@@ -57,25 +57,25 @@ export default function LBSMap({
   useEffect(() => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/light-v11",
+      style: "mapbox://styles/mapbox/standard",
       center: [9.07, 48.78],
       zoom: 11,
       accessToken: MAPBOX_TOKEN,
       preserveDrawingBuffer: true,
     });
 
-    const exportControl = new MapboxExportControl({
-      PageSize: Size.A3,
-      PageOrientation: PageOrientation.Portrait,
-      Format: Format.PDF,
-      DPI: DPI[96],
-      Crosshair: true,
-      PrintableArea: true,
-      Local: "de",
-      accessToken: MAPBOX_TOKEN,
-    });
+    // const exportControl = new MapboxExportControl({
+    //   PageSize: Size.A3,
+    //   PageOrientation: PageOrientation.Portrait,
+    //   Format: Format.PDF,
+    //   DPI: DPI[96],
+    //   Crosshair: true,
+    //   PrintableArea: true,
+    //   Local: "de",
+    //   accessToken: MAPBOX_TOKEN,
+    // });
 
-    map.current.addControl(exportControl, "top-right");
+    // map.current.addControl(exportControl, "top-right");
 
     // Add zoom and rotation controls to the map.
     map.current.addControl(new mapboxgl.NavigationControl());
@@ -202,7 +202,7 @@ export default function LBSMap({
     if (topo) {
       map.current.setStyle("mapbox://styles/mapbox/satellite-v9");
     } else {
-      map.current.setStyle("mapbox://styles/mapbox/light-v11");
+      map.current.setStyle("mapbox://styles/mapbox/standard");
     }
   }, [topo]);
 

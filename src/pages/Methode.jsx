@@ -47,40 +47,34 @@ export default function Methode() {
           <div className="border border-dark-wood-800 rounded-[10px] px-8">
             <p className="book-intro-sm  pt-10 pb-4">
               Das “Location-basedScoring” Werkzeug wurde von TreesAI entwickelt,
-              um eine risikobasierteVulnerabilitätsbewertung durchzuführen.
+              um eine risikobasierte Vulnerabilitätsbewertung durchzuführen.
               Damit lässt sich bewerten, wie sich dieMuster der Risiken und
               potenziellen Vorteile für natürliche und menschlicheSysteme
               aufgrund des Klimawandels verändern. Die von TreesAI verwendete
               Methode zur Entwicklung einer Risikobewertung für geografische
               Gebiete wurde an den Leitfaden für die Analyse der Auswirkungen
-              und der Anfälligkeit lebenswichtigerInfrastrukturen und bebauter
+              und der Anfälligkeit lebenswichtiger Infrastrukturen und bebauter
               Gebiete (IVAVIA)(Resin, 2018) angepasst, der auf den
               Risikokonzepten des Fünften Sachstandsberichts des IPCC basiert.
             </p>
-            <a
-              href="https://run.gus.earth/project/428/b39877962d1f134fa65f76c071a6749f1ba03a52/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              className="bold-intro-sm  rounded-full bg-green-600 my-4 py-2 px-4 text-white-200 shadow-sm hover:bg-dark-wood-700 "
             >
-              <button
-                type="button"
-                className="bold-intro-sm  rounded-full bg-green-600 my-4 py-2 px-4 text-white-200 shadow-sm hover:bg-dark-wood-700 "
-              >
-                Technisches Vorgehen
-              </button>
-              <br />
-              <button
-                type="button"
-                className="bold-intro-sm  rounded-full bg-green-600 my-4 py-2 px-4 text-white-200 shadow-sm hover:bg-dark-wood-700 "
-              >
-                Strategiepapier
-              </button>
-            </a>
+              Technisches Vorgehen
+            </button>
+            <br />
+            <button
+              type="button"
+              className="bold-intro-sm  rounded-full bg-green-600 my-4 py-2 px-4 text-white-200 shadow-sm hover:bg-dark-wood-700 "
+            >
+              Strategiepapier
+            </button>
           </div>
           <div className="border border-green-500 rounded-[10px] px-8 bg-white-300">
             <p className="book-intro-sm pt-10 pb-4">
               <span className="bold-intro-sm">NbS-Simulationsprogramm:</span>{" "}
-              Ein auf einem wissenschaftlichenPeer-Review basierter
+              Ein auf einem wissenschaftlichen Peer-Review basierter
               Open-Source-Ansatz, welcher agentenbasierte Modellierung (ABM)
               nutzt - d.h. ein Computermodell zur Simulation der Interaktionen
               von Agenten wie einzelnen Bäumen, Bienen, Anwohnern oder einem

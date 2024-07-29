@@ -403,6 +403,7 @@ export default function LBSMap({
     if (map.current.getLayer("risk-layer") !== undefined) {
       if (layer === 0) {
         if (onlyCritical) {
+          console.log("yo");
           map.current.setFilter("risk-layer", [
             ">",
             ["to-number", ["get", "AVERAGE_RISK"]],
@@ -511,7 +512,7 @@ export default function LBSMap({
         ]);
       }
     }
-  }, [populationFilter, layer]);
+  }, [populationFilter]);
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
@@ -535,7 +536,7 @@ export default function LBSMap({
         ]);
       }
     }
-  }, [povertyFilter, layer]);
+  }, [povertyFilter]);
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
@@ -559,7 +560,7 @@ export default function LBSMap({
         ]);
       }
     }
-  }, [treeFilter, layer]);
+  }, [treeFilter]);
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
@@ -583,7 +584,7 @@ export default function LBSMap({
         ]);
       }
     }
-  }, [criticalFilter, layer]);
+  }, [criticalFilter]);
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
@@ -601,7 +602,7 @@ export default function LBSMap({
         ]);
       }
     }
-  }, [oldFilter, layer]);
+  }, [oldFilter]);
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
@@ -619,7 +620,7 @@ export default function LBSMap({
         ]);
       }
     }
-  }, [youngFilter, layer]);
+  }, [youngFilter]);
 
   return (
     <div className="overflow-hidden">
@@ -654,4 +655,5 @@ LBSMap.propTypes = {
   greenspace: PropTypes.bool,
   oldFilter: PropTypes.string,
   youngFilter: PropTypes.string,
+  reset_filters: PropTypes.func,
 };

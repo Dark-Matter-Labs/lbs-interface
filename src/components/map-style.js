@@ -9,8 +9,8 @@ export const baseLayer = {
     "line-width": [
       "case",
       ["boolean", ["feature-state", "hover"], false],
-      4,
-      0.6,
+      2,
+      0.2,
     ],
     "line-color": [
       "case",
@@ -196,12 +196,12 @@ export const floodingBuiltRiskLayer = {
     "fill-color": {
       property: "E_risk_score",
       stops: [
-        [15.8, "#93d5b6"],
-        [25, "#5cc0be"],
-        [31.4, "#3ba6c1"],
-        [40, "#2f87ba"],
-        [65, "#295ea9"],
-        [100, "#253494"],
+        [15.8, "#bed8ec"],
+        [25, "#8fc2de"],
+        [31.4, "#5fa5d1"],
+        [38.5, "#3d8dc3"],
+        [50.1, "#1e6db2"],
+        [100, "#08529c"],
       ],
     },
     "fill-opacity": [

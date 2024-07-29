@@ -28,7 +28,7 @@ export default function LayerSelector({
     <Transition.Root
       show={true}
       as={Fragment}
-      className="mt-[11rem] justify-self-end z-10 mr-2"
+      className="mt-[8.5rem] justify-self-end z-10 mr-2"
     >
       <Transition.Child
         enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -39,7 +39,7 @@ export default function LayerSelector({
         leaveTo="translate-x-full"
       >
         <div className=" mx-10 ">
-          <div className="bg-dark-wood-800 px-2 py-4 rounded-[10px] my-4">
+          <div className="bg-dark-wood-800 px-2 py-2 rounded-[10px] my-4">
             <span className="text-center book-info-sm uppercase text-dark-wood-300">
               HINTERGRUND
             </span>
@@ -85,11 +85,9 @@ export default function LayerSelector({
             </div>
           </div>
 
-          <div className="bg-dark-wood-800 px-2 py-4 rounded-[10px] my-4 ">
+          <div className="bg-dark-wood-800 px-2 py-2 rounded-[10px] my-4 ">
             <span className="text-center book-info-sm uppercase text-dark-wood-300">
-              Baum-
-              <br />
-              schichten
+              Baum- schichten
             </span>
             <hr className="border-1 border-white" />
             <div className="flex justify-between items-center my-2">
@@ -146,10 +144,9 @@ export default function LayerSelector({
             </div>
           </div>
 
-          <div className="bg-dark-wood-800 px-2 py-4 rounded-[10px]">
+          <div className="bg-dark-wood-800 px-2 py-2 rounded-[10px]">
             <span className="text-center book-info-sm uppercase text-dark-wood-300">
-              Zusätzliche <br />
-              Schichten
+              Zusätzliche Schichten
             </span>
             <hr className="border-1 border-white" />
             <div className="flex justify-between items-center my-2">
@@ -201,7 +198,7 @@ export default function LayerSelector({
             </div>
           </div>
           {aIndex && (
-            <div className="bg-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
+            <div className="bg-white border-2 border-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
               <p className="medium-info-sm text-dark-wood-800">
                 Geringes - Risiko - Hohes
               </p>
@@ -210,7 +207,7 @@ export default function LayerSelector({
           )}
 
           {popDen && (
-            <div className="bg-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
+            <div className="bg-white border-2 border-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
               <p className="medium-info-sm text-dark-wood-800">
                 Geringes - Risiko - Hohes
               </p>

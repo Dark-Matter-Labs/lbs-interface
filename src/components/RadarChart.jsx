@@ -70,6 +70,7 @@ const RiskRadar = (props) => {
         dotSize={5}
         blendMode="multiply"
         animate={false}
+        maxValue={100}
       />
     </div>
   );

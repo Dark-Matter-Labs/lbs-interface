@@ -75,6 +75,15 @@ export default function Home() {
     AVERAGE_RISK: 0,
   });
 
+  const reset_filters = () => {
+    setPopulationFilter("keiner");
+    setPovertyFilter("keiner");
+    setTreeFilter("keiner");
+    setCriticalFilter("keiner");
+    setOldFilter("deaktiviert");
+    setYoungFilter("deaktiviert");
+  };
+
   return (
     <div className="h-[100vh] overflow-y-clip">
       <NavBar current="home" />
@@ -134,13 +143,14 @@ export default function Home() {
             criticalFilter={criticalFilter}
             oldFilter={oldFilter}
             youngFilter={youngFilter}
+            reset_filters={reset_filters}
           />
         </div>
       ) : (
         <div className="relative">
-          <div className="absolute  grid grid-cols-2 justify-items-start w-full">
+          <div className="absolute grid grid-cols-2 justify-items-start w-full">
             <div
-              className="z-10 px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer w-52"
+              className="z-10 px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer mt-80 h-20 w-52"
               onClick={() => setShowInfoPanel(true)}
             >
               <span className="text-white medium-intro-sm ">
@@ -185,6 +195,7 @@ export default function Home() {
             criticalFilter={criticalFilter}
             oldFilter={oldFilter}
             youngFilter={youngFilter}
+            reset_filters={reset_filters}
           />
         </div>
       )}

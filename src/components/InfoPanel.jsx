@@ -274,19 +274,19 @@ export default function InfoPanel(props) {
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3 pl-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white "
+                                className="py-2 pl-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white "
                               >
                                 Gefahr
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left medium-info-sm uppercase bg-green-500 text-white"
+                                className="px-3 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                               >
                                 Belastung
                               </th>
                               <th
                                 scope="col"
-                                className="px-3 py-3 text-left medium-info-sm uppercase bg-green-500 rounded-tr-[10px] text-white"
+                                className="px-3 py-2 text-left medium-info-sm uppercase bg-green-500 rounded-tr-[10px] text-white"
                               >
                                 Risikowert
                               </th>
@@ -294,70 +294,70 @@ export default function InfoPanel(props) {
                           </thead>
                           <tbody className="divide-y divide-green-600 bg-white">
                             <tr>
-                              <td className=" py-4 px-2 book-info-sm text-gray-900 ">
+                              <td className=" py-2 px-2 book-info-sm text-gray-900 ">
                                 Trockenheit
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-gray-900">
+                              <td className=" px-2 py-2 book-info-sm text-gray-900">
                                 Bäume
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-gray-900 float-right">
+                              <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
                                   props.currentGrid.A_risk_score,
                                 ).toFixed(0)}
                               </td>
                             </tr>
                             <tr>
-                              <td className=" py-4 px-2 book-info-sm text-gray-900 ">
+                              <td className=" py-2 px-2 book-info-sm text-gray-900 ">
                                 Hitze
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-gray-900]">
+                              <td className=" px-2 py-2 book-info-sm text-gray-900]">
                                 Bevölkerungs
                                 <br />
                                 gesundheit
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-gray-900 float-right">
+                              <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
                                   props.currentGrid.B_risk_score,
                                 ).toFixed(0)}
                               </td>
                             </tr>
                             <tr>
-                              <td className=" py-4 px-2 book-info-sm text-gray-900">
+                              <td className=" py-2 px-2 book-info-sm text-gray-900">
                                 Luftverschmutzung
                               </td>
-                              <td className="px-2 py-4 book-info-sm text-gray-900">
+                              <td className="px-2 py-2 book-info-sm text-gray-900">
                                 Bevölkerungs
                                 <br />
                                 gesundheit
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-gray-900 float-right">
+                              <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
                                   props.currentGrid.C_risk_score,
                                 ).toFixed(0)}
                               </td>
                             </tr>
                             <tr>
-                              <td className=" py-4 px-2 book-info-sm text-gray-900 ">
+                              <td className=" py-2 px-2 book-info-sm text-gray-900 ">
                                 Überschwemmung
                               </td>
-                              <td className="p px-2 py-4 book-info-sm text-gray-900">
+                              <td className="px-2 py-2 book-info-sm text-gray-900">
                                 Verkehrsnetz
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-gray-900 float-right">
+                              <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
                                   props.currentGrid.D_risk_score,
                                 ).toFixed(0)}
                               </td>
                             </tr>
                             <tr>
-                              <td className="py-4 px-2 book-info-sm text-gray-900 ">
+                              <td className="py-2 px-2 book-info-sm text-gray-900 ">
                                 Überschwemmung
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-gray-900">
+                              <td className=" px-2 py-2 book-info-sm text-gray-900">
                                 Bebaute
                                 <br /> Gebiete
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-gray-900 float-right">
+                              <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
                                   props.currentGrid.E_risk_score,
                                 ).toFixed(0)}
@@ -558,53 +558,53 @@ export default function InfoPanel(props) {
                                   <br /> Landesliegenschaften
                                   <DataInfoPopover description="Die Anzahl der Bäume auf Landesliegenschaften in Stuttgart innerhalb jedes Rasters." />
                                 </td>
-                                <td className="medium-intro-sm px-2 py-4 text-green-600">
+                                <td className="medium-intro-sm px-2 py-2 text-green-600">
                                   {props.currentGrid.tree_state}
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-gray-900">
+                                <td className=" px-2 py-2 book-info-sm text-gray-900">
                                   Belasteter
                                   <br /> Vermögenswert
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-dark-wood-700 ">
+                                <td className=" px-2 py-2 book-info-sm text-dark-wood-700 ">
                                   1
                                 </td>
                               </tr>
 
                               <tr>
-                                <td className=" py-4 px-2 book-info-sm text-gray-900 ">
+                                <td className=" py-2 px-2 book-info-sm text-gray-900 ">
                                   Bodenqualität
                                   <br /> & Versiegelungsgrad
                                   <DataInfoPopover description="Dieser Wert dient der Gesamtbewertung der Bodenqualität unter Berücksichtigung von Archivfunktion, Versiegelung und Altlasten. Die Skala reicht von 0 (keine funktionale Bodenqualität) bis 5 (sehr hohe Bodenqualität)" />
                                 </td>
-                                <td className=" px-2 py-4 medium-intro-sm text-green-600">
+                                <td className=" px-2 py-2 medium-intro-sm text-green-600">
                                   {parseFloat(
                                     props.currentGrid.soil_quality,
                                   ).toFixed(2)}
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-gray-900">
+                                <td className=" px-2 py-2 book-info-sm text-gray-900">
                                   Anfälligkeit <br />
                                   (Empfindlichkeit)
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-dark-wood-700 ">
+                                <td className=" px-2 py-2 book-info-sm text-dark-wood-700 ">
                                   3
                                 </td>
                               </tr>
 
                               <tr>
-                                <td className=" py-4 px-2 book-info-sm text-gray-900 ">
+                                <td className=" py-2 px-2 book-info-sm text-gray-900 ">
                                   Durchschnitt digitales Höhenmodell (DEM)
                                   <DataInfoPopover description="Ein digitales Höhenmodell (DEM: Digital Elevation Model) verwendet typischerweise Meter als Maßeinheit für die Höhe. Die Erhebungen in einem DEM werden in Metern über dem Meeresspiegel gemessen. Dieser Indikator ist für diese Bewertung relevant, da Bäume auf Hügeln stärker dem Wind und der Sonneneinstrahlung ausgesetzt und daher anfälliger für Dürrerisiken sind." />
                                 </td>
-                                <td className=" px-2 py-4 medium-intro-sm text-green-600">
+                                <td className=" px-2 py-2 medium-intro-sm text-green-600">
                                   {parseFloat(
                                     props.currentGrid.average_dem,
                                   ).toFixed(2)}
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-gray-900">
+                                <td className=" px-2 py-2 book-info-sm text-gray-900">
                                   Anfälligkeit <br />
                                   (Empfindlichkeit)
                                 </td>
-                                <td className=" px-2 py-4 book-info-sm text-dark-wood-700 ">
+                                <td className=" px-2 py-2 book-info-sm text-dark-wood-700 ">
                                   2
                                 </td>
                               </tr>
@@ -626,13 +626,13 @@ export default function InfoPanel(props) {
                             <tr>
                               <th
                                 scope="col"
-                                className="py-3 px-2 text-left medium-info-sm uppercase text-white bg-green-600 rounded-tl-[10px]"
+                                className="py-2 px-2 text-left medium-info-sm uppercase text-white bg-green-600 rounded-tl-[10px]"
                               >
                                 Ausgewählte Region
                               </th>
                               <th
                                 scope="col"
-                                className="px-2 py-3 text-left medium-info-sm uppercase text-white bg-green-600 rounded-tr-[10px]"
+                                className="px-2 py-2 text-left medium-info-sm uppercase text-white bg-green-600 rounded-tr-[10px]"
                               >
                                 Wert
                               </th>
@@ -640,10 +640,10 @@ export default function InfoPanel(props) {
                           </thead>
                           <tbody className="divide-y divide-green-600 bg-white">
                             <tr>
-                              <td className=" py-4 px-2 book-info-sm text-gray-900 ">
+                              <td className=" py-2 px-2 book-info-sm text-gray-900 ">
                                 Belastung
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-green-600 text-right">
+                              <td className=" px-2 py-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
                                   props.currentGrid.A_EXPOSURE,
                                 ).toFixed(0)}
@@ -655,7 +655,7 @@ export default function InfoPanel(props) {
                                 Empfindlichkeit <br />
                                 (Anfälligkeit)
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-green-600 text-right">
+                              <td className=" px-2 py-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
                                   props.currentGrid.A_SENSITIVITY,
                                 ).toFixed(0)}
@@ -663,10 +663,10 @@ export default function InfoPanel(props) {
                             </tr>
 
                             <tr>
-                              <td className=" py-4 px-2 book-info-sm text-gray-900 ">
+                              <td className=" py-2 px-2 book-info-sm text-gray-900 ">
                                 Risikolevel
                               </td>
-                              <td className=" px-2 py-4 book-info-sm text-green-600 text-right">
+                              <td className=" px-2 py-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
                                   props.currentGrid.A_risk_score,
                                 ).toFixed(0)}

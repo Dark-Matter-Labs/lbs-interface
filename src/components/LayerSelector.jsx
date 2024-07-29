@@ -18,7 +18,6 @@ export default function LayerSelector({
   setGreenspace,
   setCityTrees,
   aIndex,
-  setAIndex,
   neighbors,
   popDen,
   setPopDen,
@@ -149,21 +148,6 @@ export default function LayerSelector({
               Zusätzliche Schichten
             </span>
             <hr className="border-1 border-white" />
-            <div className="flex justify-between items-center my-2">
-              <span className="text-green-600 book-info-sm">Armutsindex</span>
-              <button
-                type="button"
-                onClick={() => {
-                  setAIndex(!aIndex);
-                }}
-                className={classNames(
-                  aIndex ? "bg-green-600" : "bg-dark-wood-700",
-                  "bold-intro-sm inline-flex justify-center rounded-full border border-transparent  py-4 px-4 border-white ml-2",
-                )}
-              >
-                {" "}
-              </button>
-            </div>
             <div className="flex justify-between items-center my-2">
               <span className="text-green-600 book-info-sm">Stadbezirk</span>
               <button

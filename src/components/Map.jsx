@@ -1,15 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-// import {
-//   MapboxExportControl,
-//   Size,
-//   PageOrientation,
-//   Format,
-//   DPI,
-// } from "@watergis/mapbox-gl-export";
 
 import {
   genRiskLayer,
@@ -20,6 +13,8 @@ import {
   floodingBuiltRiskLayer,
   baseLayer,
 } from "./map-style";
+
+import { FilterContext } from "../pages/FilterContext";
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
 
@@ -35,16 +30,19 @@ export default function LBSMap({
   onlyCritical,
   neighbors,
   popDen,
-  populationFilter,
-  povertyFilter,
-  treeFilter,
-  criticalFilter,
-  oldFilter,
-  youngFilter,
 }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [currentLayer, setCurrentLayer] = useState(genRiskLayer);
+
+  const {
+    populationFilter,
+    povertyFilter,
+    treeFilter,
+    criticalFilter,
+    oldFilter,
+    youngFilter,
+  } = useContext(FilterContext);
 
   const [hoveredDistrict, _setHoveredDistrict] = useState(null);
   const hoveredDistrictRef = useRef(hoveredDistrict);
@@ -653,7 +651,4 @@ LBSMap.propTypes = {
   popDen: PropTypes.bool,
   muniTrees: PropTypes.bool,
   greenspace: PropTypes.bool,
-  oldFilter: PropTypes.string,
-  youngFilter: PropTypes.string,
-  reset_filters: PropTypes.func,
 };

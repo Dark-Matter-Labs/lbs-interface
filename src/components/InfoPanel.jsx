@@ -2,16 +2,12 @@ import { Fragment, useState } from "react";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 import {
   Transition,
-  Popover,
-  PopoverButton,
-  PopoverPanel,
   Switch,
 } from "@headlessui/react";
 import PropTypes from "prop-types";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 import DataInfoPopover from "./DataInfoPopover";
-import ComboFilter from "./ComboFilter";
+import FilterGroup from "./FilterGroup";
 import InfoSlideOver from "./InfoSlideOver";
 import RiskRadar from "./RadarChart";
 import heatCard from "../assets/heat_card.png";
@@ -40,7 +36,7 @@ export default function InfoPanel(props) {
     <Transition.Root
       show={props.show}
       as={Fragment}
-      className="bg-white-200 rounded-r-[30px] z-10"
+      className="bg-white-200 rounded-r-[30px] z-10 w-[42rem]"
     >
       <Transition.Child
         enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -147,58 +143,7 @@ export default function InfoPanel(props) {
                     </Switch>
                     <span className="px-1 book-info-sm">nur kritisch</span>
                     <InfoSlideOver label="filter" />
-                    <Popover className="relative">
-                      <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                        <span className=" book-info-sm">
-                          Demografische Filter
-                        </span>
-                        <ChevronDownIcon
-                          className="h-5 w-5"
-                          aria-hidden="true"
-                        />
-                      </PopoverButton>
-
-                      <PopoverPanel
-                        transition
-                        className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-                      >
-                        <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
-                          <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
-                            <ComboFilter
-                              label="Wohndichte"
-                              setFilterState={props.setPopulationFilter}
-                            />
-
-                            <ComboFilter
-                              label="Haushalte in Armut"
-                              setFilterState={props.setPovertyFilter}
-                            />
-
-                            <ComboFilter
-                              label="Baumbestand"
-                              setFilterState={props.setTreeFilter}
-                            />
-
-                            <ComboFilter
-                              label="Vorhandensein kritischer Infrastruktur"
-                              setFilterState={props.setCriticalFilter}
-                            />
-
-                            <ComboFilter
-                              label="Einwohner über 65 Jahre"
-                              binary={true}
-                              setFilterState={props.setOldFilter}
-                            />
-
-                            <ComboFilter
-                              label="Einwohner unter 10 Jahren"
-                              binary={true}
-                              setFilterState={props.setYoungFilter}
-                            />
-                          </div>
-                        </div>
-                      </PopoverPanel>
-                    </Popover>
+                    <FilterGroup />
                   </div>
                 </div>
 
@@ -425,58 +370,7 @@ export default function InfoPanel(props) {
                       </Switch>
                       <span className="px-1 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
-                      <Popover className="relative">
-                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                          <span className=" book-info-sm">
-                            Demografische Filter
-                          </span>
-                          <ChevronDownIcon
-                            className="h-5 w-5"
-                            aria-hidden="true"
-                          />
-                        </PopoverButton>
-
-                        <PopoverPanel
-                          transition
-                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-                        >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
-                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
-                              <ComboFilter
-                                label="Wohndichte"
-                                setFilterState={props.setPopulationFilter}
-                              />
-
-                              <ComboFilter
-                                label="Haushalte in Armut"
-                                setFilterState={props.setPovertyFilter}
-                              />
-
-                              <ComboFilter
-                                label="Baumbestand"
-                                setFilterState={props.setTreeFilter}
-                              />
-
-                              <ComboFilter
-                                label="Vorhandensein kritischer Infrastruktur"
-                                setFilterState={props.setCriticalFilter}
-                              />
-
-                              <ComboFilter
-                                label="Einwohner über 65 Jahre"
-                                binary={true}
-                                setFilterState={props.setOldFilter}
-                              />
-
-                              <ComboFilter
-                                label="Einwohner unter 10 Jahren"
-                                binary={true}
-                                setFilterState={props.setYoungFilter}
-                              />
-                            </div>
-                          </div>
-                        </PopoverPanel>
-                      </Popover>
+                      <FilterGroup />
                     </div>
                   </div>
                 </div>
@@ -501,8 +395,8 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                   <div className="grow-0">
-                    <div className=" px-2 ">
-                      <div className="">
+                    <div className="px-2 ">
+                      <div className="h-48 overflow-y-scroll">
                         <div className="inline-block align-middle border-green-600 border-l border-r border-b rounded-t-[10px] ">
                           <table className=" divide-y divide-green-600 ">
                             <thead>
@@ -725,57 +619,7 @@ export default function InfoPanel(props) {
                       </Switch>
                       <span className="px-1 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
-                      <Popover className="relative">
-                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                          <span className=" book-info-sm">
-                            Demografische Filter
-                          </span>
-                          <ChevronDownIcon
-                            className="h-5 w-5"
-                            aria-hidden="true"
-                          />
-                        </PopoverButton>
-
-                        <PopoverPanel
-                          transition
-                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-                        >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
-                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
-                              <ComboFilter
-                                label="Wohndichte"
-                                setFilterState={props.setPopulationFilter}
-                              />
-
-                              <ComboFilter
-                                label="Haushalte in Armut"
-                                setFilterState={props.setPovertyFilter}
-                              />
-
-                              <ComboFilter
-                                label="Baumbestand"
-                                setFilterState={props.setTreeFilter}
-                              />
-
-                              <ComboFilter
-                                label="Vorhandensein kritischer Infrastruktur"
-                                setFilterState={props.setCriticalFilter}
-                              />
-                              <ComboFilter
-                                label="Einwohner über 65 Jahre"
-                                binary={true}
-                                setFilterState={props.setOldFilter}
-                              />
-
-                              <ComboFilter
-                                label="Einwohner unter 10 Jahren"
-                                binary={true}
-                                setFilterState={props.setYoungFilter}
-                              />
-                            </div>
-                          </div>
-                        </PopoverPanel>
-                      </Popover>
+                      <FilterGroup />
                     </div>
                   </div>
                 </div>
@@ -800,9 +644,9 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                   <div>
-                    <div className="mt-2 flow-root px-2 ">
-                      <div className=" h-48 overflow-y-scroll ">
-                        <div className="inline-block align-middle sm:mx-6 rounded-t-[10px] border-green-600 border-l border-r border-b ">
+                    <div className="mt-2 flow-root">
+                      <div className="h-48 overflow-y-scroll ">
+                        <div className="inline-block align-middle rounded-t-[10px] border-green-600 border-l border-r border-b ">
                           <table className="divide-y divide-green-600">
                             <thead>
                               <tr>
@@ -834,8 +678,10 @@ export default function InfoPanel(props) {
                             </thead>
                             <tbody className="divide-y divide-green-600 bg-white">
                               <tr>
-                                <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Landoberflächentemperatur (°C)
+                                <td className="py-2 px-2 book-info-sm text-gray-900 ">
+                                  Landoberflächen-
+                                  <br />
+                                  temperatur (°C)
                                   <DataInfoPopover description="Gebiete, in denen die Wärme zurückgehalten wird, was zu erhöhtem Unbehagen, Gesundheitsrisiken und erhöhten Temperaturen in städtischen Gebieten führt und den Hitzestress verschlimmert." />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
@@ -1135,57 +981,7 @@ export default function InfoPanel(props) {
                       </Switch>
                       <span className="px-1 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
-                      <Popover className="relative">
-                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                          <span className=" book-info-sm">
-                            Demografische Filter
-                          </span>
-                          <ChevronDownIcon
-                            className="h-5 w-5"
-                            aria-hidden="true"
-                          />
-                        </PopoverButton>
-
-                        <PopoverPanel
-                          transition
-                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-                        >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
-                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
-                              <ComboFilter
-                                label="Wohndichte"
-                                setFilterState={props.setPopulationFilter}
-                              />
-
-                              <ComboFilter
-                                label="Haushalte in Armut"
-                                setFilterState={props.setPovertyFilter}
-                              />
-
-                              <ComboFilter
-                                label="Baumbestand"
-                                setFilterState={props.setTreeFilter}
-                              />
-
-                              <ComboFilter
-                                label="Vorhandensein kritischer Infrastruktur"
-                                setFilterState={props.setCriticalFilter}
-                              />
-                              <ComboFilter
-                                label="Einwohner über 65 Jahre"
-                                binary={true}
-                                setFilterState={props.setOldFilter}
-                              />
-
-                              <ComboFilter
-                                label="Einwohner unter 10 Jahren"
-                                binary={true}
-                                setFilterState={props.setYoungFilter}
-                              />
-                            </div>
-                          </div>
-                        </PopoverPanel>
-                      </Popover>
+                      <FilterGroup />
                     </div>
                   </div>
                 </div>
@@ -1539,57 +1335,7 @@ export default function InfoPanel(props) {
                       </Switch>
                       <span className="px-1 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
-                      <Popover className="relative">
-                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                          <span className=" book-info-sm">
-                            Demografische Filter
-                          </span>
-                          <ChevronDownIcon
-                            className="h-5 w-5"
-                            aria-hidden="true"
-                          />
-                        </PopoverButton>
-
-                        <PopoverPanel
-                          transition
-                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-                        >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
-                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
-                              <ComboFilter
-                                label="Wohndichte"
-                                setFilterState={props.setPopulationFilter}
-                              />
-
-                              <ComboFilter
-                                label="Haushalte in Armut"
-                                setFilterState={props.setPovertyFilter}
-                              />
-
-                              <ComboFilter
-                                label="Baumbestand"
-                                setFilterState={props.setTreeFilter}
-                              />
-
-                              <ComboFilter
-                                label="Vorhandensein kritischer Infrastruktur"
-                                setFilterState={props.setCriticalFilter}
-                              />
-                              <ComboFilter
-                                label="Einwohner über 65 Jahre"
-                                binary={true}
-                                setFilterState={props.setOldFilter}
-                              />
-
-                              <ComboFilter
-                                label="Einwohner unter 10 Jahren"
-                                binary={true}
-                                setFilterState={props.setYoungFilter}
-                              />
-                            </div>
-                          </div>
-                        </PopoverPanel>
-                      </Popover>
+                      <FilterGroup />
                     </div>
                   </div>
                 </div>
@@ -1967,57 +1713,7 @@ export default function InfoPanel(props) {
                       </Switch>
                       <span className="px-1 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
-                      <Popover className="relative">
-                        <PopoverButton className="pl-4 inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                          <span className=" book-info-sm">
-                            Demografische Filter
-                          </span>
-                          <ChevronDownIcon
-                            className="h-5 w-5"
-                            aria-hidden="true"
-                          />
-                        </PopoverButton>
-
-                        <PopoverPanel
-                          transition
-                          className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-                        >
-                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5 lg:max-w-3xl h-80">
-                            <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
-                              <ComboFilter
-                                label="Wohndichte"
-                                setFilterState={props.setPopulationFilter}
-                              />
-
-                              <ComboFilter
-                                label="Haushalte in Armut"
-                                setFilterState={props.setPovertyFilter}
-                              />
-
-                              <ComboFilter
-                                label="Baumbestand"
-                                setFilterState={props.setTreeFilter}
-                              />
-
-                              <ComboFilter
-                                label="Vorhandensein kritischer Infrastruktur"
-                                setFilterState={props.setCriticalFilter}
-                              />
-                              <ComboFilter
-                                label="Einwohner über 65 Jahre"
-                                binary={true}
-                                setFilterState={props.setOldFilter}
-                              />
-
-                              <ComboFilter
-                                label="Einwohner unter 10 Jahren"
-                                binary={true}
-                                setFilterState={props.setYoungFilter}
-                              />
-                            </div>
-                          </div>
-                        </PopoverPanel>
-                      </Popover>
+                      <FilterGroup />
                     </div>
                   </div>
                 </div>
@@ -2402,10 +2098,4 @@ InfoPanel.propTypes = {
   currentGrid: PropTypes.object,
   onlyCritical: PropTypes.bool,
   setOnlyCritical: PropTypes.func,
-  setPopulationFilter: PropTypes.func,
-  setPovertyFilter: PropTypes.func,
-  setTreeFilter: PropTypes.func,
-  setCriticalFilter: PropTypes.func,
-  setOldFilter: PropTypes.func,
-  setYoungFilter: PropTypes.func,
 };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import "@watergis/mapbox-gl-export/dist/mapbox-gl-export.css";
 
+import { FilterProvider } from "./FilterProvider";
 import NavBar from "../components/NavBar";
 import LBSMap from "../components/Map";
 import InfoPanel from "../components/InfoPanel";
@@ -20,12 +21,6 @@ export default function Home() {
   const [popDen, setPopDen] = useState(false);
   const [activeHazard, setActiveHazard] = useState(0);
   const [onlyCritical, setOnlyCritical] = useState(false);
-  const [populationFilter, setPopulationFilter] = useState("keiner");
-  const [povertyFilter, setPovertyFilter] = useState("keiner");
-  const [treeFilter, setTreeFilter] = useState("keiner");
-  const [criticalFilter, setCriticalFilter] = useState("keiner");
-  const [youngFilter, setYoungFilter] = useState("deaktiviert");
-  const [oldFilter, setOldFilter] = useState("deaktiviert");
 
   const [currentGrid, setCurrentGrid] = useState({
     id: "1",
@@ -75,130 +70,103 @@ export default function Home() {
     AVERAGE_RISK: 0,
   });
 
-  const reset_filters = () => {
-    setPopulationFilter("keiner");
-    setPovertyFilter("keiner");
-    setTreeFilter("keiner");
-    setCriticalFilter("keiner");
-    setOldFilter("deaktiviert");
-    setYoungFilter("deaktiviert");
-  };
-
   return (
-    <div className="h-[100vh] overflow-y-clip">
-      <NavBar current="home" />
-      {showInfoPanel ? (
-        <div className="relative">
-          <div className="absolute grid grid-cols-2 justify-items-start w-full ">
-            <InfoPanel
-              activeHazard={activeHazard}
-              setActiveHazard={setActiveHazard}
-              show={showInfoPanel}
-              setShowPanel={setShowInfoPanel}
-              currentGrid={currentGrid}
-              onlyCritical={onlyCritical}
-              setOnlyCritical={setOnlyCritical}
-              setPopulationFilter={setPopulationFilter}
-              setPovertyFilter={setPovertyFilter}
-              setTreeFilter={setTreeFilter}
-              setCriticalFilter={setCriticalFilter}
-              setYoungFilter={setYoungFilter}
-              setOldFilter={setOldFilter}
-            />
-            <LayerSelector
-              raster={raster}
-              setRaster={setRaster}
-              topo={topo}
-              setTopo={setTopo}
-              cityTrees={cityTrees}
-              setCityTrees={setCityTrees}
-              muniTrees={muniTrees}
-              setMuniTrees={setMuniTrees}
-              greenspace={greenspace}
-              setGreenspace={setGreenspace}
-              aIndex={aIndex}
-              setAIndex={setAIndex}
-              neighbors={neighbors}
-              setNeighbors={setNeighbors}
-              popDen={popDen}
-              setPopDen={setPopDen}
-            />
-          </div>
-          <LBSMap
-            layer={activeHazard}
-            setCurrentGrid={setCurrentGrid}
-            raster={raster}
-            topo={topo}
-            cityTrees={cityTrees}
-            muniTrees={muniTrees}
-            greenspace={greenspace}
-            risk={showInfoPanel}
-            aIndex={aIndex}
-            neighbors={neighbors}
-            popDen={popDen}
-            onlyCritical={onlyCritical}
-            populationFilter={populationFilter}
-            povertyFilter={povertyFilter}
-            treeFilter={treeFilter}
-            criticalFilter={criticalFilter}
-            oldFilter={oldFilter}
-            youngFilter={youngFilter}
-            reset_filters={reset_filters}
-          />
-        </div>
-      ) : (
-        <div className="relative">
-          <div className="absolute grid grid-cols-2 justify-items-start w-full">
-            <div
-              className="z-10 px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer mt-80 h-20 w-52"
-              onClick={() => setShowInfoPanel(true)}
-            >
-              <span className="text-white medium-intro-sm ">
-                Erkunde das Risiko eines Standorts
-              </span>
-              <button onClick={() => setShowInfoPanel(true)}>
-                <ArrowRightCircleIcon className="text-white-200 w-7 h-7 ml-2" />
-              </button>
+    <FilterProvider>
+      <div className="h-[100vh] overflow-y-clip">
+        <NavBar current="home" />
+        {showInfoPanel ? (
+          <div className="relative">
+            <div className="absolute grid grid-cols-2 justify-items-start w-full ">
+              <InfoPanel
+                activeHazard={activeHazard}
+                setActiveHazard={setActiveHazard}
+                show={showInfoPanel}
+                setShowPanel={setShowInfoPanel}
+                currentGrid={currentGrid}
+                onlyCritical={onlyCritical}
+                setOnlyCritical={setOnlyCritical}
+              />
+              <LayerSelector
+                raster={raster}
+                setRaster={setRaster}
+                topo={topo}
+                setTopo={setTopo}
+                cityTrees={cityTrees}
+                setCityTrees={setCityTrees}
+                muniTrees={muniTrees}
+                setMuniTrees={setMuniTrees}
+                greenspace={greenspace}
+                setGreenspace={setGreenspace}
+                aIndex={aIndex}
+                setAIndex={setAIndex}
+                neighbors={neighbors}
+                setNeighbors={setNeighbors}
+                popDen={popDen}
+                setPopDen={setPopDen}
+              />
             </div>
-            <LayerSelector
+            <LBSMap
+              layer={activeHazard}
+              setCurrentGrid={setCurrentGrid}
               raster={raster}
-              setRaster={setRaster}
               topo={topo}
-              setTopo={setTopo}
               cityTrees={cityTrees}
-              setCityTrees={setCityTrees}
               muniTrees={muniTrees}
-              setMuniTrees={setMuniTrees}
               greenspace={greenspace}
-              setGreenspace={setGreenspace}
+              risk={showInfoPanel}
               aIndex={aIndex}
-              setAIndex={setAIndex}
               neighbors={neighbors}
-              setNeighbors={setNeighbors}
               popDen={popDen}
-              setPopDen={setPopDen}
+              onlyCritical={onlyCritical}
             />
           </div>
-          <LBSMap
-            layer={activeHazard}
-            setCurrentGrid={setCurrentGrid}
-            raster={raster}
-            topo={topo}
-            cityTrees={cityTrees}
-            risk={showInfoPanel}
-            aIndex={aIndex}
-            neighbors={neighbors}
-            onlyCritical={onlyCritical}
-            populationFilter={populationFilter}
-            povertyFilter={povertyFilter}
-            treeFilter={treeFilter}
-            criticalFilter={criticalFilter}
-            oldFilter={oldFilter}
-            youngFilter={youngFilter}
-            reset_filters={reset_filters}
-          />
-        </div>
-      )}
-    </div>
+        ) : (
+          <div className="relative">
+            <div className="absolute grid grid-cols-2 justify-items-start w-full">
+              <div
+                className="z-10 px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer mt-80 h-20 w-52"
+                onClick={() => setShowInfoPanel(true)}
+              >
+                <span className="text-white medium-intro-sm ">
+                  Erkunde das Risiko eines Standorts
+                </span>
+                <button onClick={() => setShowInfoPanel(true)}>
+                  <ArrowRightCircleIcon className="text-white-200 w-7 h-7 ml-2" />
+                </button>
+              </div>
+              <LayerSelector
+                raster={raster}
+                setRaster={setRaster}
+                topo={topo}
+                setTopo={setTopo}
+                cityTrees={cityTrees}
+                setCityTrees={setCityTrees}
+                muniTrees={muniTrees}
+                setMuniTrees={setMuniTrees}
+                greenspace={greenspace}
+                setGreenspace={setGreenspace}
+                aIndex={aIndex}
+                setAIndex={setAIndex}
+                neighbors={neighbors}
+                setNeighbors={setNeighbors}
+                popDen={popDen}
+                setPopDen={setPopDen}
+              />
+            </div>
+            <LBSMap
+              layer={activeHazard}
+              setCurrentGrid={setCurrentGrid}
+              raster={raster}
+              topo={topo}
+              cityTrees={cityTrees}
+              risk={showInfoPanel}
+              aIndex={aIndex}
+              neighbors={neighbors}
+              onlyCritical={onlyCritical}
+            />
+          </div>
+        )}
+      </div>
+    </FilterProvider>
   );
 }

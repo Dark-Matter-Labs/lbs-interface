@@ -159,9 +159,12 @@ export default function Home() {
               raster={raster}
               topo={topo}
               cityTrees={cityTrees}
+              muniTrees={muniTrees}
+              greenspace={greenspace}
               risk={showInfoPanel}
               aIndex={aIndex}
               neighbors={neighbors}
+              popDen={popDen}
               onlyCritical={onlyCritical}
             />
           </div>

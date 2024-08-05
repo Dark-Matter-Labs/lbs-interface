@@ -36,9 +36,9 @@ const faqs = [
 
 export default function Methode() {
   return (
-    <>
+    <div className="bg-gray-200">
       <NavBar current="method" />
-      <div className="global-margin ">
+      <div className="global-margin  ">
         <h1 className="uppercase py-8 bg-green-500 text-white-200 px-10 text-center">
           Methode
         </h1>
@@ -189,6 +189,6 @@ export default function Methode() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

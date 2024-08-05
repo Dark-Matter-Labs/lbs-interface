@@ -69,7 +69,7 @@ export default function LayerSelector({
                 onChange={setTopo}
                 className={classNames(
                   topo ? "bg-green-600" : "bg-gray-200",
-                  "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                  "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                 )}
               >
                 <span className="sr-only">Use setting</span>

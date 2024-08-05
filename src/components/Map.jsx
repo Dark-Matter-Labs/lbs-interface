@@ -55,7 +55,7 @@ export default function LBSMap({
   useEffect(() => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/standard",
+      style: "mapbox://styles/ariannadml/cl4i7offh001514qqombhyqso",
       center: [9.07, 48.78],
       zoom: 11,
       accessToken: MAPBOX_TOKEN,
@@ -200,7 +200,7 @@ export default function LBSMap({
     if (topo) {
       map.current.setStyle("mapbox://styles/mapbox/satellite-v9");
     } else {
-      map.current.setStyle("mapbox://styles/mapbox/standard");
+      map.current.setStyle("mapbox://styles/ariannadml/cl4i7offh001514qqombhyqso");
     }
   }, [topo]);
 

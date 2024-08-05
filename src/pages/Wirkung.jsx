@@ -2,7 +2,7 @@ import NavBar from "../components/NavBar";
 
 export default function Wirkung() {
   return (
-    <>
+    <div className="bg-gray-200 pb-80">
       <NavBar current="wirkung" />
       <div className="global-margin mx-auto max-w-2xl">
         <h1 className="uppercase py-8 bg-dark-wood-800 text-white-200 px-10 text-center">
@@ -49,6 +49,6 @@ export default function Wirkung() {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

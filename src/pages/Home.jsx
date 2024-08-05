@@ -124,7 +124,7 @@ export default function Home() {
           <div className="relative">
             <div className="absolute grid grid-cols-2 justify-items-start w-full">
               <div
-                className="z-10 px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer mt-80 h-20 w-52"
+                className="z-10 px-4 py-10 bg-green-600 rounded-r-full flex items-center cursor-pointer mt-10 h-20 w-52"
                 onClick={() => setShowInfoPanel(true)}
               >
                 <span className="text-white medium-intro-sm ">

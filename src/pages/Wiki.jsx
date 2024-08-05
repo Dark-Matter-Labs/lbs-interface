@@ -3,7 +3,7 @@ import diagram from "../assets/LBS-wiki.png";
 
 export default function Wiki() {
   return (
-    <>
+    <div className="bg-gray-200">
       <NavBar current="wiki" />
       <div className="global-margin pb-40">
         <h1 className="uppercase py-8 bg-green-500 text-white-200 px-10 text-center">
@@ -96,6 +96,6 @@ export default function Wiki() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

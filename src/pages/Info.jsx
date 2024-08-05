@@ -4,7 +4,7 @@ import Dmlogo from "../assets/Dm_logo.png";
 
 export default function Info() {
   return (
-    <>
+    <div className="bg-gray-200 pb-80">
       <NavBar current="info" />
       <div className="global-margin mx-auto max-w-3xl">
         <h1 className="uppercase py-8 bg-dark-wood-800 text-white-200 px-10 text-center">
@@ -26,6 +26,6 @@ export default function Info() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -36,7 +36,7 @@ export default function InfoPanel(props) {
     <Transition.Root
       show={props.show}
       as={Fragment}
-      className="bg-white-200 rounded-r-[30px] z-10 w-[42rem]"
+      className="bg-white-200 rounded-r-[30px] z-10 w-[42rem] border-b border-r border-l border-green-500"
     >
       <Transition.Child
         enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -46,7 +46,7 @@ export default function InfoPanel(props) {
         leaveFrom="translate-x-0"
         leaveTo="translate-x-full"
       >
-        <div className="pb-10 max-w-3xl">
+        <div className="pb-10 max-w-3xl mt-2">
           <div className="pr-4 py-4 bg-green-600 flex flex-row items-center my-auto justify-between rounded-tr-[30px]">
             <div>
               <span className="medium-intro-sm text-white-200 pl-6">
@@ -127,7 +127,7 @@ export default function InfoPanel(props) {
                       onChange={props.setOnlyCritical}
                       className={classNames(
                         props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                        "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                       )}
                     >
                       <span className="sr-only">Critical or all</span>
@@ -141,13 +141,13 @@ export default function InfoPanel(props) {
                         )}
                       />
                     </Switch>
-                    <span className="px-1 book-info-sm">nur kritisch</span>
+                    <span className="px-2 book-info-sm">nur kritisch</span>
                     <InfoSlideOver label="filter" />
                     <FilterGroup />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 border-t border-t-green-600 my-4">
+                <div className="grid grid-cols-2 border-t border-t-green-600 mt-2">
                   <div className="pt-2 border-r border-r-green-600">
                     <span className="book-info-sm ">LEGENDE</span>
                     <InfoSlideOver label="topLegendOverall" />
@@ -164,7 +164,7 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                   <div>
-                    <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
+                    <div className="flex justify-between py-4 border-b mx-5 border-b-green-600 ">
                       <span className="px-8 medium-intro-sm">
                         {props.currentGrid.tree_municipal}
                       </span>
@@ -175,7 +175,7 @@ export default function InfoPanel(props) {
                       </span>
                     </div>
 
-                    <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
+                    <div className="flex justify-between py-4 border-b border-b-green-600 mx-5">
                       <span className="px-8 medium-intro-sm">
                         {props.currentGrid.tree_state}
                       </span>
@@ -185,7 +185,7 @@ export default function InfoPanel(props) {
                       </span>
                     </div>
 
-                    <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
+                    <div className="flex justify-between py-4 border-b border-b-green-600 mx-5">
                       <span className="px-8 medium-intro-sm">
                         {parseFloat(
                           props.currentGrid.critical_infrastructure,
@@ -197,7 +197,7 @@ export default function InfoPanel(props) {
                       </span>
                     </div>
 
-                    <div className="flex justify-between py-4 border border-b border-b-green-600 pr-4">
+                    <div className="flex justify-between py-4  mx-5">
                       <span className="px-8 medium-intro-sm">
                         {parseFloat(props.currentGrid.poverty_index).toFixed(2)}
                       </span>
@@ -208,9 +208,9 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="-mx-4 border-8 border-green-600" />
+                <hr className="-mx-4 border-4 border-green-600" />
                 <InfoSlideOver label="bottomTableOverall" />
-                <div className="grid grid-cols-2 mt-1">
+                <div className="grid grid-cols-2 mt-1 overflow-y-scroll h-[27vh]">
                   <div className=" flow-root">
                     <div className="">
                       <div className="inline-block  align-middle rounded-t-[10px] border-green-600 border-l border-r border-b  ">
@@ -354,7 +354,7 @@ export default function InfoPanel(props) {
                         onChange={props.setOnlyCritical}
                         className={classNames(
                           props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
                       >
                         <span className="sr-only">Critical or all</span>
@@ -368,15 +368,15 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
                   </div>
                 </div>
-                <img src={heatCard} className="w-[80%] pb-2" />
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="flex py-2">
+                <img src={heatCard} className="w-[80%] pb-4" />
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="flex py-4">
                   <div className=" grow-0">
                     <span className="book-info-sm">LEGENDE</span>
                     <InfoSlideOver label="topLegendTrocken" />
@@ -509,12 +509,12 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="grid grid-cols-2">
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="grid grid-cols-2 overflow-y-scroll h-[24vh]">
                   <div className="">
                     <InfoSlideOver label="bottomTable" />
                     <div className="">
-                      <div className="inline-block  align-middle rounded-t-[10px] border-green-600 border-l border-r border-b">
+                      <div className="inline-block align-middle rounded-t-[10px] border-green-600 border-l border-r border-b">
                         <table className=" divide-y divide-green-600  ">
                           <thead>
                             <tr>
@@ -603,7 +603,7 @@ export default function InfoPanel(props) {
                         onChange={props.setOnlyCritical}
                         className={classNames(
                           props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
                       >
                         <span className="sr-only">Critical or all</span>
@@ -617,15 +617,15 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
                   </div>
                 </div>
-                <img src={hitzeCard} className="w-[80%] pb-2" />
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="flex pb-2">
+                <img src={hitzeCard} className="w-[80%] pb-4" />
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="flex py-4">
                   <div className="">
                     <span className="book-info-sm">LEGENDE</span>
                     <InfoSlideOver label="topLegendHitze" />
@@ -846,8 +846,8 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="grid grid-cols-2">
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="grid grid-cols-2 overflow-y-scroll h-[27vh]">
                   <div className="flow-root">
                     <InfoSlideOver label="bottomTable" />
                     <div className="">
@@ -965,7 +965,7 @@ export default function InfoPanel(props) {
                         onChange={props.setOnlyCritical}
                         className={classNames(
                           props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
                       >
                         <span className="sr-only">Critical or all</span>
@@ -979,15 +979,15 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
                   </div>
                 </div>
-                <img src={luftCard} className="w-[80%] pb-2" />
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="flex pb-2">
+                <img src={luftCard} className="w-[80%] pb-4" />
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="flex py-4">
                   <div className="">
                     <span className="book-info-sm">LEGENDE</span>
                     <InfoSlideOver label="topLegendLuft" />
@@ -1208,8 +1208,8 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="grid grid-cols-2 ">
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="grid grid-cols-2 overflow-y-scroll h-[24vh]">
                   <div className="flow-root">
                     <InfoSlideOver label="bottomTable" />
                     <div className=" ">
@@ -1319,7 +1319,7 @@ export default function InfoPanel(props) {
                         onChange={props.setOnlyCritical}
                         className={classNames(
                           props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
                       >
                         <span className="sr-only">Critical or all</span>
@@ -1333,7 +1333,7 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
@@ -1371,9 +1371,9 @@ export default function InfoPanel(props) {
                     Bebautes Gebiet
                   </span>
                 </div>
-                <img src={uberCard} className="w-[80%] pb-2" />
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="flex pb-2">
+                <img src={uberCard} className="w-[80%] pb-4" />
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="flex py-4">
                   <div className="pt-2 ">
                     <span className="book-info-sm">LEGENDE</span>
                     <InfoSlideOver label="topLegendUber1" />
@@ -1578,8 +1578,8 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="grid grid-cols-2 ">
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="grid grid-cols-2 overflow-y-scroll h-[27vh]">
                   <div className="flow-root">
                     <InfoSlideOver label="bottomTable" />
                     <div className=" h-60 overflow-y-scroll">
@@ -1697,7 +1697,7 @@ export default function InfoPanel(props) {
                         onChange={props.setOnlyCritical}
                         className={classNames(
                           props.onlyCritical ? "bg-green-600" : "bg-gray-200",
-                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-1 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
+                          "justify-self-end relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2",
                         )}
                       >
                         <span className="sr-only">Critical or all</span>
@@ -1711,7 +1711,7 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-1 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">nur kritisch</span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
@@ -1749,9 +1749,9 @@ export default function InfoPanel(props) {
                     Bebautes Gebiet
                   </span>
                 </div>
-                <img src={uberBuiltCard} className="w-[80%] pb-2" />
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="flex pb-2">
+                <img src={uberBuiltCard} className="w-[80%] pb-4" />
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="flex py-4">
                   <div className="">
                     <span className="book-info-sm">LEGENDE</span>
                     <InfoSlideOver label="topLegendUber2" />
@@ -1975,8 +1975,8 @@ export default function InfoPanel(props) {
                     </div>
                   </div>
                 </div>
-                <hr className="-mx-4 border-8 border-green-600" />
-                <div className="grid grid-cols-2  ">
+                <hr className="-mx-4 border-4 border-green-600" />
+                <div className="grid grid-cols-2  overflow-y-scroll h-[27vh]">
                   <div className=" flow-root">
                     <InfoSlideOver label="bottomTable" />
                     <div className=" h-60 overflow-y-scroll ">

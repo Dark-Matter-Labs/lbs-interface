@@ -1,13 +1,13 @@
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import PropTypes from "prop-types";
-import { InformationCircleIcon } from "@heroicons/react/20/solid";
+import infoIcon from '../assets/info-icon.svg'
 
 export default function DataInfoPopover({ description }) {
   return (
-    <span className="inline-block align-middle">
+    <span className="pl-1.5 inline-block align-middle">
       <Popover className="relative">
         <PopoverButton className="inline-flex items-center ">
-          <InformationCircleIcon
+          <img src={infoIcon}
             aria-hidden="true"
             className="h-5 w-5 text-dark-wood-400"
           />

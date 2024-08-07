@@ -772,8 +772,8 @@ export default function InfoPanel(props) {
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
-                                    props.currentGrid.impervious,
-                                  ).toFixed(2)}
+                                    props.currentGrid.impervious/625,
+                                  ).toFixed(2)}%
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
                                   Anfälligkeit (Empfindlichkeit)
@@ -1523,8 +1523,8 @@ export default function InfoPanel(props) {
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
-                                    props.currentGrid.impervious,
-                                  ).toFixed(2)}
+                                    props.currentGrid.impervious/625,
+                                  ).toFixed(2)}%
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
                                   Anfälligkeit (Empfindlichkeit)
@@ -1536,7 +1536,7 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Durchschnittliche Steigung
+                                  Durchschnittliche Steigung(degrees)
                                   <DataInfoPopover description="Gebiete mit steilen Hängen neigen bei starken Regenfällen zu schnellem Abfluss, wodurch sich der Wasserfluss bergab konzentriert, die Erosion verstärkt, das Risiko von Erdrutschen erhöht und Überschwemmungen flussabwärts in niedrig gelegenen Gebieten verstärkt werden." />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
@@ -1953,13 +1953,13 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Durchschnittliche Steigung (degrees)
+                                  Durchschnittliche Steigung(degrees)
                                   <DataInfoPopover description="Gebiete mit steilen Hängen neigen bei starken Regenfällen zu schnellem Abfluss, wodurch sich der Wasserfluss bergab konzentriert, die Erosion verstärkt, das Risiko von Erdrutschen erhöht und Überschwemmungen flussabwärts in niedrig gelegenen Gebieten verstärkt werden." />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
                                     props.currentGrid.slope_mean,
-                                  ).toFixed(2)}
+                                  ).toFixed(2)} degrees
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
                                   Anfälligkeit (Empfindlichkeit)

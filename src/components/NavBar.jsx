@@ -49,8 +49,8 @@ export default function NavBar(props) {
                     <span
                       className={classNames(
                         props.current === "home"
-                          ? "border-green-600 text-dark-wood-800"
-                          : "border-transparent text-gray-800",
+                          ? "border-green-600 text-green-600"
+                          : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
                     >
@@ -60,7 +60,7 @@ export default function NavBar(props) {
                     <span
                       className={classNames(
                         props.current === "method"
-                          ? "border-green-600 text-dark-wood-800"
+                          ? "border-green-600 text-green-600"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
@@ -71,7 +71,7 @@ export default function NavBar(props) {
                     <span
                       className={classNames(
                         props.current === "wirkung"
-                          ? "border-green-600 text-dark-wood-800"
+                          ? "border-green-600 text-green-600"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
@@ -83,7 +83,7 @@ export default function NavBar(props) {
                     <span
                       className={classNames(
                         props.current === "wiki"
-                          ? "border-green-600 text-dark-wood-800"
+                          ? "border-green-600 text-green-600"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
@@ -93,7 +93,7 @@ export default function NavBar(props) {
                     <span
                       className={classNames(
                         props.current === "info"
-                          ? "border-green-600 text-dark-wood-800"
+                          ? "border-green-600 text-green-600"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
@@ -103,7 +103,7 @@ export default function NavBar(props) {
                     <span
                       className={classNames(
                         props.current === "contact"
-                          ? "border-green-600 text-dark-wood-800"
+                          ? "border-green-600 text-green-600"
                           : "border-transparent text-gray-500",
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
@@ -119,31 +119,45 @@ export default function NavBar(props) {
               <div className="space-y-1 pt-2 pb-4">
                 <Disclosure.Button
                   as="a"
-                  href="/invest"
+                  href="/"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
-                  Invest
+                  VORGEHENSWEISE
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
-                  href="/glasgow-nbs-portfolio"
+                  href="/methode"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
-                  Glasgow Pilot
+                  METHODE
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
-                  href="/learn-more"
+                  href="/wirkungsmodellierung"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
-                  Learn More
+                 WIRKUNGSMODELLIERUNG
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
-                  href="/contact"
+                  href="/wiki"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
-                  Contact
+                 LBS WIKI
+                </Disclosure.Button>
+                <Disclosure.Button
+                  as="a"
+                  href="/info"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                >
+                 INFO
+                </Disclosure.Button>
+                <Disclosure.Button
+                  as="a"
+                  href="/kontact"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
+                >
+                 KONTAKT
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>

@@ -10,7 +10,7 @@ export default function Info() {
         <h1 className="uppercase py-8 bg-dark-wood-800 text-white-200 px-10 text-center">
           Info
         </h1>
-        <div className="border border-dark-wood-800 rounded-[50px] px-8 py-10 mt-10">
+        <div className="border border-dark-wood-800 rounded-[50px] px-8 py-10 mt-10 bg-white">
           <h3>
             Das Projekt Trees As Infrastructure Stuttgart wird von Dark Matter
             Labs geleitet und durch den Stuttgarter Klima-Innovationsfonds und

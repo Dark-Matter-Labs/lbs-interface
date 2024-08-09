@@ -8,7 +8,7 @@ export default function Wirkung() {
         <h1 className="uppercase py-8 bg-dark-wood-800 text-white-200 px-10 text-center">
           WIRKUNGMODELLIERUNG
         </h1>
-        <div className="border border-dark-wood-800 rounded-[50px] px-8 mt-10">
+        <div className="border border-dark-wood-800 rounded-[50px] px-8 mt-10 bg-white-300">
           <p className="book-intro-sm  pt-10 pb-4">
             Verwenden Sie Green Unified Scenarios (GUS) zur
             Wirkungsmodellierung: Das GUS Rahmenwerk nutzt agentenbasierte

@@ -1353,7 +1353,7 @@ export default function InfoPanel(props) {
                       setCurrentRisk(4);
                     }}
                   >
-                    Transport Netzwerk |
+                     Bebautes Gebiet |
                   </span>
                   <span
                     className={classNames(
@@ -1368,7 +1368,7 @@ export default function InfoPanel(props) {
                       setCurrentRisk(5);
                     }}
                   >
-                    Bebautes Gebiet
+                    Transport Netzwerk
                   </span>
                 </div>
                 <img src={uberCard} className="w-[80%] pb-4" />
@@ -1731,7 +1731,7 @@ export default function InfoPanel(props) {
                       setCurrentRisk(4);
                     }}
                   >
-                    Transport Netzwerk |
+                     Bebautes Gebiet |
                   </span>
                   <span
                     className={classNames(
@@ -1746,7 +1746,7 @@ export default function InfoPanel(props) {
                       setCurrentRisk(5);
                     }}
                   >
-                    Bebautes Gebiet
+                    Transport Netzwerk
                   </span>
                 </div>
                 <img src={uberBuiltCard} className="w-[80%] pb-4" />

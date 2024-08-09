@@ -9,7 +9,7 @@ export default function Wiki() {
         <h1 className="uppercase py-8 bg-green-500 text-white-200 px-10 text-center">
           LBS Wiki
         </h1>
-        <div className="grid grid-cols-3 mt-10 border border-green-500 rounded-full px-40 py-10">
+        <div className="grid grid-cols-3 mt-10 border border-green-500 rounded-full px-40 py-10 bg-white">
           <div className="book-intro-md max-w-sm">
             Klimarisiken sind Ergebnis eines Zusammenspiels von Gefahren,
             Stressfaktoren, Anfälligkeit & Belastung. Ein
@@ -27,7 +27,7 @@ export default function Wiki() {
           </div>
         </div>
         <hr className="mx-80 border-8 border-green-600" />
-        <div className="grid grid-cols-3 border border-green-500 rounded-full px-40 py-10">
+        <div className="grid grid-cols-3 border border-green-500 rounded-full px-40 py-10 bg-white">
           <div>
             <h3 className="max-w-sm">Was ist eine Wirkungskette?</h3>
           </div>
@@ -49,7 +49,7 @@ export default function Wiki() {
           </div>
         </div>
         <hr className="mx-80 border-8 border-green-600" />
-        <div className="grid grid-cols-3 border border-green-500 rounded-full px-40 py-10">
+        <div className="grid grid-cols-3 border border-green-500 rounded-full px-40 py-10 bg-white">
           <div>
             <h3 className="max-w-sm">
               Was ist mit Gefahr und Belastung gemeint?
@@ -75,7 +75,7 @@ export default function Wiki() {
           </div>
         </div>
         <hr className="mx-80 border-8 border-green-600" />
-        <div className="grid grid-cols-3 border border-green-500 rounded-full px-40 py-10">
+        <div className="grid grid-cols-3 border border-green-500 rounded-full px-40 py-10 bg-white">
           <div>
             <h3 className="max-w-sm">Was ist mit Anfälligkeit gemeint?</h3>
           </div>

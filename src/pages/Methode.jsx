@@ -44,7 +44,7 @@ export default function Methode() {
         </h1>
         <h3 className="py-4">Weitere Komponenten, die wir entwickeln:</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-2">
-          <div className="border border-dark-wood-800 rounded-[10px] px-8">
+          <div className="border border-dark-wood-800 rounded-[10px] px-8 bg-white-300">
             <p className="book-intro-sm  pt-10 pb-4">
               Das “Location-basedScoring” Werkzeug wurde von TreesAI entwickelt,
               um eine risikobasierte Vulnerabilitätsbewertung durchzuführen.
@@ -119,7 +119,7 @@ export default function Methode() {
         <h2 className=" py-8 bg-green-500 text-white-200 px-10 text-center mt-20 max-w-xl mx-auto rounded-[10px]">
           LBS Methode
         </h2>
-        <div className="max-w-4xl px-10 py-8 border rounded-[10px] border-green-600 mx-auto book-intro-sm mb-40">
+        <div className="max-w-4xl px-10 py-8 border rounded-[10px] border-green-600 mx-auto book-intro-sm mb-40 bg-white">
           <p>
             Das übergeordnete Ziel einer risikobasierten
             Vulnerabilitätsbewertung nach “IVAVIA: Impact and Vulnerability

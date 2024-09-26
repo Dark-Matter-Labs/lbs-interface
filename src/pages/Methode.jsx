@@ -5,6 +5,7 @@ import {
 } from "@headlessui/react";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 const faqs = [
   {
@@ -189,6 +190,7 @@ export default function Methode() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

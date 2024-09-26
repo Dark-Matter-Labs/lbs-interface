@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Disclosure } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import LangSwitcher from './LangSwitcher';
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/lbs-logo.svg";
 
@@ -88,7 +89,7 @@ export default function NavBar(props) {
                         "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
                       )}
                     >
-                      <Link to="/wiki">LBS WIKI</Link>
+                      <Link to="/wiki">WIKI</Link>
                     </span>
                     <span
                       className={classNames(
@@ -109,6 +110,10 @@ export default function NavBar(props) {
                       )}
                     >
                       <Link to="/kontact">KONTAKT</Link>
+                    </span>
+                    <span
+                    className="inline-flex items-center border-b-2 px-1 pt-1">
+                      <LangSwitcher />
                     </span>
                   </div>
                 </div>

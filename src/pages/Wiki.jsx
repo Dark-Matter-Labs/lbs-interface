@@ -1,4 +1,5 @@
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 import diagram from "../assets/LBS-wiki.png";
 
 export default function Wiki() {
@@ -96,6 +97,7 @@ export default function Wiki() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

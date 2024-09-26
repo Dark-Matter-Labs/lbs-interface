@@ -1,12 +1,13 @@
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 import STlogo from "../assets/ST_logo.png";
 import Dmlogo from "../assets/Dm_logo.png";
 
 export default function Info() {
   return (
-    <div className="bg-gray-200 pb-80">
+    <div className="bg-gray-200">
       <NavBar current="info" />
-      <div className="global-margin mx-auto max-w-3xl">
+      <div className="global-margin mx-auto max-w-3xl pb-40">
         <h1 className="uppercase py-8 bg-dark-wood-800 text-white-200 px-10 text-center">
           Info
         </h1>
@@ -26,6 +27,7 @@ export default function Info() {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

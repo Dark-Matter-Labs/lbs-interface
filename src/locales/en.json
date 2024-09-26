@@ -1,0 +1,31 @@
+{
+  "translation": {
+      "info_panel": {
+          "title": "Explore the risk of a location",
+          "neighbor_label": "Neighborhood",
+          "AVERAGE_RISK": "Summary",
+          "A_risk_score": "Drought",
+          "B_risk_score": "Heat",
+          "C_risk_score": "Air pollution",
+          "D_risk_score": "Flood",
+          "E_risk_score": "",
+          "overall_title": "Overall risk",
+          "critical_filter_0": "all data",
+          "critical_filter_1": "only critical",
+          "dem_filter_title": "Demographic Filters",
+          "dem_filter_population": "Residential density",
+          "dem_filter_poverty": "Households in poverty",
+          "dem_filter_trees": "Tree population",
+          "dem_filter_critical":"Presence of critical infrastructure",
+          "dem_filter_old": "Residents over age 65",
+          "dem_filter_young": "Residents under age 10",
+          "legend": "Legend",
+          "overall_legend_top": "100 High risk = high adaptation potential through NbS",
+          "overall_legend_bottom": "0 Low Risk",
+          "state_trees": "Number of state trees",
+          "city_trees": "Number of city trees",
+          "critical_infra": "Critical Infrastructure",
+          "pov_index": "Poverty Index"
+      }
+  }
+}

@@ -1,10 +1,11 @@
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 export default function Wirkung() {
   return (
-    <div className="bg-gray-200 pb-80">
+    <div className="bg-gray-200">
       <NavBar current="wirkung" />
-      <div className="global-margin mx-auto max-w-2xl">
+      <div className="global-margin mx-auto max-w-2xl pb-40">
         <h1 className="uppercase py-8 bg-dark-wood-800 text-white-200 px-10 text-center">
           WIRKUNGMODELLIERUNG
         </h1>
@@ -49,6 +50,7 @@ export default function Wirkung() {
           </a>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

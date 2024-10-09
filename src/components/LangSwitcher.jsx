@@ -1,16 +1,16 @@
-import i18next from 'i18next';
-import { useState } from 'react';
+import i18next from "i18next";
+import { useState } from "react";
 const options = [
-  { id: 0, name: 'de' },
-  { id: 1, name: 'en' },
+  { id: 0, name: "de" },
+  { id: 1, name: "en" },
 ];
 export default function LangSelector() {
-  const [selectedLang, setSelectedLang] = useState('de');
+  const [selectedLang, setSelectedLang] = useState("de");
   const setLang = (value) => {
     setSelectedLang(value);
     i18next.changeLanguage(value, (err, t) => {
-      if (err) return console.log('something went wrong loading', err);
-      t('key'); // -> same as i18next.t
+      if (err) return console.log("something went wrong loading", err);
+      t("key"); // -> same as i18next.t
     });
   };
   return (

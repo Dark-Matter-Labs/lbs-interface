@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Transition, Switch } from "@headlessui/react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -23,6 +24,7 @@ export default function LayerSelector({
   setPopDen,
   setNeighbors,
 }) {
+  const { t } = useTranslation();
   return (
     <Transition.Root
       show={true}
@@ -40,7 +42,7 @@ export default function LayerSelector({
         <div className=" mx-10 ">
           <div className="bg-dark-wood-800 px-2 py-2 rounded-[10px] my-4">
             <span className="text-center book-info-sm uppercase text-dark-wood-300">
-              HINTERGRUND
+              {t(`filter.background`)}
             </span>
             <hr className="border-1 border-white" />
             <div className="flex justify-between items-center my-2">
@@ -61,8 +63,8 @@ export default function LayerSelector({
 
             <div className="flex justify-between my-2">
               <span className="text-white book-info-sm">
-                Einfach / <br />
-                <span className="text-green-600">Satellit</span>
+                {t(`filter.simple`)} / <br />
+                <span className="text-green-600">{t(`filter.satellite`)}</span>
               </span>
               <Switch
                 checked={topo}
@@ -86,13 +88,12 @@ export default function LayerSelector({
 
           <div className="bg-dark-wood-800 px-2 py-2 rounded-[10px] my-4 ">
             <span className="text-center book-info-sm uppercase text-dark-wood-300">
-              Baum- schichten
+              {t(`filter.tree_layer`)}
             </span>
             <hr className="border-1 border-white" />
             <div className="flex justify-between items-center my-2">
-              <span className="text-green-600 book-info-sm">
-                Landes <br />
-                Bäume
+              <span className="text-green-600 book-info-sm max-w-[20px]">
+                {t(`filter.state_trees`)}
               </span>
 
               <button
@@ -109,9 +110,8 @@ export default function LayerSelector({
               </button>
             </div>
             <div className="flex justify-between items-center my-2">
-              <span className="text-green-600 book-info-sm">
-                Städtische <br />
-                Bäume
+              <span className="text-green-600 book-info-sm max-w-[20px]">
+                {t(`filter.city_trees`)}
               </span>
               <button
                 type="button"
@@ -127,7 +127,9 @@ export default function LayerSelector({
               </button>
             </div>
             <div className="flex justify-between items-center my-2">
-              <span className="text-green-600 book-info-sm">Grünfläche</span>
+              <span className="text-green-600 book-info-sm">
+                {t(`filter.greenspace`)}
+              </span>
               <button
                 type="button"
                 onClick={() => {
@@ -145,11 +147,14 @@ export default function LayerSelector({
 
           <div className="bg-dark-wood-800 px-2 py-2 rounded-[10px]">
             <span className="text-center book-info-sm uppercase text-dark-wood-300">
-              Zusätzliche Schichten
+              {t(`filter.adiitional`)}
             </span>
             <hr className="border-1 border-white" />
             <div className="flex justify-between items-center my-2">
-              <span className="text-green-600 book-info-sm">Stadbezirk</span>
+              <span className="text-green-600 book-info-sm">
+                {" "}
+                {t(`filter.city`)}
+              </span>
               <button
                 type="button"
                 onClick={() => {
@@ -165,7 +170,7 @@ export default function LayerSelector({
             </div>
             <div className="flex justify-between items-center my-2">
               <span className="text-green-600 book-info-sm">
-                Bevölkerungsdichte
+                {t(`filter.population_density`)}
               </span>
               <button
                 type="button"
@@ -184,7 +189,7 @@ export default function LayerSelector({
           {aIndex && (
             <div className="bg-white border-2 border-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
               <p className="medium-info-sm text-dark-wood-800">
-                Geringes - Risiko - Hohes
+                {t(`filter.key`)}
               </p>
               <div className="ml-4 mt-4 rounded-[10px] w-28 h-4 py-2 px-10 bg-gradient-to-r from-[#2DC4B2] via-[#669EC4] to-[#AA5E79]"></div>
             </div>
@@ -193,7 +198,7 @@ export default function LayerSelector({
           {popDen && (
             <div className="bg-white border-2 border-dark-wood-300 px-2 py-4 rounded-[10px] mt-2">
               <p className="medium-info-sm text-dark-wood-800">
-                Geringes - Risiko - Hohes
+                {t(`filter.key`)}
               </p>
               <div className="ml-4 mt-4 rounded-[10px] w-28 h-4 py-2 px-10 bg-gradient-to-r from-[#EDF8FB] via-[#95A2CD] to-[#810f7b]"></div>
             </div>

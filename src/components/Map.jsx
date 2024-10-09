@@ -200,7 +200,9 @@ export default function LBSMap({
     if (topo) {
       map.current.setStyle("mapbox://styles/mapbox/satellite-v9");
     } else {
-      map.current.setStyle("mapbox://styles/sofiadarkmatterlabs/clzl33vl8002w01pj3ex8b0ng");
+      map.current.setStyle(
+        "mapbox://styles/sofiadarkmatterlabs/clzl33vl8002w01pj3ex8b0ng",
+      );
     }
   }, [topo]);
 

@@ -132,7 +132,12 @@
         "additional": "Additional Layers",
         "city": "Neighborhood Boundaries",
         "population_density": "Population Density",
-        "key": "Low - Risk - High"
+        "key": "Low - Risk - High",
+        "none": "None",
+        "low": "Low",
+        "high": "High",
+         "deactivated": "Deactivated",
+        "activated": "Activated"
       }
   }
 }

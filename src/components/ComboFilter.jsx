@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 import {
   Combobox,
   ComboboxButton,
@@ -14,29 +15,32 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const rangeFilterOptions = [
-  { id: 0, name: "keiner" },
-  {
-    id: 1,
-    name: "niedrig",
-  },
-  {
-    id: 2,
-    name: "hoch",
-  },
-];
 
-const binaryFilterOptions = [
-  { id: 0, name: "deaktiviert" },
-  {
-    id: 1,
-    name: "ermöglicht",
-  },
-];
 
 export default function ComboFilter({ label, setFilterState, binary = false }) {
   const [query, setQuery] = useState("");
+  const { t } = useTranslation();
   const [selectedFilter, setSelectedFilter] = useState(null);
+
+  const rangeFilterOptions = [
+    { id: 0, name: t(`filter.none`) },
+    {
+      id: 1,
+      name:  t(`filter.low`),
+    },
+    {
+      id: 2,
+      name:  t(`filter.high`),
+    },
+  ];
+  
+  const binaryFilterOptions = [
+    { id: 0, name: t(`filter.deactivated`) },
+    {
+      id: 1,
+      name: t(`filter.activated`),
+    },
+  ];
   const filteredRange =
     query === ""
       ? rangeFilterOptions

@@ -132,7 +132,12 @@
         "additional": "Zusätzliche Schichten",
         "city": "Stadbezirk",
         "population_density": "Bevölkerungsdichte",
-        "key": "Geringes - Risiko - Hohes"
+        "key": "Geringes - Risiko - Hohes",
+        "none": "keiner",
+        "low": "niedrig",
+        "high": "hoch",
+        "deactivated": "deaktiviert",
+        "activated": "ermöglicht"
       }
   }
 }

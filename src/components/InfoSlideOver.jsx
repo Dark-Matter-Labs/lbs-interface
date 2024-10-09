@@ -2,12 +2,12 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { Dialog, DialogPanel, DialogBackdrop } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 import infoImage from "../assets/T_Little_eye.svg";
-import { get_slide_texts } from "../utils/slide_over_texts";
 
-const slide_text = get_slide_texts();
 export default function InfoSlideOver({ label }) {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -45,7 +45,9 @@ export default function InfoSlideOver({ label }) {
                   </div>
                 </div>
                 <div className="relative flex-1 py-6 px-4 sm:px-6">
-                  {slide_text[label].text}
+                  <p className="book-intro-md text-dark-wood-800">
+                    {t(`slide_over.${label}`)}
+                  </p>
                   <div className="absolute inset-0 py-6 px-4 sm:px-6">
                     <div className="h-full" aria-hidden="true" />
                   </div>

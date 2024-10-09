@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { Disclosure } from "@headlessui/react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import LangSwitcher from './LangSwitcher';
+import LangSwitcher from "./LangSwitcher";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/lbs-logo.svg";
 
@@ -10,6 +11,7 @@ function classNames(...classes) {
 }
 
 export default function NavBar(props) {
+  const { t } = useTranslation();
   return (
     <>
       <Disclosure as="nav" className="bg-white border sticky top-0 z-50 ">
@@ -52,10 +54,10 @@ export default function NavBar(props) {
                         props.current === "home"
                           ? "border-green-600 text-green-600"
                           : "border-transparent text-gray-500",
-                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
+                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1 uppercase",
                       )}
                     >
-                      <Link to="/">VORGEHENSWEISE</Link>
+                      <Link to="/">{t(`nav.about`)}</Link>
                     </span>
 
                     <span
@@ -63,10 +65,10 @@ export default function NavBar(props) {
                         props.current === "method"
                           ? "border-green-600 text-green-600"
                           : "border-transparent text-gray-500",
-                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
+                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1 uppercase",
                       )}
                     >
-                      <Link to="/methode">METHODE</Link>
+                      <Link to="/methode">{t(`nav.method`)}</Link>
                     </span>
 
                     <span
@@ -74,12 +76,10 @@ export default function NavBar(props) {
                         props.current === "wirkung"
                           ? "border-green-600 text-green-600"
                           : "border-transparent text-gray-500",
-                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
+                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1 uppercase",
                       )}
                     >
-                      <Link to="/wirkungsmodellierung">
-                        WIRKUNGSMODELLIERUNG
-                      </Link>
+                      <Link to="/wirkungsmodellierung">{t(`nav.model`)}</Link>
                     </span>
                     <span
                       className={classNames(
@@ -106,13 +106,12 @@ export default function NavBar(props) {
                         props.current === "contact"
                           ? "border-green-600 text-green-600"
                           : "border-transparent text-gray-500",
-                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1",
+                        "medium-intro-sm inline-flex items-center border-b-2 px-1 pt-1 uppercase",
                       )}
                     >
-                      <Link to="/kontact">KONTAKT</Link>
+                      <Link to="/kontact">{t(`nav.contact`)}</Link>
                     </span>
-                    <span
-                    className="inline-flex items-center border-b-2 px-1 pt-1">
+                    <span className="inline-flex items-center border-b-2 px-1 pt-1">
                       <LangSwitcher />
                     </span>
                   </div>
@@ -141,28 +140,28 @@ export default function NavBar(props) {
                   href="/wirkungsmodellierung"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
-                 WIRKUNGSMODELLIERUNG
+                  WIRKUNGSMODELLIERUNG
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
                   href="/wiki"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
-                 LBS WIKI
+                  LBS WIKI
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
                   href="/info"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
-                 INFO
+                  INFO
                 </Disclosure.Button>
                 <Disclosure.Button
                   as="a"
                   href="/kontact"
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 >
-                 KONTAKT
+                  KONTAKT
                 </Disclosure.Button>
               </div>
             </Disclosure.Panel>

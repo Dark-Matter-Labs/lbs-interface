@@ -1,10 +1,7 @@
 import { Fragment, useState } from "react";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
-import {
-  Transition,
-  Switch,
-} from "@headlessui/react";
+import { Transition, Switch } from "@headlessui/react";
 import PropTypes from "prop-types";
 
 import DataInfoPopover from "./DataInfoPopover";
@@ -16,6 +13,11 @@ import hitzeCard from "../assets/hitze_card.png";
 import luftCard from "../assets/luft_card.png";
 import uberCard from "../assets/uberCard.png";
 import uberBuiltCard from "../assets/uber2.png";
+import heatEn from "../assets/HeatEn.png";
+import droughtEn from "../assets/DroughtEn.png";
+import airEn from "../assets/AirEn.png";
+import floodBiEn from "../assets/FloodBIEn.png";
+import floodTnEn from "../assets/FloodTNEn.png";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -32,7 +34,7 @@ const hazards = [
 export default function InfoPanel(props) {
   const [currentRisk, setCurrentRisk] = useState(0);
   const [transportBuiltSwitch, setTransportBuiltSwitch] = useState("Transport");
-  const { t, i18n } = useTranslation(); // eslint-disable-line
+  const { t, i18n } = useTranslation();
 
   return (
     <Transition.Root
@@ -52,7 +54,7 @@ export default function InfoPanel(props) {
           <div className="pr-4 py-4 bg-green-600 flex flex-row items-center my-auto justify-between rounded-tr-[30px]">
             <div>
               <span className="medium-intro-sm text-white-200 pl-6">
-              {t('info_panel.title')}
+                {t("info_panel.title")}
               </span>
             </div>
             <div className="">
@@ -81,7 +83,8 @@ export default function InfoPanel(props) {
             <div className="hidden sm:block px-4">
               <div className="border-b border-gray-200">
                 <span className="book-intro-sm">
-                {t('info_panel.neighbor_label')}: {props.currentGrid.stadtbezirk}
+                  {t("info_panel.neighbor_label")}:{" "}
+                  {props.currentGrid.stadtbezirk}
                 </span>
                 <nav className="-mb-px flex space-x-8" aria-label="Tabs">
                   {hazards.map((tab) => (
@@ -120,10 +123,14 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center">
                   <div>
-                    <span className="book-info-md">{t('info_panel.overall_title')}</span>
+                    <span className="book-info-md">
+                      {t("info_panel.overall_title")}
+                    </span>
                   </div>
                   <div className="flex items-baseline">
-                    <span className="pr-2 book-info-sm ">{t('info_panel.critical_filter_0')}</span>
+                    <span className="pr-2 book-info-sm ">
+                      {t("info_panel.critical_filter_0")}
+                    </span>
                     <Switch
                       checked={props.onlyCritical}
                       onChange={props.setOnlyCritical}
@@ -143,7 +150,9 @@ export default function InfoPanel(props) {
                         )}
                       />
                     </Switch>
-                    <span className="px-2 book-info-sm">{t('info_panel.critical_filter_1')}</span>
+                    <span className="px-2 book-info-sm">
+                      {t("info_panel.critical_filter_1")}
+                    </span>
                     <InfoSlideOver label="filter" />
                     <FilterGroup />
                   </div>
@@ -151,15 +160,19 @@ export default function InfoPanel(props) {
 
                 <div className="grid grid-cols-2 border-t border-t-green-600 mt-2">
                   <div className="pt-2 border-r border-r-green-600">
-                    <span className="book-info-sm uppercase">{t('info_panel.legend')}</span>
+                    <span className="book-info-sm uppercase">
+                      {t("info_panel.legend")}
+                    </span>
                     <InfoSlideOver label="topLegendOverall" />
                     <div className="flex">
                       <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-indigo-400 to-green-600"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm max-w-[90px]">
-                        {t('info_panel.overall_legend_top')}
+                          {t("info_panel.overall_legend_top")}
                         </div>
-                        <div className="book-info-sm">{t('info_panel.overall_legend_bottom')}</div>
+                        <div className="book-info-sm">
+                          {t("info_panel.overall_legend_bottom")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -169,8 +182,10 @@ export default function InfoPanel(props) {
                         {props.currentGrid.tree_municipal}
                       </span>
                       <span className="book-info-sm text-right inline-block uppercase">
-                      {t('info_panel.state_trees')}
-                        <DataInfoPopover description="Die Anzahl der Bäume auf Landesliegenschaften in Stuttgart innerhalb jedes Rasters." />
+                        {t("info_panel.state_trees")}
+                        <DataInfoPopover
+                          description={t("info_panel.info_state_tree_number")}
+                        />
                       </span>
                     </div>
 
@@ -179,8 +194,10 @@ export default function InfoPanel(props) {
                         {props.currentGrid.tree_state}
                       </span>
                       <span className="book-info-sm text-right uppercase">
-                      {t('info_panel.city_trees')}
-                        <DataInfoPopover description="Die Anzahl der Bäume in städtischem Besitz innerhalb jedes Rasters." />
+                        {t("info_panel.city_trees")}
+                        <DataInfoPopover
+                          description={t("info_panel.info_city_tree_number")}
+                        />
                       </span>
                     </div>
 
@@ -191,8 +208,10 @@ export default function InfoPanel(props) {
                         ).toFixed(2)}
                       </span>
                       <span className="book-info-sm text-right uppercase">
-                      {t('info_panel.critical_infra')}
-                        <DataInfoPopover description="Die Anzahl der kritischen Infrastrukturen, einschließlich Kindergärten, Schulen, Polizei, Krankenhäuser und Elektrizitätsinfrastrukturen." />
+                        {t("info_panel.critical_infra")}
+                        <DataInfoPopover
+                          description={t("info_panel.info_critical")}
+                        />
                       </span>
                     </div>
 
@@ -201,8 +220,10 @@ export default function InfoPanel(props) {
                         {parseFloat(props.currentGrid.poverty_index).toFixed(2)}
                       </span>
                       <span className="book-info-sm text-right uppercase">
-                      {t('info_panel.pov_index')}
-                        <DataInfoPopover description="Der Armutsindex pro Stadtviertel von -2 (Minimum) bis 2 (Maximum)." />
+                        {t("info_panel.pov_index")}
+                        <DataInfoPopover
+                          description={t("info_panel.info_pov")}
+                        />
                       </span>
                     </div>
                   </div>
@@ -220,29 +241,29 @@ export default function InfoPanel(props) {
                                 scope="col"
                                 className="py-2 pl-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white "
                               >
-                                Gefahr
+                                {t("info_panel.risk")}
                               </th>
                               <th
                                 scope="col"
                                 className="px-3 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                               >
-                                Belastung
+                                {t("info_panel.exposure")}
                               </th>
                               <th
                                 scope="col"
                                 className="px-3 py-2 text-left medium-info-sm uppercase bg-green-500 rounded-tr-[10px] text-white"
                               >
-                                Risikowert
+                                {t("info_panel.score")}
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-green-600 bg-white">
                             <tr>
                               <td className=" py-2 px-2 book-info-sm text-gray-900 ">
-                                Trockenheit
+                                {t("info_panel.A_risk_score")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-gray-900">
-                                Bäume
+                                {t("info_panel.trees")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
@@ -252,12 +273,10 @@ export default function InfoPanel(props) {
                             </tr>
                             <tr>
                               <td className=" py-2 px-2 book-info-sm text-gray-900 ">
-                                Hitze
+                                {t("info_panel.B_risk_score")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-gray-900]">
-                                Bevölkerungs
-                                <br />
-                                gesundheit
+                                {t("info_panel.health")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
@@ -267,12 +286,10 @@ export default function InfoPanel(props) {
                             </tr>
                             <tr>
                               <td className=" py-2 px-2 book-info-sm text-gray-900">
-                                Luftverschmutzung
+                                {t("info_panel.C_risk_score")}
                               </td>
                               <td className="px-2 py-2 book-info-sm text-gray-900">
-                                Bevölkerungs
-                                <br />
-                                gesundheit
+                                {t("info_panel.health")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
@@ -282,10 +299,10 @@ export default function InfoPanel(props) {
                             </tr>
                             <tr>
                               <td className=" py-2 px-2 book-info-sm text-gray-900 ">
-                                Überschwemmung
+                                {t("info_panel.D_risk_score")}
                               </td>
                               <td className="px-2 py-2 book-info-sm text-gray-900">
-                                Verkehrsnetz
+                                {t("info_panel.transport")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
@@ -295,11 +312,10 @@ export default function InfoPanel(props) {
                             </tr>
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900 ">
-                                Überschwemmung
+                                {t("info_panel.D_risk_score")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-gray-900">
-                                Bebaute
-                                <br /> Gebiete
+                                {t("info_panel.built")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-gray-900 float-right">
                                 {parseFloat(
@@ -315,24 +331,25 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "Hitze-Risiko für Bevölkerungsgesundheit",
+                        attribute: t("info_panel.spider_summary_heat"),
                         val: props.currentGrid.B_risk_score,
                       },
                       {
-                        attribute: "Trockenheitsrisiko für Grünzonen",
+                        attribute: t("info_panel.spider_summary_drought"),
                         val: props.currentGrid.A_risk_score,
                       },
                       {
-                        attribute: "Überschwemmungsgefahr für das Verkehrsnetz",
+                        attribute: t(
+                          "info_panel.spider_summary_flood_transport",
+                        ),
                         val: props.currentGrid.D_risk_score,
                       },
                       {
-                        attribute: "Überschwemmungsgefahr für bebaute Gebiete",
+                        attribute: t("info_panel.spider_summary_flood_built"),
                         val: props.currentGrid.E_risk_score,
                       },
                       {
-                        attribute:
-                          "Risiko der Luftverschmutzung für Bevölkerungs–gesundheit",
+                        attribute: t("info_panel.spider_summary_air"),
                         val: props.currentGrid.C_risk_score,
                       },
                     ]}
@@ -343,11 +360,15 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <span className="book-info-md">Wirkungskette</span>
+                    <span className="book-info-md">
+                      {t("info_panel.chain")}
+                    </span>
                   </div>
                   <div className="">
                     <div className="flex items-baseline">
-                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <span className="pr-2 book-info-sm ">
+                        {t("info_panel.critical_filter_0")}
+                      </span>
                       <Switch
                         checked={props.onlyCritical}
                         onChange={props.setOnlyCritical}
@@ -367,29 +388,38 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">
+                        {t("info_panel.critical_filter_1")}
+                      </span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
                   </div>
                 </div>
-                <img src={heatCard} className="w-[80%] pb-4" />
+                {i18n.language === "de" ? (
+                  <img src={heatCard} className="w-[80%] pb-4" />
+                ) : (
+                  <img src={droughtEn} className="w-[80%] pb-4" />
+                )}
                 <hr className="-mx-4 border-4 border-green-600" />
                 <div className="flex py-4">
                   <div className=" grow-0">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">
+                      {t("info_panel.legend")}
+                    </span>
                     <InfoSlideOver label="topLegendTrocken" />
                     <p className="book-info-md pt-1">
-                      Spezifische Risikobewertung
+                      {t("info_panel.risk_score")}
                     </p>
                     <div className="flex">
                       <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#F0F921] via-[#D8576C] to-[#0D0887]"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm ">
-                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
-                          durch NbS
+                          {t("info_panel.overall_legend_top")}
                         </div>
-                        <div className="book-info-sm">1 Geringes Risiko</div>
+                        <div className="book-info-sm">
+                          {t("info_panel.overall_legend_bottom")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -404,41 +434,41 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                                 >
-                                  INDIKATOR
+                                  {t("info_panel.indicator")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  WERT
+                                  {t("info_panel.value")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  KLASSE
+                                  {t("info_panel.class")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHT
+                                  {t("info_panel.weight")}
                                 </th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-green-600">
                               <tr>
                                 <td className=" py-2 px-2 book-info-sm text-gray-900 ">
-                                  Anzahl städtischer
-                                  <br /> Bäume
-                                  <DataInfoPopover description="Die Anzahl der Bäume in städtischem Besitz innerhalb jedes Rasters." />
+                                  {t("info_panel.number_muni_trees")}
+                                  <DataInfoPopover
+                                    description={t("info_panel.muni_describe")}
+                                  />
                                 </td>
                                 <td className=" px-2 py-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.tree_municipal}
                                 </td>
                                 <td className=" px-2 py-2 book-info-sm text-gray-900">
-                                  Belasteter <br />
-                                  Vermögenswert
+                                  {t("info_panel.asset")}
                                 </td>
                                 <td className=" px-2 py-2 book-info-sm text-dark-wood-700 ">
                                   1
@@ -447,16 +477,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className=" py-4 px-2 book-info-sm text-gray-900 ">
-                                  Anzahl Bäume auf
-                                  <br /> Landesliegenschaften
-                                  <DataInfoPopover description="Die Anzahl der Bäume auf Landesliegenschaften in Stuttgart innerhalb jedes Rasters." />
+                                  {t("info_panel.number_state_trees")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.state_trees_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="medium-intro-sm px-2 py-2 text-green-600">
                                   {props.currentGrid.tree_state}
                                 </td>
                                 <td className=" px-2 py-2 book-info-sm text-gray-900">
-                                  Belasteter
-                                  <br /> Vermögenswert
+                                  {t("info_panel.asset")}
                                 </td>
                                 <td className=" px-2 py-2 book-info-sm text-dark-wood-700 ">
                                   1
@@ -465,9 +497,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className=" py-2 px-2 book-info-sm text-gray-900 ">
-                                  Bodenqualität
-                                  <br /> & Versiegelungsgrad
-                                  <DataInfoPopover description="Dieser Wert dient der Gesamtbewertung der Bodenqualität unter Berücksichtigung von Archivfunktion, Versiegelung und Altlasten. Die Skala reicht von 0 (keine funktionale Bodenqualität) bis 5 (sehr hohe Bodenqualität)" />
+                                  {t("info_panel.soil_quality")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.soil_quality_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className=" px-2 py-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -475,8 +510,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className=" px-2 py-2 book-info-sm text-gray-900">
-                                  Anfälligkeit <br />
-                                  (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className=" px-2 py-2 book-info-sm text-dark-wood-700 ">
                                   3
@@ -485,8 +519,10 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className=" py-2 px-2 book-info-sm text-gray-900 ">
-                                  Durchschnitt digitales Höhenmodell (DEM)
-                                  <DataInfoPopover description="Ein digitales Höhenmodell (DEM: Digital Elevation Model) verwendet typischerweise Meter als Maßeinheit für die Höhe. Die Erhebungen in einem DEM werden in Metern über dem Meeresspiegel gemessen. Dieser Indikator ist für diese Bewertung relevant, da Bäume auf Hügeln stärker dem Wind und der Sonneneinstrahlung ausgesetzt und daher anfälliger für Dürrerisiken sind." />
+                                  {t("info_panel.dem")}
+                                  <DataInfoPopover
+                                    description={t("info_panel.dem_describe")}
+                                  />
                                 </td>
                                 <td className=" px-2 py-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -494,8 +530,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className=" px-2 py-2 book-info-sm text-gray-900">
-                                  Anfälligkeit <br />
-                                  (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className=" px-2 py-2 book-info-sm text-dark-wood-700 ">
                                   2
@@ -521,20 +556,20 @@ export default function InfoPanel(props) {
                                 scope="col"
                                 className="py-2 px-2 text-left medium-info-sm uppercase text-white bg-green-600 rounded-tl-[10px]"
                               >
-                                Ausgewählte Region
+                                {t("info_panel.region_selected")}
                               </th>
                               <th
                                 scope="col"
                                 className="px-2 py-2 text-left medium-info-sm uppercase text-white bg-green-600 rounded-tr-[10px]"
                               >
-                                Wert
+                                {t("info_panel.value")}
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-green-600 bg-white">
                             <tr>
                               <td className=" py-2 px-2 book-info-sm text-gray-900 ">
-                                Belastung
+                                {t("info_panel.exposure")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -545,8 +580,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className=" py-4 px-2 book-info-sm text-gray-900 ">
-                                Empfindlichkeit <br />
-                                (Anfälligkeit)
+                                {t("info_panel.vulnerability")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -557,7 +591,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className=" py-2 px-2 book-info-sm text-gray-900 ">
-                                Risikolevel
+                                {t("info_panel.risk_level")}
                               </td>
                               <td className=" px-2 py-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -573,15 +607,15 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "Bewältigungsfähigkeit",
+                        attribute: t("info_panel.coping"),
                         val: props.currentGrid.A_COPING,
                       },
                       {
-                        attribute: "Belastung",
+                        attribute: t("info_panel.exposure"),
                         val: props.currentGrid.A_EXPOSURE,
                       },
                       {
-                        attribute: "Empfindlichkeit (Anfälligkeit)",
+                        attribute: t("info_panel.vulnerability"),
                         val: props.currentGrid.A_SENSITIVITY,
                       },
                     ]}
@@ -592,11 +626,15 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <span className="book-info-md">Wirkungskette</span>
+                    <span className="book-info-md">
+                      {t("info_panel.chain")}
+                    </span>
                   </div>
                   <div>
                     <div className="flex items-baseline">
-                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <span className="pr-2 book-info-sm ">
+                        {t("info_panel.critical_filter_0")}
+                      </span>
                       <Switch
                         checked={props.onlyCritical}
                         onChange={props.setOnlyCritical}
@@ -616,29 +654,39 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">
+                        {t("info_panel.critical_filter_1")}
+                      </span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
                   </div>
                 </div>
-                <img src={hitzeCard} className="w-[80%] pb-4" />
+                {i18n.language === "de" ? (
+                  <img src={hitzeCard} className="w-[80%] pb-4" />
+                ) : (
+                  <img src={heatEn} className="w-[80%] pb-4" />
+                )}
+
                 <hr className="-mx-4 border-4 border-green-600" />
                 <div className="flex py-4">
                   <div className="">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">
+                      {t("info_panel.legend")}
+                    </span>
                     <InfoSlideOver label="topLegendHitze" />
                     <p className="book-info-md pt-1">
-                      Spezifische Risikobewertung
+                      {t("info_panel.risk_score")}
                     </p>
                     <div className="flex">
                       <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#67000D] via-[#F85D42] to-[#FFF5F0]"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm ">
-                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
-                          durch NbS
+                          {t("info_panel.overall_legend_top")}
                         </div>
-                        <div className="book-info-sm">1 Geringes Risiko</div>
+                        <div className="book-info-sm">
+                          {t("info_panel.overall_legend_bottom")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -653,35 +701,37 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                                 >
-                                  INDIKATOR
+                                  {t("info_panel.indicator")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  WERT
+                                  {t("info_panel.value")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  KLASSE
+                                  {t("info_panel.class")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHT
+                                  {t("info_panel.weight")}
                                 </th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-green-600 bg-white">
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900 ">
-                                  Landoberflächen-
-                                  <br />
-                                  temperatur (°C)
-                                  <DataInfoPopover description="Gebiete, in denen die Wärme zurückgehalten wird, was zu erhöhtem Unbehagen, Gesundheitsrisiken und erhöhten Temperaturen in städtischen Gebieten führt und den Hitzestress verschlimmert." />
+                                  {t("info_panel.land_temp")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.land_temp_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {(
@@ -691,7 +741,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Gefahr
+                                  {t("info_panel.risk")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   2
@@ -700,14 +750,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Geschätzte Einwohnerschaft
-                                  <DataInfoPopover description="Geschätzte Einwohnerzahl auf der Grundlage der demografischen Gegebenheiten des Viertels und der Fläche der Wohngrundstücke." />
+                                  {t("info_panel.population")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.population_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.population_est}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
+                                  {t("info_panel.exposure")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   6
@@ -716,14 +770,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Geschätzte ältere Bevölkerung ({">"}64)
-                                  <DataInfoPopover description="Ältere Menschen (>64) sind aufgrund ihrer geringeren Hitzetoleranz und potenzieller Gesundheitsprobleme anfälliger für hitzebedingte Krankheiten, was sie bei extremer Hitze angreifbar macht." />
+                                  {t("info_panel.over_64")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.over_64_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.elderly}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   70
@@ -732,14 +790,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Geschätzte Vorschulbevölkerung ({"<"}10)
-                                  <DataInfoPopover description="Kinder unter 10 Jahren sind aufgrund ihrer geringeren Körpergröße und ihrer höheren Stoffwechselrate hitzeempfindlicher, was ihre Anfälligkeit für hitzebedingte Gesundheitsprobleme erhöht." />
+                                  {t("info_panel.under_10")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.under_10_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.young_pop}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   15
@@ -748,8 +810,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Armutsindex
-                                  <DataInfoPopover description="Der Armutsindex pro Stadtviertel von -2 (Minimum) bis 2 (Maximum)." />
+                                  {t("info_panel.pov_index")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.pov_index_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -757,7 +823,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   55
@@ -766,16 +832,21 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Prozentsatz der undurchlässigen Fläche
-                                  <DataInfoPopover description="Undurchlässige Oberflächen in städtischen Gebieten, wie Beton und Asphalt, absorbieren und speichern die Wärme stärker als natürliche Landschaften, wodurch die lokalen Temperaturen erheblich ansteigen und der Hitzestress der Stadtbevölkerung verschärft wird." />
+                                  {t("info_panel.impervious_percent")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.impervious_percent_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
-                                    props.currentGrid.impervious/625,
-                                  ).toFixed(2)}%
+                                    props.currentGrid.impervious / 625,
+                                  ).toFixed(2)}
+                                  %
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   35
@@ -784,10 +855,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Vorhandensein von Schulen, Kindergärten und
-                                  Pflegeheimen (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Diese Einrichtungen beherbergen oder betreuen häufig besonders schutzbedürftige Bevölkerungsgruppen wie Kinder, ältere Menschen oder Personen mit gesundheitlichen Problemen, was auf eine mögliche Konzentration schutzbedürftiger Gruppen hinweist." />
+                                  {t("info_panel.schools")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.schools_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -795,7 +868,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   30
@@ -804,10 +877,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Fläche der Grünflächen (Parks, Grünflächen und
-                                  Friedhof) (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Grüne Infrastrukturen wie Parks, Bäume und Grünflächen sorgen für Abkühlung durch Beschattung, Evapotranspiration und Verbesserung der Luftqualität, wodurch der städtische Wärmeinseleffekt gemildert wird." />
+                                  {t("info_panel.greenspaces")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.greenspaces_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -815,7 +890,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                  {t("info_panel.coping")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   9
@@ -824,15 +899,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anzahl der staatlichen, kommunalen und
-                                  sonstigen Bäume
-                                  <DataInfoPopover description="Anzahl aller Bäume in Besitz von Stadt und Land innerhalb jedes Rasters." />
+                                  {t("info_panel.total_trees")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.total_trees_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.total_tree}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                  {t("info_panel.coping")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   6
@@ -858,20 +936,20 @@ export default function InfoPanel(props) {
                                 scope="col"
                                 className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                               >
-                                AUSGEWÄHLTE REGION
+                                {t("info_panel.region_selected")}
                               </th>
                               <th
                                 scope="col"
                                 className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 rounded-tr-[10px] text-white"
                               >
-                                Wert
+                                {t("info_panel.value")}
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-green-600 bg-white">
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Gefahr
+                                {t("info_panel.risk")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(props.currentGrid.B_HAZARD).toFixed(
@@ -882,7 +960,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Belastung
+                                {t("info_panel.exposure")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -893,7 +971,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Bewältigungsfähigkeit (Anfälligkeit)
+                                {t("info_panel.coping")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(props.currentGrid.B_COPING).toFixed(
@@ -904,7 +982,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-4 px-2 book-info-sm text-gray-900">
-                                Empfindlichkeit (Anfälligkeit)
+                                {t("info_panel.vulnerability")}
                               </td>
                               <td className="py-4 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -915,7 +993,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-4 px-2 book-info-sm text-gray-900">
-                                Risikolevel
+                                {t("info_panel.risk_level")}
                               </td>
                               <td className="py-4 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -931,19 +1009,19 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "Gefahr",
+                        attribute: t("info_panel.risk"),
                         val: props.currentGrid.B_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungsfähigkeit",
+                        attribute: t("info_panel.coping"),
                         val: props.currentGrid.B_COPING,
                       },
                       {
-                        attribute: "Belastung",
+                        attribute: t("info_panel.exposure"),
                         val: props.currentGrid.B_EXPOSURE,
                       },
                       {
-                        attribute: "Empfindlichkeit (Anfälligkeit)",
+                        attribute: t("info_panel.vulnerability"),
                         val: props.currentGrid.B_SENSITIVITY,
                       },
                     ]}
@@ -954,11 +1032,15 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <span className="book-info-md">Wirkungskette</span>
+                    <span className="book-info-md">
+                      {t("info_panel.chain")}
+                    </span>
                   </div>
                   <div>
                     <div className="flex items-baseline">
-                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <span className="pr-2 book-info-sm ">
+                        {t("info_panel.critical_filter_0")}
+                      </span>
                       <Switch
                         checked={props.onlyCritical}
                         onChange={props.setOnlyCritical}
@@ -978,29 +1060,38 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">
+                        {t("info_panel.critical_filter_1")}
+                      </span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
                   </div>
                 </div>
-                <img src={luftCard} className="w-[80%] pb-4" />
+                {i18n.language === "de" ? (
+                  <img src={luftCard} className="w-[80%] pb-4" />
+                ) : (
+                  <img src={airEn} className="w-[80%] pb-4" />
+                )}
                 <hr className="-mx-4 border-4 border-green-600" />
                 <div className="flex py-4">
                   <div className="">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">
+                      {t("info_panel.legend")}
+                    </span>
                     <InfoSlideOver label="topLegendLuft" />
                     <p className="book-info-md pt-1">
-                      Spezifische Risikobewertung
+                      {t("info_panel.risk_score")}
                     </p>
                     <div className="flex">
                       <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#7A0177] via-[#F879A6] to-[#FFF5F0]"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm ">
-                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
-                          durch NbS
+                          {t("info_panel.overall_legend_top")}
                         </div>
-                        <div className="book-info-sm">1 Geringes Risiko</div>
+                        <div className="book-info-sm">
+                          {t("info_panel.overall_legend_bottom")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1015,34 +1106,35 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                                 >
-                                  INDIKATOR
+                                  {t("info_panel.indicator")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  WERT
+                                  {t("info_panel.value")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  KLASSE
+                                  {t("info_panel.class")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHT
+                                  {t("info_panel.weight")}
                                 </th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-green-600 bg-white">
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Durchschnittlich gemessener Feinstaub (PM 10)
-                                  µg/m³
-                                  <DataInfoPopover description="PM10 bezieht sich auf einatembare Partikel mit einem Durchmesser von 10 Mikrometern oder weniger, die in die Atemwege eindringen und Atemwegs- und Herz-Kreislaufprobleme verursachen können. Der Schwellenwert liegt über 46 . Der Grenzwert liegt bei 55." />
+                                  {t("info_panel.pm10")}
+                                  <DataInfoPopover
+                                    description={t("info_panel.pm10_describe")}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1050,7 +1142,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Gefahr
+                                  {t("info_panel.risk")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   6
@@ -1059,9 +1151,10 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Durchschnittlich gemessenes Stickstoffdioxid
-                                  (NO2) µg/m³
-                                  <DataInfoPopover description="NO2 ist ein Gas, das bei Verbrennungsprozessen, Fahrzeugabgasen und industriellen Aktivitäten entsteht und zu einer Reizung der Atemwege führt und Lungenerkrankungen verschlimmert. Der Schwellenwert liegt über 110. Der Grenzwert liegt bei 200." />
+                                  {t("info_panel.no2")}
+                                  <DataInfoPopover
+                                    description={t("info_panel.no2_describe")}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1069,7 +1162,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Gefahr
+                                  {t("info_panel.risk")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   6
@@ -1078,8 +1171,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Geschätzte Einwohnerschaft
-                                  <DataInfoPopover description="Geschätzte Einwohnerzahl auf der Grundlage der demografischen Gegebenheiten des Viertels und der Fläche der Wohngrundstücke." />
+                                  {t("info_panel.population")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.population_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1087,7 +1184,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
+                                  {t("info_panel.exposure")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   4
@@ -1096,14 +1193,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Geschätzte ältere Bevölkerung ({">"}64)
-                                  <DataInfoPopover description="Ältere Menschen (>64) haben oft ein geschwächtes Immunsystem und gesundheitliche Vorbelastungen, was sie anfälliger für die negativen Auswirkungen der Luftverschmutzung macht." />
+                                  {t("info_panel.over_64")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.over_64_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.elderly}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   2
@@ -1112,14 +1213,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Geschätzte Vorschulbevölkerung ({"<"}10)
-                                  <DataInfoPopover description="Kinder unter 10 Jahren haben ein sich noch entwickelndes Atmungssystem, das sie anfälliger für Atemwegsinfektionen und langfristige gesundheitliche Auswirkungen der Luftverschmutzung macht." />
+                                  {t("info_panel.under_10")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.under_10_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.young_pop}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   18
@@ -1128,8 +1233,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Armutsindex
-                                  <DataInfoPopover description="Der Armutsindex pro Stadtviertel von -2 (Minimum) bis 2 (Maximum)." />
+                                  {t("info_panel.pov_index")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.pov_index_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1137,7 +1246,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   12
@@ -1146,10 +1255,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Vorhandensein von Schulen, Kindergärten und
-                                  Pflegeheimen (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Diese Einrichtungen beherbergen oder betreuen häufig besonders schutzbedürftige Bevölkerungsgruppen wie Kinder, ältere Menschen oder Personen mit gesundheitlichen Problemen, was auf eine mögliche Konzentration schutzbedürftiger Gruppen hinweist." />
+                                  {t("info_panel.schools")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.schools_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1157,7 +1268,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   12
@@ -1166,15 +1277,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anzahl der staatlichen, kommunalen und
-                                  sonstigen Bäume
-                                  <DataInfoPopover description="Anzahl aller Bäume in Besitz von Stadt und Land innerhalb jedes Rasters." />
+                                  {t("info_panel.total_trees")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.total_trees_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.total_tree}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                  {t("info_panel.coping")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   10
@@ -1183,10 +1297,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Fläche der Grünflächen (Parks, Grünflächen und
-                                  Friedhof) (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Grüne Infrastrukturen wie Parks, Bäume und Grünflächen sorgen für Abkühlung durch Beschattung, Evapotranspiration und Verbesserung der Luftqualität, wodurch der städtische Wärmeinseleffekt gemildert wird." />
+                                  {t("info_panel.greenspaces")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.greenspaces_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1194,7 +1310,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                  {t("info_panel.coping")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   8
@@ -1220,20 +1336,20 @@ export default function InfoPanel(props) {
                                 scope="col"
                                 className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                               >
-                                AUSGEWÄHLTE REGION
+                                {t("info_panel.region_selected")}
                               </th>
                               <th
                                 scope="col"
                                 className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500  rounded-tr-[10px] text-white"
                               >
-                                WERT
+                                {t("info_panel.value")}
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-green-600 bg-white">
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Gefahr
+                                {t("info_panel.risk")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {props.currentGrid.C_HAZARD}
@@ -1242,7 +1358,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Belastung
+                                {t("info_panel.exposure")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {props.currentGrid.C_EXPOSURE}
@@ -1251,7 +1367,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Bewältigungsfähigkeit (Anfälligkeit)
+                                {t("info_panel.coping")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {props.currentGrid.C_COPING}
@@ -1260,7 +1376,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Empfindlichkeit (Anfälligkeit)
+                                {t("info_panel.vulnerability")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {props.currentGrid.C_SENSITIVITY}
@@ -1269,7 +1385,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Risikolevel
+                                {t("info_panel.risk_level")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -1285,19 +1401,19 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "Gefahr",
+                        attribute: t("info_panel.risk"),
                         val: props.currentGrid.C_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungsfähigkeit",
+                        attribute: t("info_panel.coping"),
                         val: props.currentGrid.C_COPING,
                       },
                       {
-                        attribute: "Belastung",
+                        attribute: t("info_panel.exposure"),
                         val: props.currentGrid.C_EXPOSURE,
                       },
                       {
-                        attribute: "Empfindlichkeit (Anfälligkeit)",
+                        attribute: t("info_panel.vulnerability"),
                         val: props.currentGrid.C_SENSITIVITY,
                       },
                     ]}
@@ -1308,11 +1424,15 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <span className="book-info-md">Wirkungskette</span>
+                    <span className="book-info-md">
+                      {t("info_panel.chain")}
+                    </span>
                   </div>
                   <div>
                     <div className="flex items-baseline">
-                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <span className="pr-2 book-info-sm ">
+                        {t("info_panel.critical_filter_0")}
+                      </span>
                       <Switch
                         checked={props.onlyCritical}
                         onChange={props.setOnlyCritical}
@@ -1332,7 +1452,9 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">
+                        {t("info_panel.critical_filter_1")}
+                      </span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
@@ -1352,7 +1474,7 @@ export default function InfoPanel(props) {
                       setCurrentRisk(4);
                     }}
                   >
-                     Bebautes Gebiet |
+                    {t("info_panel.built")} |
                   </span>
                   <span
                     className={classNames(
@@ -1367,26 +1489,33 @@ export default function InfoPanel(props) {
                       setCurrentRisk(5);
                     }}
                   >
-                    Transport Netzwerk
+                    {t("info_panel.transport_network")}
                   </span>
                 </div>
-                <img src={uberCard} className="w-[80%] pb-4" />
+                {i18n.language === "de" ? (
+                  <img src={uberCard} className="w-[80%] pb-4" />
+                ) : (
+                  <img src={floodBiEn} className="w-[80%] pb-4" />
+                )}
                 <hr className="-mx-4 border-4 border-green-600" />
                 <div className="flex py-4">
                   <div className="pt-2 ">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">
+                      {t("info_panel.legend")}
+                    </span>
                     <InfoSlideOver label="topLegendUber1" />
                     <p className="book-info-md pt-1">
-                      Spezifische Risikobewertung
+                      {t("info_panel.risk_score")}
                     </p>
                     <div className="flex">
                       <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#045A8D] via-[#6DA3D3] to-[#F1EEF6]"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm ">
-                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
-                          durch NbS
+                          {t("info_panel.overall_legend_top")}
                         </div>
-                        <div className="book-info-sm">1 Geringes Risiko</div>
+                        <div className="book-info-sm">
+                          {t("info_panel.overall_legend_bottom")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1401,34 +1530,37 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                                 >
-                                  INDIKATOR
+                                  {t("info_panel.indicator")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  WERT
+                                  {t("info_panel.value")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  KLASSE
+                                  {t("info_panel.class")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHT
+                                  {t("info_panel.weight")}
                                 </th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-green-600 bg-white">
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Überschwemmung durch Oberflächenwasser (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Die Daten zu Überschwemmungen durch Oberflächenwasser in bebauten Gebieten weisen auf ein erhöhtes Risiko lokaler Überschwemmungen aufgrund überlasteter Entwässerungssysteme hin, die eine Gefährdung der Infrastruktur und der öffentlichen Sicherheit darstellen." />
+                                  {t("info_panel.surface_flood")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.surface_flood_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1436,7 +1568,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Gefahr
+                                  {t("info_panel.risk")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   3
@@ -1445,18 +1577,19 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Industrie & Gewerbegebiet (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Industrie- und Gewerbegebäude sind der Gefahr von Oberflächenwasserüberschwemmungen ausgesetzt" />
+                                  {t("info_panel.industry")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.industry_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
                                     props.currentGrid.industrial_commecrcial,
                                   ).toFixed(2)}
                                 </td>
-                                <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
-                                </td>
+                                <td className="py-2 px-2 book-info-sm text-gray-900"></td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   4
                                 </td>
@@ -1464,9 +1597,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Kritische Infrastrukturen (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Industrielle und gewerbliche Gebäude sind dem Risiko einer Überschwemmung durch Oberflächenwasser ausgesetzt" />
+                                  {t("info_panel.critical_infra")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.critical_infra_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1474,7 +1610,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
+                                  {t("info_panel.exposure")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   24
@@ -1483,14 +1619,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Geschätzte Einwohnerschaft
-                                  <DataInfoPopover description="Geschätzte Einwohnerzahl auf der Grundlage der demografischen Gegebenheiten des Viertels und der Fläche der Wohngrundstücke." />
+                                  {t("info_panel.population")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.population_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.population_est}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
+                                  {t("info_panel.exposure")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   10
@@ -1499,8 +1639,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Armutsindex
-                                  <DataInfoPopover description="Der Armutsindex pro Stadtviertel von -2 (Minimum) bis 2 (Maximum)." />
+                                  {t("info_panel.pov_index")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.pov_index_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1508,7 +1652,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   6
@@ -1517,16 +1661,21 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Prozentsatz der undurchlässigen Fläche
-                                  <DataInfoPopover description="Undurchlässige Oberflächen in städtischen Gebieten, wie Beton und Asphalt, absorbieren und speichern die Wärme stärker als natürliche Landschaften, wodurch die lokalen Temperaturen erheblich ansteigen und der Hitzestress der Stadtbevölkerung verschärft wird." />
+                                  {t("info_panel.impervious_percent")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.impervious_percent_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
-                                    props.currentGrid.impervious/625,
-                                  ).toFixed(2)}%
+                                    props.currentGrid.impervious / 625,
+                                  ).toFixed(2)}
+                                  %
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   26
@@ -1535,8 +1684,10 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Durchschnittliche Steigung(degrees)
-                                  <DataInfoPopover description="Gebiete mit steilen Hängen neigen bei starken Regenfällen zu schnellem Abfluss, wodurch sich der Wasserfluss bergab konzentriert, die Erosion verstärkt, das Risiko von Erdrutschen erhöht und Überschwemmungen flussabwärts in niedrig gelegenen Gebieten verstärkt werden." />
+                                  {t("info_panel.slope")}
+                                  <DataInfoPopover
+                                    description={t("info_panel.slope_describe")}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1544,7 +1695,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   16
@@ -1553,10 +1704,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Fläche der Grünflächen (Parks, Grünflächen und
-                                  Friedhof) (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Grüne Infrastrukturen wie Parks, Bäume und Grünflächen sorgen für Abkühlung durch Beschattung, Evapotranspiration und Verbesserung der Luftqualität, wodurch der städtische Wärmeinseleffekt gemildert wird." />
+                                  {t("info_panel.greenspaces")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.greenspaces_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1564,7 +1717,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Bewältigungsfähigkeit (Anfälligkeit)
+                                  {t("info_panel.coping")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   13
@@ -1590,20 +1743,20 @@ export default function InfoPanel(props) {
                                 scope="col"
                                 className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                               >
-                                AUSGEWÄHLTE REGION
+                                {t("info_panel.region_selected")}
                               </th>
                               <th
                                 scope="col"
                                 className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 rounded-tr-[10px] text-white"
                               >
-                                WERT
+                                {t("info_panel.value")}
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-green-600 bg-white">
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Gefahr
+                                {t("info_panel.risk")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(props.currentGrid.D_HAZARD).toFixed(
@@ -1625,7 +1778,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Bewältigungsfähigkeit (Anfälligkeit)
+                                {t("info_panel.coping")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(props.currentGrid.D_COPING).toFixed(
@@ -1636,7 +1789,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Empfindlichkeit (Anfälligkeit)
+                                {t("info_panel.vulnerability")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -1647,7 +1800,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Risikolevel
+                                {t("info_panel.risk_level")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -1663,19 +1816,19 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "Gefahr",
+                        attribute: t("info_panel.risk"),
                         val: props.currentGrid.D_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungsfähigkeit",
+                        attribute: t("info_panel.coping"),
                         val: props.currentGrid.D_COPING,
                       },
                       {
-                        attribute: "Belastung",
+                        attribute: t("info_panel.exposure"),
                         val: props.currentGrid.D_EXPOSURE,
                       },
                       {
-                        attribute: "Empfindlichkeit (Anfälligkeit)",
+                        attribute: t("info_panel.vulnerability"),
                         val: props.currentGrid.D_SENSITIVITY,
                       },
                     ]}
@@ -1686,11 +1839,15 @@ export default function InfoPanel(props) {
               <>
                 <div className="flex justify-between items-center pb-2">
                   <div>
-                    <span className="book-info-md">Wirkungskette</span>
+                    <span className="book-info-md">
+                      {t("info_panel.chain")}
+                    </span>
                   </div>
                   <div>
                     <div className="flex items-baseline">
-                      <span className="pr-2 book-info-sm ">alle Daten</span>
+                      <span className="pr-2 book-info-sm ">
+                        {t("info_panel.critical_filter_0")}
+                      </span>
                       <Switch
                         checked={props.onlyCritical}
                         onChange={props.setOnlyCritical}
@@ -1710,7 +1867,9 @@ export default function InfoPanel(props) {
                           )}
                         />
                       </Switch>
-                      <span className="px-2 book-info-sm">nur kritisch</span>
+                      <span className="px-2 book-info-sm">
+                        {t("info_panel.critical_filter_1")}
+                      </span>
                       <InfoSlideOver label="filter" />
                       <FilterGroup />
                     </div>
@@ -1730,7 +1889,7 @@ export default function InfoPanel(props) {
                       setCurrentRisk(4);
                     }}
                   >
-                     Bebautes Gebiet |
+                    {t("info_panel.built")} |
                   </span>
                   <span
                     className={classNames(
@@ -1745,26 +1904,33 @@ export default function InfoPanel(props) {
                       setCurrentRisk(5);
                     }}
                   >
-                    Transport Netzwerk
+                    {t("info_panel.transport_network")}
                   </span>
                 </div>
-                <img src={uberBuiltCard} className="w-[80%] pb-4" />
+                {i18n.language === "de" ? (
+                  <img src={uberBuiltCard} className="w-[80%] pb-4" />
+                ) : (
+                  <img src={floodTnEn} className="w-[80%] pb-4" />
+                )}
                 <hr className="-mx-4 border-4 border-green-600" />
                 <div className="flex py-4">
                   <div className="">
-                    <span className="book-info-sm">LEGENDE</span>
+                    <span className="book-info-sm">
+                      {t("info_panel.legend")}
+                    </span>
                     <InfoSlideOver label="topLegendUber2" />
                     <p className="book-info-md pt-1">
-                      Spezifische Risikobewertung
+                      {t("info_panel.risk_score")}
                     </p>
                     <div className="flex">
                       <div className="ml-4 mt-4 rounded-[10px] w-12 h-36 py-10 px-4 bg-gradient-to-b from-[#045A8D] via-[#6DA3D3] to-[#F1EEF6]"></div>
                       <div className="flex flex-col mt-4 ml-2 mr-4 justify-between">
                         <div className="book-info-sm ">
-                          100 Hohes Risiko =<br /> hohes Anpassungspotenzial
-                          durch NbS
+                          {t("info_panel.overall_legend_top")}
                         </div>
-                        <div className="book-info-sm">1 Geringes Risiko</div>
+                        <div className="book-info-sm">
+                          {t("info_panel.overall_legend_bottom")}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1779,34 +1945,37 @@ export default function InfoPanel(props) {
                                   scope="col"
                                   className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                                 >
-                                  INDIKATOR
+                                  {t("info_panel.indicator")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  WERT
+                                  {t("info_panel.value")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 text-white"
                                 >
-                                  KLASSE
+                                  {t("info_panel.class")}
                                 </th>
                                 <th
                                   scope="col"
                                   className="px-2 py-2 text-left medium-info-sm uppercase bg-dark-wood-700 text-white rounded-tr-[10px]"
                                 >
-                                  GEWICHT
+                                  {t("info_panel.weight")}
                                 </th>
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-green-600 bg-white">
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Überschwemmung durch Oberflächenwasser (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Daten zu Überschwemmungen durch Oberflächenwasser in bebauten Gebieten deuten auf ein erhöhtes Risiko lokaler Überschwemmungen aufgrund überlasteter Entwässerungssysteme hin, die eine Gefährdung der Infrastruktur und der öffentlichen Sicherheit darstellen." />
+                                  {t("info_panel.surface_flood")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.surface_flood_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1814,7 +1983,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Gefahr
+                                  {t("info_panel.risk")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   5
@@ -1823,9 +1992,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Überschwemmungsgefahr in der Straße (erhöht,
-                                  hoch und mittel) (m)
-                                  <DataInfoPopover description="Überschwemmungsgefährdete Straßen (klassifiziert als erhöht, hoch und mittel)" />
+                                  {t("info_panel.flood_road")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.flood_road_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1833,7 +2005,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Gefahr
+                                  {t("info_panel.risk")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   10
@@ -1842,9 +2014,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Straßenbahn- und Zugnetz (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Straßenbahn- und Eisenbahnnetze, die oft in tief gelegenen Gebieten oder in der Nähe von Gewässern gebaut wurden, sind anfällig für Überschwemmungen bei starken Regenfällen oder Flussüberläufen. Überschwemmte Gleise oder Bahnhöfe können den Bahnverkehr unterbrechen, was zu Betriebsunterbrechungen, Verspätungen und möglichen Schäden an der Infrastruktur führt und den Pendlerverkehr beeinträchtigt." />
+                                  {t("info_panel.train_network")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.train_network_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1852,7 +2027,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
+                                  {t("info_panel.exposure")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   15
@@ -1861,9 +2036,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Straßennetz (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Das Straßennetz, einschließlich Straßen und Autobahnen, kann bei Hochwasserereignissen überflutet werden, was den Verkehr behindert und die Zugänglichkeit beeinträchtigt. Überschwemmte Straßen behindern den Verkehr und führen zu Verkehrsstörungen, Umleitungen, Straßensperrungen und möglichen Schäden an Fahrzeugen in den betroffenen Gebieten." />
+                                  {t("info_panel.street_network")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.street_network_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(props.currentGrid.street).toFixed(
@@ -1871,7 +2049,7 @@ export default function InfoPanel(props) {
                                   )}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
+                                  {t("info_panel.exposure")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   15
@@ -1880,9 +2058,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Fußgängernetz (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Fußgängerwege, Bürgersteige und Kreuzungen sind ebenfalls anfällig für Überschwemmungen, insbesondere in Gebieten mit unzureichender Entwässerung. Überschwemmte Fußgängerwege schränken die sichere Mobilität ein, behindern Gehwege und gefährden Fußgänger, insbesondere in niedrig gelegenen Gebieten oder an Orten, die anfällig für Sturzfluten sind." />
+                                  {t("info_panel.pedestrian_network")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.pedestrian_network_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1890,7 +2071,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
+                                  {t("info_panel.exposure")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   9
@@ -1899,9 +2080,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Fahrradnetz (m
-                                  <span className="align-super">2</span>)
-                                  <DataInfoPopover description="Fahrrad- und Radwege, die oft an Straßen oder in überschwemmungsgefährdeten Gebieten verlaufen, können von Überschwemmungen betroffen sein. Überschwemmte Fahrradnetze unterbrechen die Fahrradrouten, schränken alternative Verkehrsmittel ein und beschädigen möglicherweise die Fahrradinfrastruktur." />
+                                  {t("info_panel.bike_network")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.bike_network_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(props.currentGrid.bike).toFixed(
@@ -1909,7 +2093,7 @@ export default function InfoPanel(props) {
                                   )}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Belasteter Vermögenswert
+                                  {t("info_panel.exposure")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   6
@@ -1918,14 +2102,18 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Geschätzte Einwohnerschaft
-                                  <DataInfoPopover description="Geschätzte Einwohnerzahl auf der Grundlage der demografischen Gegebenheiten des Viertels und der Fläche der Wohngrundstücke." />
+                                  {t("info_panel.population")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.population_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {props.currentGrid.population_est}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   18
@@ -1934,8 +2122,12 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Armutsindex
-                                  <DataInfoPopover description="Der Armutsindex pro Stadtviertel von -2 (Minimum) bis 2 (Maximum)." />
+                                  {t("info_panel.pov_index")}
+                                  <DataInfoPopover
+                                    description={t(
+                                      "info_panel.pov_index_describe",
+                                    )}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
@@ -1943,7 +2135,7 @@ export default function InfoPanel(props) {
                                   ).toFixed(2)}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   14
@@ -1952,16 +2144,19 @@ export default function InfoPanel(props) {
 
                               <tr>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Durchschnittliche Steigung(degrees)
-                                  <DataInfoPopover description="Gebiete mit steilen Hängen neigen bei starken Regenfällen zu schnellem Abfluss, wodurch sich der Wasserfluss bergab konzentriert, die Erosion verstärkt, das Risiko von Erdrutschen erhöht und Überschwemmungen flussabwärts in niedrig gelegenen Gebieten verstärkt werden." />
+                                  {t("info_panel.slope")}
+                                  <DataInfoPopover
+                                    description={t("info_panel.slope_describe")}
+                                  />
                                 </td>
                                 <td className="py-2 px-2 medium-intro-sm text-green-600">
                                   {parseFloat(
                                     props.currentGrid.slope_mean,
-                                  ).toFixed(2)} degrees
+                                  ).toFixed(2)}{" "}
+                                  degrees
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-gray-900">
-                                  Anfälligkeit (Empfindlichkeit)
+                                  {t("info_panel.vulnerability")}
                                 </td>
                                 <td className="py-2 px-2 book-info-sm text-dark-wood-700 text-right">
                                   6
@@ -1987,20 +2182,20 @@ export default function InfoPanel(props) {
                                 scope="col"
                                 className="py-2 px-2 text-left medium-info-sm uppercase bg-green-500 rounded-tl-[10px] text-white"
                               >
-                                AUSGEWÄHLTE REGION
+                                {t("info_panel.region_selected")}
                               </th>
                               <th
                                 scope="col"
                                 className="px-2 py-2 text-left medium-info-sm uppercase bg-green-500 rounded-tr-[10px] text-white"
                               >
-                                WERT
+                                {t("info_panel.value")}
                               </th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-green-600 bg-white">
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Gefahr
+                                {t("info_panel.risk")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(props.currentGrid.E_HAZARD).toFixed(
@@ -2011,7 +2206,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Belastung
+                                {t("info_panel.exposure")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -2022,7 +2217,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Bewältigungsfähigkeit (Anfälligkeit)
+                                {t("info_panel.coping")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(props.currentGrid.E_COPING).toFixed(
@@ -2033,7 +2228,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Empfindlichkeit (Anfälligkeit)
+                                {t("info_panel.vulnerability")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -2044,7 +2239,7 @@ export default function InfoPanel(props) {
 
                             <tr>
                               <td className="py-2 px-2 book-info-sm text-gray-900">
-                                Risikolevel
+                                {t("info_panel.risk_level")}
                               </td>
                               <td className="py-2 px-2 book-info-sm text-green-600 text-right">
                                 {parseFloat(
@@ -2060,19 +2255,19 @@ export default function InfoPanel(props) {
                   <RiskRadar
                     data={[
                       {
-                        attribute: "Gefahr",
+                        attribute: t("info_panel.risk"),
                         val: props.currentGrid.E_HAZARD,
                       },
                       {
-                        attribute: "Bewältigungsfähigkeit",
+                        attribute: t("info_panel.coping"),
                         val: props.currentGrid.E_COPING,
                       },
                       {
-                        attribute: "Belastung",
+                        attribute: t("info_panel.exposure"),
                         val: props.currentGrid.E_EXPOSURE,
                       },
                       {
-                        attribute: "Empfindlichkeit (Anfälligkeit)",
+                        attribute: t("info_panel.vulnerability"),
                         val: props.currentGrid.E_SENSITIVITY,
                       },
                     ]}

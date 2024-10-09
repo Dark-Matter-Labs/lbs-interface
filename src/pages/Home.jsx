@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 import "@watergis/mapbox-gl-export/dist/mapbox-gl-export.css";
 
 import { FilterProvider } from "./FilterProvider";
@@ -21,6 +22,7 @@ export default function Home() {
   const [popDen, setPopDen] = useState(false);
   const [activeHazard, setActiveHazard] = useState(0);
   const [onlyCritical, setOnlyCritical] = useState(false);
+  const { t } = useTranslation();
 
   const [currentGrid, setCurrentGrid] = useState({
     id: "1",
@@ -128,7 +130,7 @@ export default function Home() {
                 onClick={() => setShowInfoPanel(true)}
               >
                 <span className="text-white medium-intro-sm ">
-                  Erkunde das Risiko eines Standorts
+                  {t(`home.box_label`)}
                 </span>
                 <button onClick={() => setShowInfoPanel(true)}>
                   <ArrowRightCircleIcon className="text-white-200 w-7 h-7 ml-2" />

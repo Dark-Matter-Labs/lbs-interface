@@ -114,12 +114,12 @@
         "filter": "Filter to see the locations/areas/spots assessed with the most climate risk (worst 20%) and need for adaptation solutions",
         "bottomTableOverall": "Here you can explore the different level of assessed climate risks in the location you selected.",
         "topLegendHitze": "The risk for heat on population's health and wellbeing is assessed based on the indicators and weights shown in this table.",
-         "topLegendTrocken": "The risk for drought on tree health is assessed based on the indicators and weights shown in this table",
-         "topLegendLuft": "The risk for air pollution on population's health is assessed based on the indicators and weights shown in this table.",
-         "topLegendUber1": "he risk for surfacewater flooding on the built-up area is assessed based on the indicators and weights shown in this table.",
-         "topLegendUber2": "The risk for surfacewater flooding on the transport network is assessed based on the indicators and weights shown in this table",
-         "topLegendOverall": "he higher the value, the higher the compounded risk from the different hazards (drought, heat, air pollution and flood). Check the table shown below to unpack how this risk is distributed amongst these hazards.",
-         "bottomTable": "Summary of risk components for selected networks."
+        "topLegendTrocken": "The risk for drought on tree health is assessed based on the indicators and weights shown in this table",
+        "topLegendLuft": "The risk for air pollution on population's health is assessed based on the indicators and weights shown in this table.",
+        "topLegendUber1": "he risk for surfacewater flooding on the built-up area is assessed based on the indicators and weights shown in this table.",
+        "topLegendUber2": "The risk for surfacewater flooding on the transport network is assessed based on the indicators and weights shown in this table",
+        "topLegendOverall": "he higher the value, the higher the compounded risk from the different hazards (drought, heat, air pollution and flood). Check the table shown below to unpack how this risk is distributed amongst these hazards.",
+        "bottomTable": "Summary of risk components for selected networks."
       },
       "filter": {
         "background": "Background",
@@ -136,7 +136,7 @@
         "none": "None",
         "low": "Low",
         "high": "High",
-         "deactivated": "Deactivated",
+        "deactivated": "Deactivated",
         "activated": "Activated"
       }
   }

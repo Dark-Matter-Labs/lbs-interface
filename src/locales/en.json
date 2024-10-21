@@ -138,6 +138,29 @@
         "high": "High",
         "deactivated": "Deactivated",
         "activated": "Activated"
+      },
+      "howto": {
+        "title": "Instrusctions",
+        "subtitle": "This tour will show you how to:",
+        "instruction_1": "Filter and select among the different datasets included",
+        "instruction_2": "Choose different data visualisations and summary statistics",
+        "search": "Search",
+        "search_detail": "For an adress to look into your location’s grid",
+        "map": "Map Layers",
+        "map_detail": "Use the layer list on the bottom margin to turn on data layers to gain insights on the location. These layers represent important indicators on the risk assessments (ex: surface water flooding, municipal trees, state trees, population density, poverty index and parks)",
+        "location": "Select Location",
+        "location_detail": "Zoom in and click on the grid you would like to explore and the dashboard panel will show the data inputs and assessment of this location",
+        "summary": "Risk Summary",
+        "summary_detail_1": "On the left part of the panel one can see the colour code indicating the level of general climate risk which aggregated the risks of drought, heat, air pollution and flood. The purple indicated higher risk, and are the areas of higher focus in terms of implementing NBS for climate adaptation",
+        "summary_detail_2": "On the right you can see the data input values for the number of state and city trees, the area of critical infrastructure and the poverty index within the grid",
+        "summary_detail_3": "The table on the bottom left shows different hazards, what's exposed to them (e.g., trees, health, transportation network), and the corresponding risk scores (on a scale from 0-100). A higher score indicates a higher level of risk. The spider diagram on the right provides a visual breakdown of how the overall risk is distributed across the identified hazards.",
+        "summary_detail_4": "Use the spider diagram to quickly spot the most critical risks. For example, if Heat Risk extends further than others, it indicates that health exposure to heat is the most pressing issue.",
+        "single_risk": "Explore Single Risk",
+        "single_risk_detail": "Select a single impact chain/ climate risk to go in more depth and explore detailed data. This dashboard includes a table with values for indicators in impact chain and spider diagram comparing the different risk components (hazard, exposure, sensitivity and coping capacity).",
+        "filter": "Filter Location",
+        "filter_detail": "If you would like to explore the most relevant locations for each risk apply this filter by clicking on the risk you wish. You can also apply demographic filters such as: families in poverty, people aged 65+, high concentration of critical infrastructure, high or low concentration of municipal or state trees and more.",
+        "method": "Method",
+        "method_detail": "To learn about the methodology, explore the metadata and to see how the data was processed open the Method page."
       }
   }
 }

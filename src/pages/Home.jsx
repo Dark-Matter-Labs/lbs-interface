@@ -8,6 +8,7 @@ import NavBar from "../components/NavBar";
 import LBSMap from "../components/Map";
 import InfoPanel from "../components/InfoPanel";
 import LayerSelector from "../components/LayerSelector";
+import HowToDialog from "../components/HowToDialog";
 
 export default function Home() {
   // TODO: move needed states to app state via Context API
@@ -74,6 +75,7 @@ export default function Home() {
 
   return (
     <FilterProvider>
+      <HowToDialog />
       <div className="h-[100vh] overflow-y-clip">
         <NavBar current="home" />
         {showInfoPanel ? (

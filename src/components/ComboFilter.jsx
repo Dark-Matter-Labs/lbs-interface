@@ -15,8 +15,6 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-
-
 export default function ComboFilter({ label, setFilterState, binary = false }) {
   const [query, setQuery] = useState("");
   const { t } = useTranslation();
@@ -26,14 +24,14 @@ export default function ComboFilter({ label, setFilterState, binary = false }) {
     { id: 0, name: t(`filter.none`) },
     {
       id: 1,
-      name:  t(`filter.low`),
+      name: t(`filter.low`),
     },
     {
       id: 2,
-      name:  t(`filter.high`),
+      name: t(`filter.high`),
     },
   ];
-  
+
   const binaryFilterOptions = [
     { id: 0, name: t(`filter.deactivated`) },
     {

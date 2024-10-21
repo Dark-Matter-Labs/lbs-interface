@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect, useRef } from "react";
-import { createRoot } from "react-dom/client";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
@@ -403,7 +402,6 @@ export default function LBSMap({
     if (map.current.getLayer("risk-layer") !== undefined) {
       if (layer === 0) {
         if (onlyCritical) {
-          console.log("yo");
           map.current.setFilter("risk-layer", [
             ">",
             ["to-number", ["get", "AVERAGE_RISK"]],
@@ -492,135 +490,101 @@ export default function LBSMap({
 
   useEffect(() => {
     if (map.current.getLayer("risk-layer") !== undefined) {
+      let pop_symbol,
+        pop_val,
+        pov_symbol,
+        pov_val,
+        tree_symbol,
+        tree_val,
+        critical_symbol,
+        critical_val,
+        old_symbol,
+        old_val,
+        young_symbol,
+        young_val;
+
       if (populationFilter === "hoch") {
-        map.current.setFilter("risk-layer", [
-          ">",
-          ["to-number", ["get", "population_est"]],
-          205,
-        ]);
+        pop_symbol = ">";
+        pop_val = 205;
       } else if (populationFilter === "niedrig") {
-        map.current.setFilter("risk-layer", [
-          "<",
-          ["to-number", ["get", "population_est"]],
-          12,
-        ]);
+        pop_symbol = "<";
+        pop_val = 12;
       } else {
-        map.current.setFilter("risk-layer", [
-          ">=",
-          ["to-number", ["get", "population_est"]],
-          0,
-        ]);
+        pop_symbol = ">=";
+        pop_val = 0;
       }
-    }
-  }, [populationFilter]);
 
-  useEffect(() => {
-    if (map.current.getLayer("risk-layer") !== undefined) {
       if (povertyFilter === "hoch") {
-        map.current.setFilter("risk-layer", [
-          ">",
-          ["to-number", ["get", "poverty_index"]],
-          0,
-        ]);
+        pov_symbol = ">";
+        pov_val = 0;
       } else if (povertyFilter === "niedrig") {
-        map.current.setFilter("risk-layer", [
-          "<=",
-          ["to-number", ["get", "poverty_index"]],
-          0,
-        ]);
+        pov_symbol = "<=";
+        pov_val = 0;
       } else {
-        map.current.setFilter("risk-layer", [
-          ">=",
-          ["to-number", ["get", "poverty_index"]],
-          -2,
-        ]);
+        pov_symbol = ">=";
+        pov_val = -2;
       }
-    }
-  }, [povertyFilter]);
 
-  useEffect(() => {
-    if (map.current.getLayer("risk-layer") !== undefined) {
       if (treeFilter === "hoch") {
-        map.current.setFilter("risk-layer", [
-          ">",
-          ["to-number", ["get", "total_tree"]],
-          100,
-        ]);
+        tree_symbol = ">";
+        tree_val = 100;
       } else if (treeFilter === "niedrig") {
-        map.current.setFilter("risk-layer", [
-          "<",
-          ["to-number", ["get", "total_tree"]],
-          20,
-        ]);
+        tree_symbol = "<";
+        tree_val = 20;
       } else {
-        map.current.setFilter("risk-layer", [
-          ">=",
-          ["to-number", ["get", "total_tree"]],
-          0,
-        ]);
+        tree_symbol = ">=";
+        tree_val = 0;
       }
-    }
-  }, [treeFilter]);
 
-  useEffect(() => {
-    if (map.current.getLayer("risk-layer") !== undefined) {
       if (criticalFilter === "hoch") {
-        map.current.setFilter("risk-layer", [
-          ">",
-          ["to-number", ["get", "critical_infrastructure"]],
-          0,
-        ]);
+        critical_symbol = ">";
+        critical_val = 0;
       } else if (criticalFilter === "niedrig") {
-        map.current.setFilter("risk-layer", [
-          "<=",
-          ["to-number", ["get", "critical_infrastructure"]],
-          1,
-        ]);
+        critical_symbol = "<=";
+        critical_val = 1;
       } else {
-        map.current.setFilter("risk-layer", [
-          ">=",
-          ["to-number", ["get", "critical_infrastructure"]],
-          0,
-        ]);
+        critical_symbol = ">=";
+        critical_val = 0;
       }
-    }
-  }, [criticalFilter]);
 
-  useEffect(() => {
-    if (map.current.getLayer("risk-layer") !== undefined) {
       if (oldFilter === "ermöglicht") {
-        map.current.setFilter("risk-layer", [
-          ">",
-          ["to-number", ["get", "elderly"]],
-          18,
-        ]);
+        old_symbol = ">";
+        old_val = 18;
       } else {
-        map.current.setFilter("risk-layer", [
-          ">=",
-          ["to-number", ["get", "elderly"]],
-          0,
-        ]);
+        old_symbol = ">=";
+        old_val = 0;
       }
-    }
-  }, [oldFilter]);
 
-  useEffect(() => {
-    if (map.current.getLayer("risk-layer") !== undefined) {
       if (youngFilter === "ermöglicht") {
-        map.current.setFilter("risk-layer", [
-          ">",
-          ["to-number", ["get", "young_pop"]],
-          18,
-        ]);
+        young_symbol = ">";
+        young_val = 18;
       } else {
-        map.current.setFilter("risk-layer", [
-          ">=",
-          ["to-number", ["get", "young_pop"]],
-          0,
-        ]);
+        young_symbol = ">=";
+        young_val = 0;
       }
+
+      map.current.setFilter("risk-layer", [
+        "all",
+        [pop_symbol, ["to-number", ["get", "population_est"]], pop_val],
+        [pov_symbol, ["to-number", ["get", "poverty_index"]], pov_val],
+        [tree_symbol, ["to-number", ["get", "total_tree"]], tree_val],
+        [
+          critical_symbol,
+          ["to-number", ["get", "critical_infrastructure"]],
+          critical_val,
+        ],
+        [old_symbol, ["to-number", ["get", "elderly"]], old_val],
+        [young_symbol, ["to-number", ["get", "young_pop"]], young_val],
+      ]);
     }
-  }, [youngFilter]);
+  }, [
+    populationFilter,
+    povertyFilter,
+    treeFilter,
+    criticalFilter,
+    oldFilter,
+    youngFilter,
+  ]);
 
   return (
     <div className="overflow-hidden">
@@ -629,10 +593,6 @@ export default function LBSMap({
       </div>
     </div>
   );
-}
-
-export function renderToDom(container) {
-  createRoot(container).render(<LBSMap />);
 }
 
 LBSMap.propTypes = {

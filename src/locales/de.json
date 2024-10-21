@@ -138,6 +138,29 @@
         "high": "hoch",
         "deactivated": "deaktiviert",
         "activated": "ermöglicht"
+      },
+      "howto": {
+        "title": "VORGEHENSWEISE",
+        "subtitle": "Diese Anleitung zeigt Ihnen, wie Sie:",
+        "instruction_1": "Verschiedene Datensätzen filtern",
+        "instruction_2": "Verschiedene Datenvisualisierungen und zusammenfassende Statistiken auswählen",
+        "search": "Suche",
+        "search_detail": "Recherchiere einen Standort und ergründe dessen Eigenschaften",
+        "map": "Map Layers",
+        "map_detail": "Verwenden Sie die Ebenenliste am unteren Rand, um Datenebenen zu aktivieren und Einblicke in den Standort zu erhalten. Diese Ebenen stellen wichtige Indikatoren für die Risikobewertung dar (z. B. Überschwemmungen durch Oberflächenwasser, Stadtbäume, Staatsbäume, Bevölkerungsdichte, Armutsindex und Parks).",
+        "location": "Standort auswählen",
+        "location_detail": "Klicken Sie auf das Raster, das Sie untersuchen möchten, und das Dashboard wird automatisch geöffnet.",
+        "summary": "Risikozusammenfassung",
+        "summary_detail_1": "Auf der linken Seite des Panels ist der Farbcode zu sehen, der das Niveau des allgemeinen Klimarisikos angibt, das die Risiken von Dürre, Hitze, Luftverschmutzung und Überschwemmung zusammenfasst. Der violette Code zeigt ein höheres Risiko an und stellt die Bereiche dar, auf die bei der Umsetzung von NBS zur Anpassung an den Klimawandel ein höherer Schwerpunkt gelegt wird.",
+        "summary_detail_2": "Rechts sind die Dateneingabewerte für die Anzahl der Staats- und Stadtbäume, den Bereich der kritischen Infrastruktur und den Armutsindex innerhalb des Rasters zu sehen",
+        "summary_detail_3": "Die Tabelle unten links zeigt verschiedene Gefahren, ihre Auswirkung (z. B. Bäume, Gesundheit, Verkehrsnetz) und die entsprechenden Risikowerte (auf einer Skala von 0 bis 100). Ein höherer Wert weist auf ein höheres Risiko hin. Das Spinnendiagramm rechts bietet eine visuelle Aufschlüsselung, wie sich das Gesamtrisiko auf die identifizierten Gefahren verteilt.",
+        "summary_detail_4": "Verwenden Sie das Spinnendiagramm, um die kritischsten Risiken schnell zu erkennen. Wenn beispielsweise das Hitzerisiko weiter reicht als andere, zeigt dies an, dass die gesundheitliche Belastung durch Hitze das dringendste Problem ist.",
+        "single_risk": "Ein Risiko untersuchen",
+        "single_risk_detail": "Wählen Sie eine einzelne Klimarisiko-Wirkungskette aus, um mehr in die Tiefe zu gehen und detaillierte Daten zu untersuchen. Dieses Dashboard enthält eine Tabelle mit Werten für Indikatoren in der Wirkungskette und ein Spinnendiagramm, in dem die verschiedenen Risikokomponenten (Gefahr, Empfindlichkeit, Belastung und Bewältigungsfähigkeit) verglichen werden",
+        "filter": "Standorte risikobezogen filtern",
+        "filter_detail": "Wenn Sie die wichtigsten Standorte für jedes Risiko untersuchen möchten, wenden Sie diesen Filter an, indem Sie auf das gewünschte Risiko klicken. Sie können auch demografische Filter anwenden, z. B. Einwohnerdichte, Haushalte in Armut, Einwohner unter 10 Jahre, Einwohner über 65 Jahre, Baumbestand, hohe Konzentration kritischer Infrastrukturen.Wenn Sie eine der Filteroption ändern, wird die Karte automatisch entsprechend Ihrer Auswahl aktualisiert.",
+        "method": "Methode",
+        "method_detail": "Um mehr über die Methodik zu erfahren, die Metadaten zu erkunden und zu sehen, wie die Daten verarbeitet wurden, öffnen Sie die Seite Methode."
       }
   }
 }

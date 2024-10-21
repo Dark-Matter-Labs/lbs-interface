@@ -89,18 +89,12 @@ html {
 
 .mapboxgl-ctrl-top-right {
   z-index: 99;
-  
 }
 
-.mapboxgl-ctrl-group  {
+.mapboxgl-ctrl-group {
   border-radius: 13.3px !important;
-
 }
-
 
 .mapboxgl-ctrl-geocoder--collapsed {
   border-radius: 20px !important;
 }
-
-
- 

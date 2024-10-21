@@ -2,6 +2,7 @@ import { useState, useContext, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import { useTranslation } from "react-i18next";
 
 import {
   genRiskLayer,
@@ -33,6 +34,7 @@ export default function LBSMap({
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [currentLayer, setCurrentLayer] = useState(genRiskLayer);
+  const { t } = useTranslation();
 
   const {
     populationFilter,
@@ -503,10 +505,10 @@ export default function LBSMap({
         young_symbol,
         young_val;
 
-      if (populationFilter === "hoch") {
+      if (populationFilter === t(`filter.high`)) {
         pop_symbol = ">";
         pop_val = 205;
-      } else if (populationFilter === "niedrig") {
+      } else if (populationFilter === t(`filter.low`)) {
         pop_symbol = "<";
         pop_val = 12;
       } else {
@@ -514,10 +516,10 @@ export default function LBSMap({
         pop_val = 0;
       }
 
-      if (povertyFilter === "hoch") {
+      if (povertyFilter === t(`filter.high`)) {
         pov_symbol = ">";
         pov_val = 0;
-      } else if (povertyFilter === "niedrig") {
+      } else if (povertyFilter === t(`filter.low`)) {
         pov_symbol = "<=";
         pov_val = 0;
       } else {
@@ -525,10 +527,10 @@ export default function LBSMap({
         pov_val = -2;
       }
 
-      if (treeFilter === "hoch") {
+      if (treeFilter === t(`filter.high`)) {
         tree_symbol = ">";
         tree_val = 100;
-      } else if (treeFilter === "niedrig") {
+      } else if (treeFilter === t(`filter.low`)) {
         tree_symbol = "<";
         tree_val = 20;
       } else {
@@ -536,10 +538,10 @@ export default function LBSMap({
         tree_val = 0;
       }
 
-      if (criticalFilter === "hoch") {
+      if (criticalFilter === t(`filter.high`)) {
         critical_symbol = ">";
         critical_val = 0;
-      } else if (criticalFilter === "niedrig") {
+      } else if (criticalFilter === t(`filter.low`)) {
         critical_symbol = "<=";
         critical_val = 1;
       } else {
@@ -547,7 +549,7 @@ export default function LBSMap({
         critical_val = 0;
       }
 
-      if (oldFilter === "ermöglicht") {
+      if (oldFilter === t(`filter.activated`)) {
         old_symbol = ">";
         old_val = 18;
       } else {
@@ -555,7 +557,7 @@ export default function LBSMap({
         old_val = 0;
       }
 
-      if (youngFilter === "ermöglicht") {
+      if (youngFilter === t(`filter.activated`)) {
         young_symbol = ">";
         young_val = 18;
       } else {

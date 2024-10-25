@@ -3,12 +3,21 @@ import PropTypes from "prop-types";
 import { FilterContext } from "./FilterContext";
 
 export const FilterProvider = ({ children }) => {
-  const [populationFilter, setPopulationFilter] = useState("keiner");
-  const [povertyFilter, setPovertyFilter] = useState("keiner");
-  const [treeFilter, setTreeFilter] = useState("keiner");
-  const [criticalFilter, setCriticalFilter] = useState("keiner");
-  const [youngFilter, setYoungFilter] = useState("deaktiviert");
-  const [oldFilter, setOldFilter] = useState("deaktiviert");
+  const [populationFilter, setPopulationFilter] = useState({
+    id: 0,
+    name: "keiner",
+  });
+  const [povertyFilter, setPovertyFilter] = useState({ id: 0, name: "keiner" });
+  const [treeFilter, setTreeFilter] = useState({ id: 0, name: "keiner" });
+  const [criticalFilter, setCriticalFilter] = useState({
+    id: 0,
+    name: "keiner",
+  });
+  const [youngFilter, setYoungFilter] = useState({
+    id: 0,
+    name: "deaktiviert",
+  });
+  const [oldFilter, setOldFilter] = useState({ id: 0, name: "deaktiviert" });
 
   return (
     <FilterContext.Provider
@@ -33,5 +42,5 @@ export const FilterProvider = ({ children }) => {
 };
 
 FilterProvider.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.array,
 };

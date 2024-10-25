@@ -4,9 +4,9 @@
       "box_label": "Explore the risk of a location"
     },
     "nav": {
-      "about": "About",
+      "about": "Map",
       "method": "Method",
-      "model": "Effect Modelling",
+      "model": "Impact Modelling",
       "contact": "Contact"
     },
     "info_panel": {
@@ -140,12 +140,12 @@
       "activated": "Activated"
     },
     "howto": {
-      "title": "Instrusctions",
+      "title": "Instructions",
       "subtitle": "This tour will show you how to:",
       "instruction_1": "Filter and select among the different datasets included",
       "instruction_2": "Choose different data visualisations and summary statistics",
       "search": "Search",
-      "search_detail": "For an adress to look into your location’s grid",
+      "search_detail": "For an address to look into your location’s grid",
       "map": "Map Layers",
       "map_detail": "Use the layer list on the bottom margin to turn on data layers to gain insights on the location. These layers represent important indicators on the risk assessments (ex: surface water flooding, municipal trees, state trees, population density, poverty index and parks)",
       "location": "Select Location",
@@ -161,6 +161,50 @@
       "filter_detail": "If you would like to explore the most relevant locations for each risk apply this filter by clicking on the risk you wish. You can also apply demographic filters such as: families in poverty, people aged 65+, high concentration of critical infrastructure, high or low concentration of municipal or state trees and more.",
       "method": "Method",
       "method_detail": "To learn about the methodology, explore the metadata and to see how the data was processed open the Method page."
+    },
+    "method": {
+      "title": "Method",
+      "subtitle": "What other tech components are we building?",
+      "intro_para": "The Location-based Scoring tool was developed by TreesAI to perform Risk-Based Vulnerability Assessment. This helps to evaluate how patterns of risks and potential benefits on natural and human systems are shifting due to climate change. The methodology used by TreesAI to develop a risk score for geographical areas has been adapted from the Impact and Vulnerability Analysis of Vital Infrastructures and built-up Areas Guideline (IVAVIA) (Resin, 2018) that is based on the concepts of risks defined by the IPCC’s Fifth Assessment Report.",
+      "button_tech": "Technical Approach",
+      "button_paper": "Strategy Paper",
+      "nbs_title": "NbS Simulation Engine:",
+      "nbs_para": "An open-source approach which uses agent-based modelling (ABM) - a computational model for simulating the actions and interactions of agents such as individual trees, bees, residents or a park as a whole – in order to understand the behaviour of a system and its outcomes. This approach allows us to simulate and thus estimate the forest’s ecosystem benefits under varying conditions (weather, maintenance regimes, species compositions, spatial distributions etc.)",
+      "cloud_title": "Cloud-based software:",
+      "cloud_para": "An open-source software which enables project data to be quickly turned into impact assessment without requiring users to hold substantial storage capacities.",
+      "es_title": "Ecosystem services impact assestment:",
+      "es_para": "Adopting and extending peer reviewed and scientific impact models to forecast the ecosystem services provided across 50 years (eg. carbon sequestration, carbon release, water retention, air pollution removal,  heat island effect, and more.)",
+      "monitor_title": "Hybrid Monitoring:",
+      "monitor_para": "We’ll be combining citizen and remote sensing to verify the status and impact of each NbS Project, using the Augmented Collective Intelligence (ACI)  methodology.",
+      "section_intro": "The overall aim of a risk-based Vulnerability Assessment using IVAVIA is to facilitate the understanding of:",
+      "section_bullet_1": "1. Cause-effect relationships of climate change in a local context",
+      "section_bullet_2": "2. Identify geographical hotspots of vulnerability and risk",
+      "section_bullet_3": "3. Assess what impact on people, economy and built-up area under study can be expected now and for the future due to the changing climate",
+      "section_explain": "The Location-Based Scoring (LBS) allows the comparison of areas in the city relative to a specific set of climate risks. It's goal is to score areas of a city in terms of their risk profiles Involved in this stage are the identification of city risks, definition of urban indicators, collecting the data and geo-processing it, defining a process for weighting the indicators and aggregating them to a final score and finally visualising the outcomes - which is what this platform is about.",
+      "faq_1": "1. Definition of City Risks (impact chain)",
+      "faq_2": "2. Impact Chain & Urban Indicators",
+      "faq_3": "3. Data Collection & Geoprocessing",
+      "faq_4": "4. Weighting & Aggregation",
+      "faq_5": "5. Visualisation of Location-based Score"
+    },
+    "impact": {
+      "title": "Impact Modelling",
+      "para_1": "Use Green Unified Scenarios (GUS) for impact modeling: The GUS framework uses agent-based modeling (ABM) to create digital twins of urban forests to accurately predict their future development. To do so, GUS takes into account weather information, tree species, tree maintenance effort, tree diseases and the spatial distribution of trees to predict their impacts. For the simulations to be useful, they must be initialized with data that reflects the real environment: In a Stuttgart instance of GUS, we have already implemented the current tree cadastre of city trees and all trees on state properties in Stuttgart, and recorded their unique aspects per tree location: the spatial coordinates, tree species, diameter, height and current condition of each individual tree in Stuttgart.",
+      "para_2": "By changing specific influencing factors on the trees in Stuttgart, you can simulate the corresponding effects.",
+      "para_3": "You can also import and simulate your own tree data or check assumptions for your planned tree plantings in the context of development plans and street trees."
+    },
+    "wiki": {
+      "intro": "Climate Risk is the result from the interaction of vulnerability, exposure, and hazard. An Impact Chain diagram shows the relationship of these components.",
+      "cta": "Read more",
+      "q1": "What is an impact chain?",
+      "a1": "An impact chain is a framework for mapping out how climate change affects both natural and human systems, through specific hazard-exposure scenarios. Each impact chain outlines the cause-effect relationships among risk elements leading to the outcomes of particular hazard-exposure pairings. To assess climate risk, indicators are categorized into hazard, exposure, and vulnerability (encompassing coping capacity and sensitivity). The selection of relevant indicators for each category is guided by the city's strategic risks, data availability, and crucially, co-creation workshops with experts and stakeholders.",
+      "q2": "What do we mean by Hazard and exposure?",
+      "a2": "In climate risk analysis, a hazard is any potentially damaging physical event, phenomenon, or human activity that may cause loss of life, injury, property damage, social and economic disruption, or environmental degradation. Hazards encompass both natural events like floods and droughts, as well as human-made incidents such as pollution spills or urban fires, with a particular focus on changes in climate. Exposure, on the other hand, refers to the presence of people, livelihoods, ecosystems, resources, infrastructure, or economic and cultural assets in locations that could be adversely affected by these hazards. It measures the extent to which a system is subject to potential harm.",
+      "q3": "What do we mean by vulnerability? ",
+      "a3": "Vulnerability measures how susceptible a system or community is to damage from climate hazards, based on sensitivity—the degree to which it's affected by climate changes—and coping capacity, or its ability to manage and adapt to these impacts. Sensitivity involves factors like location and socio-economic status, whereas coping capacity embodies resources and adaptation strategies, such as nature-based solutions, which leverage ecosystem services to mitigate impacts and enhance resilience."
+    },
+    "info": {
+      "title": "The Trees As Infrastructure Stuttgart project is led by Dark Matter Labs and funded by the Stuttgart Climate Innovation Fund and The Nature Conservancy"
     }
   }
 }

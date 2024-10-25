@@ -161,6 +161,50 @@
       "filter_detail": "Wenn Sie die wichtigsten Standorte für jedes Risiko untersuchen möchten, wenden Sie diesen Filter an, indem Sie auf das gewünschte Risiko klicken. Sie können auch demografische Filter anwenden, z. B. Einwohnerdichte, Haushalte in Armut, Einwohner unter 10 Jahre, Einwohner über 65 Jahre, Baumbestand, hohe Konzentration kritischer Infrastrukturen.Wenn Sie eine der Filteroption ändern, wird die Karte automatisch entsprechend Ihrer Auswahl aktualisiert.",
       "method": "Methode",
       "method_detail": "Um mehr über die Methodik zu erfahren, die Metadaten zu erkunden und zu sehen, wie die Daten verarbeitet wurden, öffnen Sie die Seite Methode."
+    },
+    "method": {
+      "title": "Methode",
+      "subtitle": "Weitere Komponenten, die wir entwickeln:",
+      "intro_para": "Das “Location-basedScoring” Werkzeug wurde von TreesAI entwickelt, um eine risikobasierte Vulnerabilitätsbewertung durchzuführen. Damit lässt sich bewerten, wie sich dieMuster der Risiken und potenziellen Vorteile für natürliche und menschlicheSysteme aufgrund des Klimawandels verändern. Die von TreesAI verwendete Methode zur Entwicklung einer Risikobewertung für geografische Gebiete wurde an den Leitfaden für die Analyse der Auswirkungen und der Anfälligkeit lebenswichtiger Infrastrukturen und bebauter Gebiete (IVAVIA)(Resin, 2018) angepasst, der auf den Risikokonzepten des Fünften Sachstandsberichts des IPCC basiert.",
+      "button_tech": "Technisches Vorgehen",
+      "button_paper": "Strategiepapier",
+      "nbs_title": "NbS-Simulationsprogramm:",
+      "nbs_para": "Ein auf einem wissenschaftlichen Peer-Review basierter Open-Source-Ansatz, welcher agentenbasierte Modellierung (ABM) nutzt - d.h. ein Computermodell zur Simulation der Interaktionen von Agenten wie einzelnen Bäumen, Bienen, Anwohnern oder einem Park als Ganzes - um das Verhalten eines Systems und seine Ergebnisse zu verstehen. Dieser Ansatz ermöglicht es, z.B. die mweltleistungen eines städtischen Waldes für das Ökosystem unter verschiedenen Bedingungen (z. B. Wetter, Pflegeaufwand, Artenzusammensetzung, räumliche Verteilung) zu simulieren und zu bewerten.",
+      "cloud_title": "Cloud-basierte Software",
+      "cloud_para": "Eine Open-Source-Software, die es ermöglicht, Projektdaten schnell in eine Folgenabschätzung umzuwandeln, ohne dass Nutzer*innen über große Speicherkapazitäten verfügen müssen.",
+      "es_title": "Bewertung der Auswirkungen von Ökosystemleistungen:",
+      "es_para": "Anwendung und Weiterentwicklung von Wirkungsmodellen die auf wissenschaftlichem peer-review basieren, zur Vorhersage der über 50 Jahre hinweg erbrachten Ökosystemleistungen wie z. B. Kohlenstoffbindung, Kohlenstofffreisetzung, Wasserrückhalt, Beseitigung von Luftverschmutzung, Reduzierung des Wärmeinseleffekts.",
+      "monitor_title": "Hybride Beobachtung:",
+      "monitor_para": "Kombination von zivilgesellschaftlichem Engagement und Fernerkundung zur Beobachtung der Auswirkungen jedes NbS-Projekts unter Anwendung der Augmented Collective Intelligence (ACI) methode.",
+      "section_intro": "Das übergeordnete Ziel einer risikobasierten Vulnerabilitätsbewertung nach “IVAVIA: Impact and Vulnerability Analysis of Vital Infrastructures and Built-Up Areas” ist es, das Verständnis zu erleichtern für:",
+      "section_bullet_1": "1. Ursache-Wirkungs-Beziehungen des Klimawandels in einem lokalen Kontext.",
+      "section_bullet_2": "2. Geografische Hotspots der Anfälligkeit und des Risikos zu identifizieren.",
+      "section_bullet_3": " 3. Zu beurteilen, welche Auswirkungen auf die Menschen, die Wirtschaft und die bebaute Fläche jetzt und in Zukunft aufgrund des Klimawandels zu erwarten sind.",
+      "section_explain": "Die standortbezogene Bewertung (Location-Based Scoring, LBS) ermöglicht den Vergleich von Gebieten in der Stadt in Bezug auf eine bestimmte Gruppe von Klimarisiken. Ziel ist es, die Gebiete einer Stadt hinsichtlich ihres Risikoprofils zu bewerten. In dieser Phase werden die Risiken der Stadt ermittelt, städtische Indikatoren definiert, die Daten gesammelt und geografisch aufbereitet, ein Verfahren zur Gewichtung der Indikatoren und deren Zusammenfassung zu einer endgültigen Bewertung festgelegt und schließlich die Ergebnisse visualisiert - und genau darum geht es bei dieser Plattform.",
+      "faq_1": "1. Definition städtischer Risiken (Wirkungsketten)",
+      "faq_2": "2. Wirkungsketten & städtische Indikatoren",
+      "faq_3": "3. Datenerfassung & Geoverarbeitung",
+      "faq_4": "4. Gewichtung & Aggregierung",
+      "faq_5": "5. Visualisierung der standortspezifischen Bewertung (LBS)"
+    },
+    "impact": {
+      "title": "Wirkungmodellierung",
+      "para_1": "Verwenden Sie Green Unified Scenarios (GUS) zur Wirkungsmodellierung: Das GUS Rahmenwerk nutzt agentenbasierte Modellierung (ABM) zur Erstellung digitaler Zwillinge von städtischen Wäldern, um deren zukünftige Entwicklung genau vorherzusagen. Dafür berücksichtigt GUS Wetterinformationen, Baumarten, Baum-Pflegeaufwände, Baumkrankheiten und die räumliche Verteilung von Bäumen, um deren Auswirkungen zu prognostizieren. Damit die Simulationen nützlich sind, müssen sie mit Daten initialisiert werden, die die reale Umgebung widerspiegeln: In einer Stuttgarter Instanz von GUS haben wir bereits das aktuelle Baumkataster der Stadtbäume sowie aller Bäume auf Landesliegenschaften in Stuttgart implementiert, und deren einzigartigen Aspekte je Baumstandort erfasst: die räumlichen Koordinaten, die Baumart, den Durchmesser, die Höhe und den aktuellen Zustand jedes einzelnen Baumes in Stuttgart.",
+      "para_2": "Durch Veränderung konkreter Einflussfaktoren auf die Bäume in Stuttgart können Sie die entsprechenden Wirkungen simulieren.",
+      "para_3": "Außerdem können Sie eigene Baumdaten einlesen und simulieren, respektive Annahmen für Ihre geplanten Baumpflanzungen im Kontext von Bebauungsplänen und Straßenbegrünung überprüfen."
+    },
+    "wiki": {
+      "intro": "Klimarisiken sind Ergebnis eines Zusammenspiels von Gefahren, Stressfaktoren, Anfälligkeit & Belastung. Ein Wirkungsketten-Diagramm zeigt die Beziehung dieser Komponenten.",
+      "cta": "Mehr zur Methode",
+      "q1": "Was ist eine Wirkungskette?",
+      "a1": "Eine Wirkungskette ist ein Rahmen für die Darstellung der Auswirkungen des Klimawandels auf natürliche und menschliche Systeme durch spezifische Gefährdungs- und Belastungsszenarien. Jede Wirkungskette skizziert die Ursache-Wirkungs-Beziehung zwischen Risikoelementen, die zum Ergebnis bestimmter Gefahr-Belastungs-Paaren führt. Zur Bewertung des Klimarisikos werden die Indikatoren in die Kategorien Gefahr, Belastung und Anfälligkeit (einschließlich Bewältigungsfähigkeiten und Empfindlichkeit) eingeteilt. Die Auswahl der relevanten Indikatoren für jede Kategorie richtet sich nach den strategischen Risiken der Stadt, der Datenverfügbarkeit und vor allem nach Workshops mit Experten und Interessenvertretern.",
+      "q2": "Was ist mit Gefahr und Belastung gemeint?",
+      "a2": "In der Klimarisikoanalyse ist eine Gefahr jedes potenziell schädliche physische Ereignis, Phänomen oder menschliche Aktivität, das den Verlust von Menschenleben, Verletzungen, Sachschäden, soziale und wirtschaftliche Störungen oder Umweltbeeinträchtigungen verursachen kann. Gefahren umfassen sowohl natürliche Ereignisse wie Überschwemmungen und Dürren als auch vom Menschen verursachte Vorfälle wie Umweltverschmutzungen oder Stadtbrände, wobei ein besonderer Schwerpunkt auf Klimaveränderungen liegt. Die Belastung wiederum bezieht sich auf die Präsenz von Menschen, Lebensgrundlagen, Ökosystemen, Ressourcen, Infrastrukturen oder wirtschaftlichen und kulturellen Gütern an Orten, die durch Gefahren nachteilig betroffen sein könnten. Die Belastung misst das Ausmaß, in dem ein System einem potenziellen Schaden ausgesetzt.",
+      "q3": "Was ist mit Anfälligkeit gemeint?",
+      "a3": "Die Anfälligkeit misst, wie anfällig ein System oder eine Gemeinschaft für Schäden durch Klimagefahren ist, basierend auf der Empfindlichkeit - dem Ausmaß, in dem es vom Klimawandel betroffen ist - sowie der Bewältigungsfähigkeit - die Fähigkeit des Systems, die Auswirkungen der Klimagefahren zu bewältigen und sich an sie anzupassen.Die Empfindlichkeit umfasst Faktoren wie den Standort und den sozioökonomischen Status, während die Bewältigungsfähigkeit Ressourcen und Anpassungsstrategien verkörpert, wie z.B. naturbasierte Lösungen, die Ökosystemdienstleistungen nutzen, um die Auswirkungen abzumildern und die Resilienz zu verbessern."
+    },
+    "info": {
+      "title": "Das Projekt Trees As Infrastructure Stuttgart wird von Dark Matter Labs geleitet und durch den Stuttgarter Klima-Innovationsfonds und The Nature Conservancy gefördert."
     }
   }
 }

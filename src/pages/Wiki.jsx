@@ -1,8 +1,11 @@
+import { useTranslation } from "react-i18next";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import diagram from "../assets/LBS-wiki.png";
+import diagramEn from "../assets/method.png";
 
 export default function Wiki() {
+  const { t, i18n } = useTranslation();
   return (
     <div className="bg-gray-200">
       <NavBar current="wiki" />
@@ -12,88 +15,48 @@ export default function Wiki() {
         </h1>
         <div className="grid grid-cols-3 mt-10 border border-green-500 rounded-full px-40 py-10 bg-white">
           <div className="book-intro-md max-w-sm">
-            Klimarisiken sind Ergebnis eines Zusammenspiels von Gefahren,
-            Stressfaktoren, Anfälligkeit & Belastung. Ein
-            Wirkungsketten-Diagramm zeigt die Beziehung dieser Komponenten.
+            {t(`wiki.intro`)}
             <br />
             <button
               type="button"
               className="mt-8 bold-intro-sm  rounded-full bg-dark-wood-800 my-4 py-2 px-12 text-white-200 shadow-sm hover:bg-dark-wood-700 "
             >
-              Mehr zur Methode
+              {t(`wiki.cta`)}
             </button>
           </div>
           <div className="col-span-2 max-w-3xl border border-green-600 p-4">
-            <img className="w-2/3 mx-auto" src={diagram} />
+            {i18n.language === "de" ? (
+              <img className="w-2/3 mx-auto" src={diagram} />
+            ) : (
+              <img className="w-2/3 mx-auto" src={diagramEn} />
+            )}
           </div>
         </div>
         <hr className="mx-80 border-8 border-green-600" />
         <div className="grid grid-cols-3 border border-green-500 rounded-full px-40 py-10 bg-white">
           <div>
-            <h3 className="max-w-sm">Was ist eine Wirkungskette?</h3>
+            <h3 className="max-w-[200px]">{t(`wiki.q1`)}</h3>
           </div>
           <div className="col-span-2">
-            <p className="book-intro-sm max-w-2xl">
-              Eine Wirkungskette ist ein Rahmen für die Darstellung der
-              Auswirkungen des Klimawandels auf natürliche und menschliche
-              Systeme durch spezifische Gefährdungs- und Belastungsszenarien.
-              Jede Wirkungskette skizziert die Ursache-Wirkungs-Beziehung
-              zwischen Risikoelementen, die zum Ergebnis bestimmter
-              Gefahr-Belastungs-Paaren führt. Zur Bewertung des Klimarisikos
-              werden die Indikatoren in die Kategorien Gefahr, Belastung und
-              Anfälligkeit (einschließlich Bewältigungsfähigkeiten und
-              Empfindlichkeit) eingeteilt. Die Auswahl der relevanten
-              Indikatoren für jede Kategorie richtet sich nach den strategischen
-              Risiken der Stadt, der Datenverfügbarkeit und vor allem nach
-              Workshops mit Experten und Interessenvertretern.
-            </p>
+            <p className="book-intro-sm max-w-2xl">{t(`wiki.a1`)}</p>
           </div>
         </div>
         <hr className="mx-80 border-8 border-green-600" />
         <div className="grid grid-cols-3 border border-green-500 rounded-full px-40 py-10 bg-white">
           <div>
-            <h3 className="max-w-sm">
-              Was ist mit Gefahr und Belastung gemeint?
-            </h3>
+            <h3 className="max-w-[200px]">{t(`wiki.q2`)}</h3>
           </div>
           <div className="col-span-2">
-            <p className="book-intro-sm max-w-2xl">
-              In der Klimarisikoanalyse ist eine Gefahr jedes potenziell
-              schädliche physische Ereignis, Phänomen oder menschliche
-              Aktivität, das den Verlust von Menschenleben, Verletzungen,
-              Sachschäden, soziale und wirtschaftliche Störungen oder
-              Umweltbeeinträchtigungen verursachen kann. Gefahren umfassen
-              sowohl natürliche Ereignisse wie Überschwemmungen und Dürren als
-              auch vom Menschen verursachte Vorfälle wie Umweltverschmutzungen
-              oder Stadtbrände, wobei ein besonderer Schwerpunkt auf
-              Klimaveränderungen liegt. Die Belastung wiederum bezieht sich auf
-              die Präsenz von Menschen, Lebensgrundlagen, Ökosystemen,
-              Ressourcen, Infrastrukturen oder wirtschaftlichen und kulturellen
-              Gütern an Orten, die durch Gefahren nachteilig betroffen sein
-              könnten. Die Belastung misst das Ausmaß, in dem ein System einem
-              potenziellen Schaden ausgesetzt.
-            </p>
+            <p className="book-intro-sm max-w-2xl">{t(`wiki.a2`)}</p>
           </div>
         </div>
         <hr className="mx-80 border-8 border-green-600" />
         <div className="grid grid-cols-3 border border-green-500 rounded-full px-40 py-10 bg-white">
           <div>
-            <h3 className="max-w-sm">Was ist mit Anfälligkeit gemeint?</h3>
+            <h3 className="max-w-[200px]">{t(`wiki.q3`)}</h3>
           </div>
           <div className="col-span-2">
-            <p className="book-intro-sm max-w-2xl">
-              Die Anfälligkeit misst, wie anfällig ein System oder eine
-              Gemeinschaft für Schäden durch Klimagefahren ist, basierend auf
-              der Empfindlichkeit - dem Ausmaß, in dem es vom Klimawandel
-              betroffen ist - sowie der Bewältigungsfähigkeit - die Fähigkeit
-              des Systems, die Auswirkungen der Klimagefahren zu bewältigen und
-              sich an sie anzupassen.Die Empfindlichkeit umfasst Faktoren wie
-              den Standort und den sozioökonomischen Status, während die
-              Bewältigungsfähigkeit Ressourcen und Anpassungsstrategien
-              verkörpert, wie z.B. naturbasierte Lösungen, die
-              Ökosystemdienstleistungen nutzen, um die Auswirkungen abzumildern
-              und die Resilienz zu verbessern.
-            </p>
+            <p className="book-intro-sm max-w-2xl">{t(`wiki.a3`)}</p>
           </div>
         </div>
       </div>

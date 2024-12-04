@@ -11,6 +11,7 @@ import {
   ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
 } from "@heroicons/react/24/outline";
+import LangSwitcher from "./LangSwitcher";
 
 export default function Example() {
   const { t } = useTranslation();
@@ -43,9 +44,10 @@ export default function Example() {
             <div className="sm:flex sm:items-start">
               {dialogState === 0 ? (
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                  <LangSwitcher />
                   <DialogTitle
                     as="h3"
-                    className="medium-intro-lg uppercase text-white-200"
+                    className="medium-intro-lg uppercase text-white-200 pt-4"
                   >
                     {t(`howto.title`)}
                   </DialogTitle>

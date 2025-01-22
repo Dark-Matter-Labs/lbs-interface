@@ -147,7 +147,7 @@ export default function LayerSelector({
 
           <div className="bg-dark-wood-800 px-2 py-2 rounded-[10px]">
             <span className="text-center book-info-sm uppercase text-dark-wood-300">
-              {t(`filter.adiitional`)}
+              {t(`filter.additional`)}
             </span>
             <hr className="border-1 border-white" />
             <div className="flex justify-between items-center my-2">

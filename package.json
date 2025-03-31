@@ -1,7 +1,7 @@
 {
   "name": "lbs-interface",
-  "private": true,
-  "version": "0.0.0",
+  "license": "GPL-3.0-or-later",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

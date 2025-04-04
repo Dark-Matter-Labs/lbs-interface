@@ -21,7 +21,13 @@ export default function Wiki() {
               type="button"
               className="mt-8 bold-intro-sm  rounded-full bg-dark-wood-800 my-4 py-2 px-12 text-white-200 shadow-sm hover:bg-dark-wood-700 "
             >
-              {t(`wiki.cta`)}
+              <a
+                href="https://provocations.darkmatterlabs.org/treesai-is-implementing-location-based-scoring-in-stuttgart-c54c752bdaaf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t(`wiki.cta`)}
+              </a>
             </button>
           </div>
           <div className="col-span-2 max-w-3xl border border-green-600 p-4">

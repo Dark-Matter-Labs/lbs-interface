@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import PDF from "../assets/Methodology.pdf";
 
 export default function Methode() {
   const { t } = useTranslation();
@@ -14,28 +15,23 @@ export default function Methode() {
   const faqs = [
     {
       question: t(`method.faq_1`),
-      answer:
-        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      answer: t(`method.faq_a_1`),
     },
     {
       question: t(`method.faq_2`),
-      answer:
-        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      answer: t(`method.faq_a_2`),
     },
     {
       question: t(`method.faq_3`),
-      answer:
-        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      answer: t(`method.faq_a_3`),
     },
     {
       question: t(`method.faq_4`),
-      answer:
-        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      answer: t(`method.faq_a_4`),
     },
     {
       question: t(`method.faq_5`),
-      answer:
-        "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
+      answer: t(`method.faq_a_5`),
     },
   ];
 
@@ -56,15 +52,17 @@ export default function Methode() {
               type="button"
               className="bold-intro-sm  rounded-full bg-green-600 my-4 py-2 px-4 text-white-200 shadow-sm hover:bg-dark-wood-700 "
             >
-              {t(`method.button_tech`)}
+              <a href={PDF} target="_blank" rel="noopener noreferrer">
+                {t(`method.button_tech`)}
+              </a>
             </button>
             <br />
-            <button
+            {/* <button
               type="button"
               className="bold-intro-sm  rounded-full bg-green-600 my-4 py-2 px-4 text-white-200 shadow-sm hover:bg-dark-wood-700 "
             >
               {t(`method.button_paper`)}
-            </button>
+            </button> */}
           </div>
           <div className="border border-green-500 rounded-[10px] px-8 bg-white-300">
             <p className="book-intro-sm pt-10 pb-4">

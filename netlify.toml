@@ -1,6 +1,13 @@
+# Ensure PDF is served with correct Content-Type (avoids blank page in browser)
+[[headers]]
+  for = "/*.pdf"
+  [headers.values]
+    Content-Type = "application/pdf"
+    X-Content-Type-Options = "nosniff"
+
 [[headers]]
   for = "/*"
-    [headers.values]
+  [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "*"
     Access-Control-Allow-Headers = "*"

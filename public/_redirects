@@ -1,0 +1,2 @@
+# Ensure PDF is served as static file (must appear before any SPA catch-all)
+/Methodology.pdf  /Methodology.pdf  200

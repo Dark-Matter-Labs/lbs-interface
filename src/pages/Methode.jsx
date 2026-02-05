@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import PDF from "../assets/Methodology.pdf";
+import PDF from "/Methodology.pdf";
 
 export default function Methode() {
   const { t } = useTranslation();
